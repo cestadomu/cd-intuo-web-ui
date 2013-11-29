@@ -1,0 +1,65 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "GetObjectInfo",
+        "requires": [
+            "Ext.XTemplate",
+            "CestaDomu.controller.Intuo"
+        ],
+        "singleton": true
+    },
+    "designerId": "72bc9e21-12d1-4b6c-8dd0-ea324315ff79",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "constructor",
+                "implHandler": [
+                    "this.callParent(arguments);\r",
+                    "this.url = CestaDomu.controller.Intuo.commonServiceUrlPart;\r",
+                    "/*\r",
+                    "this.template = new Ext.XTemplate(\r",
+                    "    '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dig=\"http://digres.cz/\">',\r",
+                    "        '<soapenv:Header/>',\r",
+                    "        '<soapenv:Body>',\r",
+                    "            '<dig:GetViewX>',\r",
+                    "                '<dig:strAuthKey>{token}</dig:strAuthKey>',\r",
+                    "                '<dig:nViewID>{viewId}</dig:nViewID>',\r",
+                    "                '<dig:strLanguage>CS</dig:strLanguage>',\r",
+                    "                '<dig:strXMLDefinitionOfRestriction>?</dig:strXMLDefinitionOfRestriction>',\r",
+                    "            '</dig:GetViewX>',\r",
+                    "        '</soapenv:Body>',\r",
+                    "    '</soapenv:Envelope>'\r",
+                    ");\r",
+                    "*/\r",
+                    "\r",
+                    "\r",
+                    "this.template = new Ext.XTemplate(\r",
+                    "    '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dig=\"http://digres.cz/\">',\r",
+                    "       '<soapenv:Header/>',\r",
+                    "       '<soapenv:Body>',\r",
+                    "          '<dig:GetObjectInfo>',\r",
+                    "             '<dig:strAuthKey>{token}</dig:strAuthKey>',\r",
+                    "             '<dig:nID>{id}</dig:nID>',\r",
+                    "          '</dig:GetObjectInfo>',\r",
+                    "       '</soapenv:Body>',\r",
+                    "    '</soapenv:Envelope>'\r",
+                    ");\r",
+                    "\r",
+                    ""
+                ]
+            },
+            "designerId": "e9ea22cf-e606-4ae8-97a0-81bed84016f6"
+        }
+    ]
+}

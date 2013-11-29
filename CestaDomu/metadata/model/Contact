@@ -1,0 +1,105 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "clientIdProperty": null,
+        "designer|userAlias": "contact",
+        "designer|userClassName": "Contact",
+        "identifier": [
+            "{\"type\":\"simple\"}"
+        ],
+        "viewId": null
+    },
+    "configAlternates": {
+        "viewId": "number"
+    },
+    "designerId": "22d64f78-9e1c-4416-bf98-91cae5faffe7",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "viewId",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|createAlias": null,
+                "mapping": "c0",
+                "name": "name",
+                "type": "string"
+            },
+            "designerId": "bcc68c77-ad4f-4d5b-88be-c3b839c7f874"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "mapping": "ID",
+                "name": "id",
+                "type": "auto"
+            },
+            "designerId": "41d9ecd9-6ea2-4b47-8dab-5c5fc589f5f0"
+        },
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "api": [
+                    "{\r",
+                    "    read: CestaDomu.controller.GetObjectInfo\r",
+                    "}"
+                ],
+                "designer|createAlias": "intuo",
+                "url": "xxx"
+            },
+            "designerId": "dc9ed813-4ae5-47d3-859c-e4b3a57738e5",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Xml",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|createAlias": "intuo",
+                        "record": "anyType",
+                        "rootProperty": "GetObjectInfoResult"
+                    },
+                    "designerId": "3e2e7b89-1f9d-42ac-9ae3-2721d4551bd1"
+                },
+                {
+                    "type": "Ext.data.writer.Xml",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|createAlias": "intuo"
+                    },
+                    "designerId": "fe727e74-1782-40a0-ba68-6b484f246294"
+                }
+            ]
+        }
+    ]
+}

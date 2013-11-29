@@ -1,0 +1,13 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js",
+        "url": "lib/IntuoWriter.js"
+    },
+    "designerId": "d890a36a-dc26-4749-ba9e-6a6e09d5a5dd"
+}

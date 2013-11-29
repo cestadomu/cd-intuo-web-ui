@@ -1,0 +1,81 @@
+{
+    "type": "Ext.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|uiInterfaceName": "dark",
+        "designer|userAlias": "clientNewMenu",
+        "designer|userClassName": "ClientNewMenu",
+        "hideOnMaskTap": true,
+        "layout": "vbox",
+        "masked": null,
+        "modal": true
+    },
+    "configAlternates": {
+        "masked": "boolean"
+    },
+    "designerId": "a65ec584-deed-4a65-b476-b43a471f6316",
+    "cn": [
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "border": null,
+                "designer|uiInterfaceName": "plain",
+                "docked": null,
+                "style": "border-bottom: 1px solid black; border-radius: 0;",
+                "text": "<div style=\"text-align: left\">Průběh péče</div>",
+                "text-align": "left",
+                "ui": "plain"
+            },
+            "designerId": "37affe4c-0d56-42b7-9b76-2ad1d020f9bc",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "text-align",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "border": null,
+                "designer|uiInterfaceName": "plain",
+                "docked": null,
+                "style": "border-bottom: 1px solid black; border-radius: 0;",
+                "text": "<div style=\"text-align: left\">Lékařská zpráva</div>",
+                "ui": "plain"
+            },
+            "designerId": "863c91a3-f2bc-4f83-af01-8b27396b57d0"
+        },
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "border": null,
+                "designer|uiInterfaceName": "plain",
+                "docked": null,
+                "text": "<div style=\"text-align: left\">Konzultace</div>",
+                "ui": "plain"
+            },
+            "designerId": "91a8b79f-f42f-4d41-9fd5-b283e4f4c158"
+        }
+    ]
+}

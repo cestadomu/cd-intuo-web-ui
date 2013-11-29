@@ -1,0 +1,46 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Login",
+        "requires": [
+            "Ext.XTemplate",
+            "CestaDomu.controller.Intuo"
+        ],
+        "singleton": true
+    },
+    "designerId": "93fbd195-54ca-43f8-bdf8-77f13022629e",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "constructor",
+                "implHandler": [
+                    "this.url = CestaDomu.controller.Intuo.commonServiceUrlPart;\r",
+                    "this.template = new Ext.XTemplate(\r",
+                    "    '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dig=\"http://digres.cz/\">',\r",
+                    "        '<soapenv:Header/>',\r",
+                    "        '<soapenv:Body>',\r",
+                    "            '<dig:Login>',\r",
+                    "                '<dig:strLoginName>{username}</dig:strLoginName>',\r",
+                    "                '<dig:strPassword>{password}</dig:strPassword>',\r",
+                    "            '</dig:Login>',\r",
+                    "        '</soapenv:Body>',\r",
+                    "    '</soapenv:Envelope>'\r",
+                    ");\r",
+                    "this.callParent(arguments);"
+                ]
+            },
+            "designerId": "00b39b09-0405-471c-8add-7d6fbe57ca1a"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "type": "jsoverrideresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js2",
+        "url": "app/override/Component.js"
+    },
+    "designerId": "950a1e32-41d5-44e2-a8cd-823d7e4446fb"
+}

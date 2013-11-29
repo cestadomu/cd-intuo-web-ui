@@ -1,0 +1,133 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ClientsController"
+    },
+    "designerId": "cca28193-8432-4349-b236-aab57db69219",
+    "cn": [
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onLoggedIn",
+                "implHandler": [
+                    "this.getApplication().redirectTo(\"private/clients\");"
+                ],
+                "name": "loggedIn",
+                "scope": "this"
+            },
+            "designerId": "09a8d03f-84ba-4893-8029-c07526a361ea"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainContainer",
+                "selector": "mainContainer"
+            },
+            "designerId": "7ed4f660-d81a-48b6-884c-11ab480bec24"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "clientsView",
+                "selector": "clientsView",
+                "xtype": "clientsView"
+            },
+            "designerId": "01110594-3735-4be2-b778-7c8d1e66f30c"
+        },
+        {
+            "type": "Ext.app.Route",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "main",
+                "implHandler": [
+                    "this.getMainContainer().setActiveItem(this.getClientsView());"
+                ],
+                "url": "private/clients"
+            },
+            "designerId": "bd61d330-7d47-4ae9-9f94-acaef9d339e6"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#searchButton",
+                "designer|targetType": "Ext.Button",
+                "fn": "onSearchButtonTap",
+                "implHandler": [
+                    "var searchText = this.getSearchText().getValue();\r",
+                    "if (searchText && searchText.length > 2) {\r",
+                    "    var store = Ext.getStore('ContactsStore');\r",
+                    "    store.filter('name', searchText);\r",
+                    "    store.load();\r",
+                    "} else {\r",
+                    "    Ext.Msg.alert('Příliš obecné hledání', 'Pro vyhledání podle jména je nutné zadat více než 2 znaky, jinak by množství nalezených záznamů mohlo být příliš velké.');\r",
+                    "}\r",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "bd806779-a787-4402-b62d-8870fff6b872"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "searchText",
+                "selector": "#searchText"
+            },
+            "designerId": "0940f0ff-7db0-4045-a070-ce7706a4a1cd"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#clientsList",
+                "designer|targetType": "Ext.dataview.List",
+                "fn": "onListItemTap",
+                "implHandler": [
+                    "this.getApplication().fireEvent(\"clientSelected\", record.id);\r",
+                    ""
+                ],
+                "name": "itemtap"
+            },
+            "designerId": "adee95e4-27d4-4cda-b4ad-47f6209c6d2c"
+        }
+    ]
+}

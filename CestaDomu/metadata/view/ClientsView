@@ -1,0 +1,114 @@
+{
+    "type": "Ext.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "clientsView",
+        "designer|userClassName": "ClientsView",
+        "id": null,
+        "itemId": null,
+        "layout": "vbox",
+        "showAnimation": "slideIn"
+    },
+    "designerId": "cca33f23-f526-4568-9d08-51f97baf994e",
+    "cn": [
+        {
+            "type": "Ext.TitleBar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "title": "Klienti"
+            },
+            "designerId": "34952681-4464-4f4a-b03d-e22381951d69"
+        },
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "searchContainer",
+                "layout": "hbox",
+                "margin": 5
+            },
+            "designerId": "f08cbb2b-d4b4-4402-b3f7-6ee14aa7e7c2",
+            "cn": [
+                {
+                    "type": "Ext.field.Search",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "",
+                        "id": "searchText",
+                        "label": "Hledat jméno:",
+                        "width": "100%"
+                    },
+                    "designerId": "aa262d0d-945e-4ab0-b8e7-c053ad16f04f"
+                },
+                {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "docked": "right",
+                        "id": "searchButton",
+                        "margin": 5,
+                        "text": "Vyhledat"
+                    },
+                    "designerId": "049d7a59-e986-43a0-905e-1b1b1bf51e9c"
+                }
+            ]
+        },
+        {
+            "type": "Ext.dataview.List",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "",
+                "emptyText": "Žádné výsledky",
+                "height": "100%",
+                "id": "clientsList",
+                "itemId": null,
+                "loadingText": "Pracuji...",
+                "onItemDisclosure": null,
+                "store": "ContactsStore"
+            },
+            "designerId": "10b78900-9bca-4e5e-af85-50240f5ffb42",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "itemTpl",
+                        "implHandler": [
+                            "{name}"
+                        ]
+                    },
+                    "designerId": "ad7f8d55-8e83-4aaf-a8ca-e3b296b47869"
+                }
+            ]
+        }
+    ]
+}

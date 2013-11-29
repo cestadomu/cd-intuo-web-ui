@@ -1,0 +1,30 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "DefaultController"
+    },
+    "designerId": "af543529-d757-452c-b766-ffaadbd6700f",
+    "cn": [
+        {
+            "type": "Ext.app.Route",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "main",
+                "implHandler": [
+                    "this.getApplication().fireEvent(\"home\");"
+                ],
+                "url": ""
+            },
+            "designerId": "7e1c5c70-1bf3-4f2b-bb6c-7401a1624083"
+        }
+    ]
+}

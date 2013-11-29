@@ -1,0 +1,149 @@
+{
+    "type": "Ext.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "clientDetailView",
+        "designer|userClassName": "ClientDetailView",
+        "itemId": null,
+        "layout": "card"
+    },
+    "designerId": "904356d9-e5e1-4ff8-97b3-c2ce9702d4d4",
+    "cn": [
+        {
+            "type": "Ext.Toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "id": null,
+                "title": null
+            },
+            "configAlternates": {
+                "title": "object"
+            },
+            "designerId": "9fd04809-2b14-4d21-8d4d-8b7836216daa",
+            "cn": [
+                {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "docked": "right",
+                        "itemId": null,
+                        "text": "Nový..."
+                    },
+                    "designerId": "c234fcf4-4bb1-4a9a-9aa2-917db9c349a5"
+                }
+            ]
+        },
+        {
+            "type": "Ext.carousel.Carousel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "margin": 5
+            },
+            "designerId": "3e444efc-1710-4b12-a37f-68e794877137",
+            "cn": [
+                {
+                    "type": "Ext.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "clientInfoContainer",
+                        "margin": null,
+                        "title": "Informace"
+                    },
+                    "designerId": "13c4ada3-a114-4ad0-97d1-d183fe71a882",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "title",
+                            "type": "string"
+                        }
+                    ],
+                    "cn": [
+                        {
+                            "type": "Ext.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "html": "test 1"
+                            },
+                            "designerId": "e490bef2-1999-49d9-8d75-3e004b4c453c",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "tpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "tpl",
+                                        "implHandler": [
+                                            "{name}"
+                                        ]
+                                    },
+                                    "designerId": "88cc513f-b779-442f-8b61-d6840655349b"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "title": "Průběhy péče"
+                    },
+                    "designerId": "120bfb31-989b-45d5-bba1-475eb0e75064",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "title",
+                            "type": "string"
+                        }
+                    ],
+                    "cn": [
+                        {
+                            "type": "Ext.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "html": "test 2"
+                            },
+                            "designerId": "09c2e9bc-42f8-42e6-a7dd-656ea1db945a"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,61 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "LoginController",
+            "RoleSelectController",
+            "DefaultController",
+            "ClientsController",
+            "ClientDetailController"
+        ],
+        "models": [
+            "Contact"
+        ],
+        "name": "CestaDomu",
+        "requires": [
+            "Lib.IntuoProxy",
+            "Lib.IntuoWriter",
+            "Lib.IntuoReader",
+            "Lib.IntuoField"
+        ],
+        "stores": [
+            "ContactsStore"
+        ],
+        "views": [
+            "LoginView",
+            "MainContainer",
+            "ClientsView",
+            "RoleSelectView",
+            "LoadingView",
+            "ClientDetailView",
+            "ClientNewMenu"
+        ]
+    },
+    "designerId": "application",
+    "cn": [
+        {
+            "type": "Ext.Loader",
+            "reference": {
+                "name": "loader",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "loader",
+                "paths": [
+                    "{\r",
+                    "    \"Ext\":\"touch/src\",\r",
+                    "    \"Lib\": \"lib\",\r",
+                    "    \"CestaDomu\": \"app\"\r",
+                    "}"
+                ]
+            },
+            "designerId": "66fcf855-48d8-4816-8f7b-faefde8ffb3c"
+        }
+    ]
+}

@@ -1,0 +1,79 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "RoleSelectController"
+    },
+    "designerId": "6c754d05-23bf-4610-a879-71b3c9265af4",
+    "cn": [
+        {
+            "type": "Ext.app.Route",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "main",
+                "implHandler": [
+                    "this.getMainContainer().setActiveItem(this.getRoleSelectView());"
+                ],
+                "url": "private/roleSelect"
+            },
+            "designerId": "92310298-87fa-4299-a1ae-029771696ec8"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#roleSelectView button",
+                "designer|targetType": "Ext.Button",
+                "fn": "onButtonTap",
+                "implHandler": [
+                    "var nextView;\r",
+                    "nextView = Ext.create('CestaDomu.view.PacientsContainer', {});\r",
+                    "this.getMainContainer().setActiveItem(nextView);\r",
+                    "Ext.getStore(\"ContactsStore\").load();"
+                ],
+                "name": "tap"
+            },
+            "designerId": "2f5dcb14-7552-4b49-93f3-11e237886bd8"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainContainer",
+                "selector": "mainContainer"
+            },
+            "designerId": "8aa6c57a-cfea-4672-8fe9-df25e827106c"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "roleSelectView",
+                "selector": "roleSelectView",
+                "xtype": "roleSelectView"
+            },
+            "designerId": "feae1f5d-85fe-4c89-8ed8-a35704668686"
+        }
+    ]
+}

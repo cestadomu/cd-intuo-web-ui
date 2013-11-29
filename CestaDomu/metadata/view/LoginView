@@ -1,0 +1,100 @@
+{
+    "type": "Ext.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "loginView",
+        "designer|userClassName": "LoginView",
+        "id": null,
+        "layout": "card"
+    },
+    "designerId": "5abb570e-dbd3-4ee8-820a-3a8be3dc40cc",
+    "cn": [
+        {
+            "type": "Ext.TitleBar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "title": "Přihlášení"
+            },
+            "designerId": "b00f2481-58a5-4723-9df3-0ff47172440b"
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "center",
+                "container|pack": "center",
+                "designer|createAlias": "",
+                "designer|displayName": null,
+                "id": "loginForm",
+                "itemId": null,
+                "layout": "vbox",
+                "scrollable": null
+            },
+            "designerId": "5c83f34d-4f6e-418f-a877-ef024e81f17e",
+            "cn": [
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": null,
+                        "label": "Přihlašovací jméno",
+                        "margin": 10,
+                        "minWidth": "",
+                        "name": "username",
+                        "width": "90%"
+                    },
+                    "designerId": "c3fd26cd-3a3d-4c59-ae3e-cd626ebb6a7b"
+                },
+                {
+                    "type": "Ext.field.Password",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": null,
+                        "label": "Heslo",
+                        "margin": 10,
+                        "name": "password",
+                        "width": "90%"
+                    },
+                    "designerId": "44cfd845-03a9-4e98-9be4-9cfdaa695e96"
+                },
+                {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": null,
+                        "id": "loginButton",
+                        "margin": 10,
+                        "maxWidth": 200,
+                        "text": "Přihlásit"
+                    },
+                    "designerId": "894fa451-6bfc-4161-88e9-ce25682b883e"
+                }
+            ]
+        }
+    ]
+}

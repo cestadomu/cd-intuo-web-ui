@@ -1,0 +1,15 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js1",
+        "remote": false,
+        "url": "lib/IntuoProxy.js",
+        "x-bootstrap": false
+    },
+    "designerId": "2e87c985-9fec-42b7-ab7a-9142672b5636"
+}

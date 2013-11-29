@@ -1,0 +1,128 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "loginController",
+        "designer|userClassName": "LoginController",
+        "requires": [
+            "Ext.MessageBox",
+            "CestaDomu.controller.Login",
+            "CestaDomu.controller.Intuo"
+        ]
+    },
+    "designerId": "9ed2c46b-635c-41bf-ac4c-ec682c9f8d86",
+    "cn": [
+        {
+            "type": "Ext.app.Route",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "main",
+                "implHandler": [
+                    "this.getMainContainer().setActiveItem(this.getLoginView());"
+                ],
+                "url": "public/login"
+            },
+            "designerId": "ff917bdc-9ae0-4944-8f53-2dd042d09472"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#loginButton",
+                "designer|targetType": "Ext.Button",
+                "fn": "onButtonTap",
+                "implHandler": [
+                    "var messageBox = Ext.Msg.show({\r",
+                    "    title: \"Probíhá ověřování...\",\r",
+                    "    buttons: []\r",
+                    "});\r",
+                    "\r",
+                    "CestaDomu.controller.Intuo.login(\r",
+                    "    CestaDomu.controller.Login,\r",
+                    "    this.getLoginForm().getValues(),\r",
+                    "    this,\r",
+                    "    function(response){\r",
+                    "        this.getApplication().fireEvent(\"loggedIn\");\r",
+                    "        messageBox.hide();\r",
+                    "    },function(response) {\r",
+                    "        Ext.Msg.alert(\"Přihlášení se nezdařilo\");\r",
+                    "    });\r",
+                    "\r",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "27178651-e9c6-4c90-8d2e-df028fb20ca8"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onHome",
+                "implHandler": [
+                    "this.getApplication().redirectTo(\"public/login\");"
+                ],
+                "name": "home",
+                "scope": "this"
+            },
+            "designerId": "dfbfb0e7-b70c-4920-be94-1de229e6cadb"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainContainer",
+                "selector": "mainContainer"
+            },
+            "designerId": "2fcb99ad-a092-47d1-a5e4-df70593a3dcd"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "loginForm",
+                "selector": "loginView formpanel"
+            },
+            "designerId": "cf976eb5-0768-4dcf-a1ad-f80753e1521d"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "loginView",
+                "selector": "loginView",
+                "xtype": "loginView"
+            },
+            "designerId": "3a80780f-1cb8-4813-bbd6-42b5d7855307"
+        }
+    ]
+}

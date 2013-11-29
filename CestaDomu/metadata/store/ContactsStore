@@ -1,0 +1,84 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ContactsStore",
+        "model": "Contact",
+        "remoteFilter": true,
+        "remoteGroup": true,
+        "remoteSort": true,
+        "storeId": "ContactsStore"
+    },
+    "designerId": "6270e90b-5658-4f97-bce8-5db328fdc069",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "actionMethods": null,
+                "api": [
+                    "{\r",
+                    "    read: {service: CestaDomu.controller.GetViewX, templates: {filterXml: new Ext.XTemplate('<Element type=\"Comparison\"><SubElements><ElementCollection><Item><Element type=\"ColumnName\"><AdditionalData columnName=\"name\" displayName=\"Název\" type=\"1\" /></Element></Item><Item><Element type=\"Constant\"><AdditionalData><anyType xmlns:q1=\"http://www.w3.org/2001/XMLSchema\" d7p1:type=\"q1:string\" xmlns:d7p1=\"http://www.w3.org/2001/XMLSchema-instance\">{filters.name}%</anyType></AdditionalData></Element></Item></ElementCollection></SubElements><AdditionalData Operator=\"Like\" /></Element>')}},\r",
+                    "    mappingType: 'xml',\r",
+                    "    mapping: {id: 'ID', name: 'c0'}\r",
+                    "}"
+                ],
+                "designer|createAlias": "intuo",
+                "extraParams": [
+                    "{\r",
+                    "    viewId: 1646\r",
+                    "}"
+                ],
+                "url": "xxx"
+            },
+            "configAlternates": {
+                "services": "object",
+                "actionMethods": "object"
+            },
+            "designerId": "ac634c95-1117-45cd-8041-d3375c301474",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "actionMethods",
+                    "type": "string"
+                }
+            ],
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Xml",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|createAlias": "intuo",
+                        "record": "ILT_events",
+                        "rootProperty": "DocumentElement"
+                    },
+                    "designerId": "eb41c22c-cbed-4681-9b07-179f8687d113"
+                },
+                {
+                    "type": "Ext.data.writer.Xml",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|createAlias": "intuo"
+                    },
+                    "designerId": "0b1466fe-8f16-4b15-b6df-6e06e0952266"
+                }
+            ]
+        }
+    ]
+}

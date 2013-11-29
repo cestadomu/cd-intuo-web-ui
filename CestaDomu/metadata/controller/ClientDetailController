@@ -1,0 +1,209 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ClientDetailController"
+    },
+    "designerId": "c771f618-666b-418e-84d8-4f67a62e68fe",
+    "cn": [
+        {
+            "type": "Ext.app.Route",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "clientId"
+                ],
+                "fn": "main",
+                "implHandler": [
+                    "var messageBox = Ext.Msg.show({\r",
+                    "    title: \"Načítám data...\",\r",
+                    "    buttons: []\r",
+                    "});\r",
+                    "\r",
+                    "var Contact = Ext.ModelManager.getModel('CestaDomu.model.Contact');\r",
+                    "\r",
+                    "Contact.load(clientId, {\r",
+                    "    scope: this,\r",
+                    "    success: function(client) {\r",
+                    "        this.getMainContainer().setActiveItem(this.getClientDetailView());\r",
+                    "        this.getClientInfoContainer().setRecordRecursive(client);\r",
+                    "        // ruční volání handleru události změny v caruselu pro nastavení nadpisu obrazovky\r",
+                    "        // jsou uvedeny pouze parametry, které se ve funkci používají, přestože signatura je rozsáhlejší\r",
+                    "        this.onCarouselActiveItemChange(null, this.getClientInfoContainer());\r",
+                    "        messageBox.hide();\r",
+                    "\r",
+                    "    }\r",
+                    "});"
+                ],
+                "url": "private/clients/:clientId"
+            },
+            "designerId": "d633283c-b2a0-400e-aaec-ec999497153a"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "clientId"
+                ],
+                "fn": "onClientSelected",
+                "implHandler": [
+                    "this.getApplication().redirectTo(\"private/clients/\"+clientId);"
+                ],
+                "name": "clientSelected",
+                "scope": "this"
+            },
+            "designerId": "8bbb410f-d10d-430e-bda1-1fea20a2d3ff"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "clientDetailView",
+                "selector": "clientDetailView",
+                "xtype": "clientDetailView"
+            },
+            "designerId": "06c5b4d6-3443-48f6-90ad-e77f8c5e71d5"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "loadingView",
+                "selector": "loadingView",
+                "xtype": "loadingView"
+            },
+            "designerId": "a911677d-4a4c-43aa-b4a8-4b174a0f8929"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainContainer",
+                "selector": "mainContainer"
+            },
+            "designerId": "1dd1838c-8295-4e52-b1ae-2d26f9d3f644"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "clientDetailView carousel",
+                "designer|targetType": "Ext.carousel.Carousel",
+                "fn": "onCarouselActiveItemChange",
+                "implHandler": [
+                    "this.getClientDetailTitle().setTitle({title: this.getClientInfoContainer().getRecord().get('name') + ': ' + value.title, 'text-align': 'left'});"
+                ],
+                "name": "activeitemchange"
+            },
+            "designerId": "3317a508-7149-4fb1-844f-cb6fd420d275"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "clientDetailView button",
+                "designer|targetType": "Ext.Button",
+                "fn": "onShowNewItemMenu",
+                "implHandler": [
+                    "this.getClientNewMenu().showBy(button);"
+                ],
+                "name": "tap"
+            },
+            "designerId": "c1d200b9-b37a-4565-98dc-d918475773c2"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "clientNewMenu",
+                "selector": "clientNewMenu",
+                "xtype": "clientNewMenu"
+            },
+            "designerId": "d431b8d7-fd34-4315-a07c-dac2c9c9b623"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "clientNewMenu image",
+                "designer|targetType": "Ext.Img",
+                "fn": "onImageTap",
+                "implHandler": [
+                    "alert('ahoj');"
+                ],
+                "name": "tap"
+            },
+            "designerId": "3fa928b0-841a-46bc-9d7a-abb678379a3b"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "clientDetailTitle",
+                "selector": "clientDetailView toolbar"
+            },
+            "designerId": "c70c645c-a24e-4317-92d3-74e3e3d6b6f1"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "clientInfoContainer",
+                "selector": "clientDetailView #clientInfoContainer"
+            },
+            "designerId": "42a21487-1b81-486a-aa53-73d67363e2c5"
+        }
+    ]
+}

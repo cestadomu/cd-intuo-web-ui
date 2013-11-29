@@ -1,0 +1,13 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js3",
+        "url": "lib/IntuoReader.js"
+    },
+    "designerId": "184d8e6d-c847-48ab-a93e-7034dde4f0d3"
+}
