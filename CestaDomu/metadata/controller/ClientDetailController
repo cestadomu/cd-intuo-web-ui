@@ -39,7 +39,6 @@
                     "        // jsou uvedeny pouze parametry, které se ve funkci používají, přestože signatura je rozsáhlejší\r",
                     "        this.onCarouselActiveItemChange(null, this.getClientInfoContainer());\r",
                     "        messageBox.hide();\r",
-                    "\r",
                     "    }\r",
                     "});"
                 ],

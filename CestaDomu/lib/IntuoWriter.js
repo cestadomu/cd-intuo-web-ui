@@ -8,7 +8,9 @@ Ext.define('Lib.IntuoWriter', {
         templateParams.token = CestaDomu.controller.Intuo.token;
         templateParams.data = data;
         templateParams.filters = {};
-        request.getOperation().getFilters().forEach(function (filter) {templateParams.filters[filter.getProperty()] = filter.getValue();});
+        if (request.getOperation().getFilters()) {
+            request.getOperation().getFilters().forEach(function (filter) {templateParams.filters[filter.getProperty()] = filter.getValue();});
+        }
         var operationApi = this.getProxyApi()[request.getOperation().getAction()];
         if (operationApi.templates) {
             for (var template in operationApi.templates) {

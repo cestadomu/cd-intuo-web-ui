@@ -41,7 +41,9 @@ Ext.define('CestaDomu.model.Contact', {
         proxy: {
             type: 'intuo',
             api: {
-                read: CestaDomu.controller.GetObjectInfo
+                read: {
+                    service: CestaDomu.controller.GetObjectInfo
+                }
             },
             url: 'xxx',
             reader: {

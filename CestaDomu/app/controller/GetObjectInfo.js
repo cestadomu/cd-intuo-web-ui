@@ -28,22 +28,6 @@ Ext.define('CestaDomu.controller.GetObjectInfo', {
     constructor: function() {
         this.callParent(arguments);
         this.url = CestaDomu.controller.Intuo.commonServiceUrlPart;
-        /*
-        this.template = new Ext.XTemplate(
-            '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dig="http://digres.cz/">',
-                '<soapenv:Header/>',
-                '<soapenv:Body>',
-                    '<dig:GetViewX>',
-                        '<dig:strAuthKey>{token}</dig:strAuthKey>',
-                        '<dig:nViewID>{viewId}</dig:nViewID>',
-                        '<dig:strLanguage>CS</dig:strLanguage>',
-                        '<dig:strXMLDefinitionOfRestriction>?</dig:strXMLDefinitionOfRestriction>',
-                    '</dig:GetViewX>',
-                '</soapenv:Body>',
-            '</soapenv:Envelope>'
-        );
-        */
-
 
         this.template = new Ext.XTemplate(
             '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dig="http://digres.cz/">',
@@ -51,7 +35,7 @@ Ext.define('CestaDomu.controller.GetObjectInfo', {
                '<soapenv:Body>',
                   '<dig:GetObjectInfo>',
                      '<dig:strAuthKey>{token}</dig:strAuthKey>',
-                     '<dig:nID>{id}</dig:nID>',
+                     '<dig:nID>{requestParams.id}</dig:nID>',
                   '</dig:GetObjectInfo>',
                '</soapenv:Body>',
             '</soapenv:Envelope>'

@@ -65,7 +65,7 @@
             "userConfig": {
                 "api": [
                     "{\r",
-                    "    read: CestaDomu.controller.GetObjectInfo\r",
+                    "    read: {service: CestaDomu.controller.GetObjectInfo}\r",
                     "}"
                 ],
                 "designer|createAlias": "intuo",

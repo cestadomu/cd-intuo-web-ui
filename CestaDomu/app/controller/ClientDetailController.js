@@ -88,7 +88,6 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
                 // jsou uvedeny pouze parametry, které se ve funkci používají, přestože signatura je rozsáhlejší
                 this.onCarouselActiveItemChange(null, this.getClientInfoContainer());
                 messageBox.hide();
-
             }
         });
     },
