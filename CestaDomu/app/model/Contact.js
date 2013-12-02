@@ -30,12 +30,10 @@ Ext.define('CestaDomu.model.Contact', {
         },
         fields: [
             {
-                mapping: 'c0',
                 name: 'name',
                 type: 'string'
             },
             {
-                mapping: 'ID',
                 name: 'id',
                 type: 'auto'
             }

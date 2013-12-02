@@ -35,7 +35,7 @@
             "codeClass": null,
             "userConfig": {
                 "designer|createAlias": null,
-                "mapping": "c0",
+                "mapping": null,
                 "name": "name",
                 "type": "string"
             },
@@ -49,7 +49,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "mapping": "ID",
+                "mapping": null,
                 "name": "id",
                 "type": "auto"
             },
