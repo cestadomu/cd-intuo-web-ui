@@ -16,7 +16,7 @@
             "viewportOrientation": "portrait"
         },
         "urlPrefix": "http://localhost:1841",
-        "exportPath": "",
+        "exportPath": "C:/Users/frezac/Documents/cesta/web-klient/prod-build",
         "spacesToIndent": 4,
         "sdkPath": "",
         "lineEnding": "CRLF",
@@ -25,8 +25,8 @@
         "buildShouldOverwriteIndex": true,
         "generateArchitectVersion": true,
         "lastBuildSelection": {
-            "value": "androidSimulate",
-            "display": "Simulate on Android"
+            "value": "webBuild",
+            "display": "Build web app"
         }
     },
     "xdsVersion": "3.0.0",
