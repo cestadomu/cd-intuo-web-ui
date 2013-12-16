@@ -60,7 +60,9 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
     },
 
     onCarouselActiveItemChange: function(container, value, oldValue, eOpts) {
-        this.getClientDetailTitle().setTitle({title: this.getClientInfoContainer().getRecord().get('name') + ': ' + value.title, 'text-align': 'left'});
+        if (this.getClientInfoContainer().getRecord()) {
+            this.getClientDetailTitle().setTitle({title: this.getClientInfoContainer().getRecord().get('Name') + ': ' + value.title, 'text-align': 'left'});
+        }
     },
 
     onShowNewItemMenu: function(button, e, eOpts) {
