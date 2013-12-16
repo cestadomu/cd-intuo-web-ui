@@ -103,7 +103,7 @@
                     "userConfig": {
                         "designer|displayName": "itemTpl",
                         "implHandler": [
-                            "{name}"
+                            "{Name}"
                         ]
                     },
                     "designerId": "ad7f8d55-8e83-4aaf-a8ca-e3b296b47869"

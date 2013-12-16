@@ -2,7 +2,7 @@ Ext.define('Lib.IntuoReader', {
     alias: 'reader.intuo', 
     extend: 'Ext.data.reader.Xml',
     requires: ['CestaDomu.controller.Intuo'],
-        setProxyApi: function(value) {
+    setProxyApi: function(value) {
         this.proxyApi = value;
     },
     getProxyApi: function() {
@@ -20,7 +20,15 @@ Ext.define('Lib.IntuoReader', {
                     return node.textContent;
                 }
             } else {
-                return eval(source.textContent)[mapping];
+                var valueNode;
+                Ext.DomQuery.select('ArrayOfAnyType', source).forEach(function(element) {
+                    if (element.firstElementChild && element.firstElementChild.textContent == mapping) {
+                        valueNode = element.lastElementChild;
+                    }
+                });
+                if (valueNode) {
+                    return valueNode.textContent;
+                }
             }
         }
         return undefined;

@@ -35,7 +35,7 @@
                     "                '<dig:strAuthKey>{token}</dig:strAuthKey>',\r",
                     "                '<dig:nViewID>{requestParams.viewId}</dig:nViewID>',\r",
                     "                '<dig:strLanguage>CS</dig:strLanguage>',\r",
-                    "                '<tpl if=\"filterXml\"><dig:strXMLDefinitionOfRestriction>{filterXml}</dig:strXMLDefinitionOfRestriction></tpl>',\r",
+                    "                '<tpl if=\"filterXml\"><dig:strXMLDefinitionOfRestriction><![CDATA[{filterXml}]]></dig:strXMLDefinitionOfRestriction></tpl>',\r",
                     "            '</dig:GetViewX>',\r",
                     "        '</soapenv:Body>',\r",
                     "    '</soapenv:Envelope>'\r",

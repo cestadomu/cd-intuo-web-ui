@@ -25,16 +25,17 @@ Ext.define('CestaDomu.model.Contact', {
     ],
 
     config: {
+        idProperty: 'ID',
         identifier: {
             type: 'simple'
         },
         fields: [
             {
-                name: 'name',
+                name: 'Name',
                 type: 'string'
             },
             {
-                name: 'id',
+                name: 'ID',
                 type: 'auto'
             }
         ],
@@ -48,8 +49,8 @@ Ext.define('CestaDomu.model.Contact', {
             url: 'xxx',
             reader: {
                 type: 'intuo',
-                rootProperty: 'GetObjectInfoResult',
-                record: 'anyType'
+                rootProperty: 'GetObjectInfoResponse',
+                record: 'GetObjectInfoResult'
             },
             writer: {
                 type: 'intuo'

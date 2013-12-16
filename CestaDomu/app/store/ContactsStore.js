@@ -40,8 +40,7 @@ Ext.define('CestaDomu.store.ContactsStore', {
                 },
                 mappingType: 'xml',
                 mapping: {
-                    id: 'ID',
-                    name: 'c0'
+                    Name: 'c1'
                 }
             },
             extraParams: {
@@ -51,7 +50,7 @@ Ext.define('CestaDomu.store.ContactsStore', {
             reader: {
                 type: 'intuo',
                 rootProperty: 'DocumentElement',
-                record: 'ILT_events'
+                record: 'WEB_x0020_všechny_x0020_kontakty'
             },
             writer: {
                 type: 'intuo'

@@ -39,7 +39,7 @@ Ext.define('CestaDomu.controller.Intuo', {
     constructor: function() {
         this.callParent(arguments);
         this.token = false;
-        this.commonServiceUrlPart = 'http://localhost:8080/'; //'http://192.168.0.112:8080/';
+        this.commonServiceUrlPart = 'http://localhost:8080/'; //'https://intuo.cestadomu.cz/webservice/service3auth.asmx';// 'http://localhost:8080/'; //'http://192.168.0.112:8080/';
     },
 
     login: function(service, data, scope, success, failure) {

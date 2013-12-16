@@ -50,7 +50,7 @@ Ext.define('CestaDomu.view.ClientDetailView', {
                                 xtype: 'label',
                                 html: 'test 1',
                                 tpl: [
-                                    '{name}'
+                                    '{Name}'
                                 ]
                             }
                         ]

@@ -3,6 +3,7 @@ Ext.define('Lib.IntuoWriter', {
     extend: 'Ext.data.writer.Xml',
     requires: ['CestaDomu.controller.Intuo'],
     writeRecords: function(request, data) {
+        request.getHeaders()['Content-Type'] = 'text/xml; charset=UTF-8';
         var templateParams = {};
         templateParams.requestParams = request.getParams();
         templateParams.token = CestaDomu.controller.Intuo.token;

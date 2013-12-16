@@ -101,7 +101,7 @@
                                     "userConfig": {
                                         "designer|displayName": "tpl",
                                         "implHandler": [
-                                            "{name}"
+                                            "{Name}"
                                         ]
                                     },
                                     "designerId": "88cc513f-b779-442f-8b61-d6840655349b"

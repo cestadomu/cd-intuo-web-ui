@@ -9,6 +9,7 @@
         "clientIdProperty": null,
         "designer|userAlias": "contact",
         "designer|userClassName": "Contact",
+        "idProperty": "ID",
         "identifier": [
             "{\"type\":\"simple\"}"
         ],
@@ -36,7 +37,7 @@
             "userConfig": {
                 "designer|createAlias": null,
                 "mapping": null,
-                "name": "name",
+                "name": "Name",
                 "type": "string"
             },
             "designerId": "bcc68c77-ad4f-4d5b-88be-c3b839c7f874"
@@ -50,7 +51,7 @@
             "codeClass": null,
             "userConfig": {
                 "mapping": null,
-                "name": "id",
+                "name": "ID",
                 "type": "auto"
             },
             "designerId": "41d9ecd9-6ea2-4b47-8dab-5c5fc589f5f0"
@@ -82,8 +83,8 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|createAlias": "intuo",
-                        "record": "anyType",
-                        "rootProperty": "GetObjectInfoResult"
+                        "record": "GetObjectInfoResult",
+                        "rootProperty": "GetObjectInfoResponse"
                     },
                     "designerId": "3e2e7b89-1f9d-42ac-9ae3-2721d4551bd1"
                 },

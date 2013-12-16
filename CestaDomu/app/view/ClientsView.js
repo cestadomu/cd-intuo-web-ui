@@ -60,7 +60,7 @@ Ext.define('CestaDomu.view.ClientsView', {
                 id: 'clientsList',
                 emptyText: 'Žádné výsledky',
                 itemTpl: [
-                    '{name}'
+                    '{Name}'
                 ],
                 loadingText: 'Pracuji...',
                 store: 'ContactsStore'

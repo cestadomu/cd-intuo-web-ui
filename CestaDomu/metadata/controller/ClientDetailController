@@ -121,7 +121,9 @@
                 "designer|targetType": "Ext.carousel.Carousel",
                 "fn": "onCarouselActiveItemChange",
                 "implHandler": [
-                    "this.getClientDetailTitle().setTitle({title: this.getClientInfoContainer().getRecord().get('name') + ': ' + value.title, 'text-align': 'left'});"
+                    "if (this.getClientInfoContainer().getRecord()) {\r",
+                    "    this.getClientDetailTitle().setTitle({title: this.getClientInfoContainer().getRecord().get('Name') + ': ' + value.title, 'text-align': 'left'});\r",
+                    "}"
                 ],
                 "name": "activeitemchange"
             },
