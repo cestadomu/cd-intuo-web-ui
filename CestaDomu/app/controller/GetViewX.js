@@ -36,7 +36,7 @@ Ext.define('CestaDomu.controller.GetViewX', {
                         '<dig:strAuthKey>{token}</dig:strAuthKey>',
                         '<dig:nViewID>{requestParams.viewId}</dig:nViewID>',
                         '<dig:strLanguage>CS</dig:strLanguage>',
-                        '<tpl if="filterXml"><dig:strXMLDefinitionOfRestriction>{filterXml}</dig:strXMLDefinitionOfRestriction></tpl>',
+                        '<tpl if="filterXml"><dig:strXMLDefinitionOfRestriction><![CDATA[{filterXml}]]></dig:strXMLDefinitionOfRestriction></tpl>',
                     '</dig:GetViewX>',
                 '</soapenv:Body>',
             '</soapenv:Envelope>'
