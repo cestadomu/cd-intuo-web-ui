@@ -18,9 +18,26 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "onLoggedIn",
+                "fn": "onCareRoleSelected",
                 "implHandler": [
                     "this.getApplication().redirectTo(\"private/clients\");"
+                ],
+                "name": "careRoleSelected",
+                "scope": "this"
+            },
+            "designerId": "9010ca06-1012-4b74-bd29-fccf0b06bdd8"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onLoggedIn",
+                "implHandler": [
+                    "//this.getApplication().redirectTo(\"private/clients\");"
                 ],
                 "name": "loggedIn",
                 "scope": "this"

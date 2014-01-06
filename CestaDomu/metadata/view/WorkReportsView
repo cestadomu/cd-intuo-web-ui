@@ -1,0 +1,164 @@
+{
+    "type": "Ext.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "workReportsView",
+        "designer|userClassName": "WorkReportsView",
+        "layout": "vbox",
+        "scrollable": false
+    },
+    "designerId": "51456d36-ba40-4cfe-a34a-e991c963b35f",
+    "cn": [
+        {
+            "type": "Ext.TitleBar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "title": "Výkazy práce"
+            },
+            "designerId": "b35529d6-0122-49ba-9211-2e64e0a8b03d"
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": null,
+                "height": 161,
+                "layout|flex": null,
+                "scrollable": null
+            },
+            "designerId": "f1ef9f06-c1d4-434c-a96d-52ff4503c369",
+            "cn": [
+                {
+                    "type": "Ext.field.Select",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "Surname",
+                        "displayField": "comboLabel",
+                        "itemId": "employee",
+                        "label": "Zaměstnanec",
+                        "margin": 5,
+                        "name": "employee",
+                        "store": "EmployeesStore",
+                        "usePicker": [
+                            "auto"
+                        ],
+                        "valueField": "ID"
+                    },
+                    "designerId": "fc44ef60-a429-48d5-9a53-e860d28ff4d3"
+                },
+                {
+                    "type": "Ext.field.Select",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "displayField": "label",
+                        "itemId": "timeInterval",
+                        "label": "Období",
+                        "margin": 5,
+                        "name": "timeInterval",
+                        "store": "WorkReportIntervals",
+                        "valueField": "id"
+                    },
+                    "designerId": "913d631c-829a-4caa-a6e0-35f961b3f668"
+                },
+                {
+                    "type": "Ext.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|pack": "center",
+                        "layout": "hbox"
+                    },
+                    "designerId": "ed8ab395-f382-4a84-bec6-fdcc93ce0c25",
+                    "cn": [
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "loadWorkReports",
+                                "margin": 5,
+                                "text": "Načíst výkazy práce"
+                            },
+                            "designerId": "e5a7cbe8-a155-4085-956e-305f10e41d8b"
+                        },
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "disabled": true,
+                                "itemId": "createWorkReports",
+                                "margin": 5,
+                                "text": "Vytvořit přehled z načtených výkazů"
+                            },
+                            "designerId": "0435c99b-7d52-4da8-aa8b-fbdd3a56267c"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.dataview.List",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": null,
+                "emptyText": "Žádné záznamy",
+                "height": null,
+                "layout|flex": 100,
+                "store": "WorkReportsStore"
+            },
+            "designerId": "aedf3240-79fe-4d1d-b361-5dc9dbf915ce",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "itemTpl",
+                        "implHandler": [
+                            "{label}"
+                        ]
+                    },
+                    "designerId": "d0fffe91-0917-4b3a-b3d2-7e8db5efa694"
+                }
+            ]
+        }
+    ]
+}

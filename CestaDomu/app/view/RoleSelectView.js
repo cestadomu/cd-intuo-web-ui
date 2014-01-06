@@ -18,7 +18,6 @@ Ext.define('CestaDomu.view.RoleSelectView', {
     alias: 'widget.roleSelectView',
 
     config: {
-        hideAnimation: 'slideOut',
         layout: {
             align: 'center',
             pack: 'center',
@@ -33,16 +32,18 @@ Ext.define('CestaDomu.view.RoleSelectView', {
             {
                 xtype: 'button',
                 height: 100,
+                itemId: 'careRole',
                 margin: 10,
                 width: 300,
-                text: 'Doktor'
+                text: 'Přímá péče'
             },
             {
                 xtype: 'button',
                 height: 100,
+                itemId: 'officeRole',
                 margin: 10,
                 width: 300,
-                text: 'Sestra/Bratr'
+                text: 'Kancelář'
             }
         ]
     }

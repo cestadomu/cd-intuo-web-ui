@@ -1,7 +1,7 @@
 Ext.define('Lib.IntuoProxy', { 
     alias: 'proxy.intuo', 
     extend: 'Ext.data.proxy.Ajax',
-    requires: ['CestaDomu.controller.Login', 'CestaDomu.controller.GetViewX', 'CestaDomu.controller.GetObjectInfo', 'CestaDomu.controller.Intuo'],
+    requires: ['CestaDomu.controller.Login', 'CestaDomu.controller.GetViewX', 'CestaDomu.controller.GetObjectInfo', 'CestaDomu.controller.GetBindingViewX', 'CestaDomu.controller.Intuo'],
     config: {
         actionMethods: {
             read: 'POST'

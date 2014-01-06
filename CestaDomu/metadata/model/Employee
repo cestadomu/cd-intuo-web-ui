@@ -1,0 +1,101 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Employee",
+        "idProperty": "ID"
+    },
+    "designerId": "8a268087-7d84-4059-bb42-da919dc927b4",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "ID",
+                "type": "auto"
+            },
+            "designerId": "32ba430b-8adb-414a-996a-529683a55bdb"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "Forename",
+                "type": "string"
+            },
+            "designerId": "a2d0f534-7f2b-4738-abf9-7d6e201bef17"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "Surname",
+                "type": "string"
+            },
+            "designerId": "30683dab-5ca4-4fc2-b00d-e6107b5d49a7"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "Position",
+                "type": "string"
+            },
+            "designerId": "cc116c85-6db6-41bc-88ef-4c6c35aa61cf"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "comboLabel",
+                "type": "string"
+            },
+            "designerId": "a2b1cf54-8805-41da-8b8f-fc6b19b6d14a",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "return rec.get('Position') + ': ' +rec.get('Surname')+' '+rec.get('Forename');"
+                        ]
+                    },
+                    "designerId": "7a99c614-7bb4-4e5b-9010-f1d85db217c6"
+                }
+            ]
+        }
+    ]
+}

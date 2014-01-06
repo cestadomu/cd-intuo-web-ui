@@ -10,7 +10,7 @@
         "container|pack": "center",
         "designer|userAlias": "roleSelectView",
         "designer|userClassName": "RoleSelectView",
-        "hideAnimation": "slideOut",
+        "hideAnimation": null,
         "id": null,
         "layout": "vbox"
     },
@@ -37,13 +37,14 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|displayName": "doctorRole",
+                "designer|displayName": "",
                 "height": 100,
+                "itemId": "careRole",
                 "margin": 10,
                 "maxWidth": null,
                 "minHeight": null,
                 "padding": null,
-                "text": "Doktor",
+                "text": "Přímá péče",
                 "width": 300
             },
             "designerId": "8f649a20-2e3f-45fc-b3cc-7aa10d874673"
@@ -56,11 +57,12 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|displayName": "nurseRole",
+                "designer|displayName": "",
                 "height": 100,
+                "itemId": "officeRole",
                 "margin": 10,
                 "minHeight": null,
-                "text": "Sestra/Bratr",
+                "text": "Kancelář",
                 "width": 300
             },
             "designerId": "c6efe56d-f647-4960-b937-fccf190384b4"

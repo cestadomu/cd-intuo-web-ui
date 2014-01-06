@@ -24,15 +24,26 @@ Ext.ClassManager.addNameAlternateMappings({
   "CestaDomu.controller.ClientDetailController": [],
   "CestaDomu.controller.ClientsController": [],
   "CestaDomu.controller.DefaultController": [],
+  "CestaDomu.controller.GetBindingViewX": [],
   "CestaDomu.controller.GetObjectInfo": [],
   "CestaDomu.controller.GetViewX": [],
   "CestaDomu.controller.Intuo": [],
   "CestaDomu.controller.Login": [],
   "CestaDomu.controller.LoginController": [],
   "CestaDomu.controller.RoleSelectController": [],
+  "CestaDomu.controller.Util": [],
+  "CestaDomu.controller.WorkReportsController": [],
   "CestaDomu.model.Contact": [],
+  "CestaDomu.model.Employee": [],
+  "CestaDomu.model.TimeFund": [],
+  "CestaDomu.model.TimeInterval": [],
+  "CestaDomu.model.WorkReport": [],
   "CestaDomu.override.Component": [],
   "CestaDomu.store.ContactsStore": [],
+  "CestaDomu.store.EmployeesStore": [],
+  "CestaDomu.store.TimeFundStore": [],
+  "CestaDomu.store.WorkReportIntervals": [],
+  "CestaDomu.store.WorkReportsStore": [],
   "CestaDomu.view.ClientDetailView": [],
   "CestaDomu.view.ClientNewMenu": [],
   "CestaDomu.view.ClientsView": [],
@@ -41,6 +52,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "CestaDomu.view.Main": [],
   "CestaDomu.view.MainContainer": [],
   "CestaDomu.view.RoleSelectView": [],
+  "CestaDomu.view.WorkReportsView": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
@@ -763,7 +775,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "Lib.IntuoField": [],
   "Lib.IntuoProxy": [],
   "Lib.IntuoReader": [],
   "Lib.IntuoWriter": []
@@ -772,6 +783,7 @@ Ext.ClassManager.addNameAliasMappings({
   "CestaDomu.controller.ClientDetailController": [],
   "CestaDomu.controller.ClientsController": [],
   "CestaDomu.controller.DefaultController": [],
+  "CestaDomu.controller.GetBindingViewX": [],
   "CestaDomu.controller.GetObjectInfo": [],
   "CestaDomu.controller.GetViewX": [],
   "CestaDomu.controller.Intuo": [
@@ -782,11 +794,21 @@ Ext.ClassManager.addNameAliasMappings({
     "controller.loginController"
   ],
   "CestaDomu.controller.RoleSelectController": [],
+  "CestaDomu.controller.Util": [],
+  "CestaDomu.controller.WorkReportsController": [],
   "CestaDomu.model.Contact": [
     "model.contact"
   ],
+  "CestaDomu.model.Employee": [],
+  "CestaDomu.model.TimeFund": [],
+  "CestaDomu.model.TimeInterval": [],
+  "CestaDomu.model.WorkReport": [],
   "CestaDomu.override.Component": [],
   "CestaDomu.store.ContactsStore": [],
+  "CestaDomu.store.EmployeesStore": [],
+  "CestaDomu.store.TimeFundStore": [],
+  "CestaDomu.store.WorkReportIntervals": [],
+  "CestaDomu.store.WorkReportsStore": [],
   "CestaDomu.view.ClientDetailView": [
     "widget.clientDetailView"
   ],
@@ -810,6 +832,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "CestaDomu.view.RoleSelectView": [
     "widget.roleSelectView"
+  ],
+  "CestaDomu.view.WorkReportsView": [
+    "widget.workReportsView"
   ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
@@ -1745,9 +1770,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
-  "Lib.IntuoField": [
-    "data.intuo"
-  ],
   "Lib.IntuoProxy": [
     "proxy.intuo"
   ],

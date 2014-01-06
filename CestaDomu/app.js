@@ -29,10 +29,18 @@ Ext.application({
         'Ext.Loader'
     ],
     models: [
-        'Contact'
+        'Contact',
+        'Employee',
+        'TimeInterval',
+        'WorkReport',
+        'TimeFund'
     ],
     stores: [
-        'ContactsStore'
+        'ContactsStore',
+        'EmployeesStore',
+        'WorkReportIntervals',
+        'WorkReportsStore',
+        'TimeFundStore'
     ],
     views: [
         'LoginView',
@@ -41,20 +49,31 @@ Ext.application({
         'RoleSelectView',
         'LoadingView',
         'ClientDetailView',
-        'ClientNewMenu'
+        'ClientNewMenu',
+        'WorkReportsView'
     ],
     requires: [
         'Lib.IntuoProxy',
         'Lib.IntuoWriter',
         'Lib.IntuoReader',
-        'Lib.IntuoField'
+        'Ext.TitleBar',
+        'Ext.form.Panel',
+        'Ext.field.Password',
+        'Ext.field.Search',
+        'Ext.dataview.List',
+        'Ext.carousel.Carousel',
+        'Ext.Label',
+        'Ext.field.Select',
+        'Ext.XTemplate',
+        'CestaDomu.controller.Util'
     ],
     controllers: [
         'LoginController',
         'RoleSelectController',
         'DefaultController',
         'ClientsController',
-        'ClientDetailController'
+        'ClientDetailController',
+        'WorkReportsController'
     ],
     name: 'CestaDomu',
 

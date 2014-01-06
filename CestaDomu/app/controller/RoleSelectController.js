@@ -35,21 +35,36 @@ Ext.define('CestaDomu.controller.RoleSelectController', {
         },
 
         control: {
-            "#roleSelectView button": {
-                tap: 'onButtonTap'
+            "roleSelectView #careRole": {
+                tap: 'onCareButtonTap'
+            },
+            "roleSelectView #officeRole": {
+                tap: 'onOfficeButtonTap'
             }
         }
     },
 
-    onButtonTap: function(button, e, eOpts) {
-        var nextView;
-        nextView = Ext.create('CestaDomu.view.PacientsContainer', {});
-        this.getMainContainer().setActiveItem(nextView);
-        Ext.getStore("ContactsStore").load();
+    onCareButtonTap: function(button, e, eOpts) {
+        this.getApplication().fireEvent("careRoleSelected");
+    },
+
+    onOfficeButtonTap: function(button, e, eOpts) {
+        this.getApplication().fireEvent("officeRoleSelected");
     },
 
     main: function() {
         this.getMainContainer().setActiveItem(this.getRoleSelectView());
+    },
+
+    onLoggedIn: function() {
+        this.getApplication().redirectTo("private/roleSelect");
+    },
+
+    init: function(application) {
+
+        application.on([
+        { event: 'loggedIn', fn: this.onLoggedIn, scope: this }
+        ]);
     }
 
 });

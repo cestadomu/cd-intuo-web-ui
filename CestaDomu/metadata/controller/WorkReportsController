@@ -1,0 +1,826 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "WorkReportsController",
+        "requires": [
+            "Ext.Date"
+        ]
+    },
+    "designerId": "2b5840af-3b85-4e17-8005-95eb217a38f1",
+    "cn": [
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onOfficeRoleSelected",
+                "implHandler": [
+                    "this.getApplication().redirectTo(\"private/office/workReports\");"
+                ],
+                "name": "officeRoleSelected",
+                "scope": "this"
+            },
+            "designerId": "ee7aa459-0a24-4034-9009-a8559d98a0ee"
+        },
+        {
+            "type": "Ext.app.Route",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "main",
+                "implHandler": [
+                    "Ext.Msg.show({\r",
+                    "    title: \"Načítám data...\",\r",
+                    "    buttons: []\r",
+                    "});\r",
+                    "\r",
+                    "\r",
+                    "var store = Ext.getStore('EmployeesStore');\r",
+                    "\r",
+                    "if (store.isLoaded()) {\r",
+                    "    this.finalizeView();\r",
+                    "} else {\r",
+                    "    store.load(function(records, operation, success) {\r",
+                    "        if (success) {\r",
+                    "            this.finalizeView();\r",
+                    "        } else {\r",
+                    "            Ext.Msg.alert('Nepodařilo se získat seznam zaměstnanců');\r",
+                    "        }\r",
+                    "    }, this);\r",
+                    "}\r",
+                    "\r",
+                    ""
+                ],
+                "url": "private/office/workReports"
+            },
+            "designerId": "4721007f-0abb-4358-9365-d95c8799e27b"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "workReportsView",
+                "selector": "workReportsView",
+                "xtype": "workReportsView"
+            },
+            "designerId": "ca898ee1-df05-4dbe-9b92-095ba3f3eae3"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainContainer",
+                "selector": "mainContainer"
+            },
+            "designerId": "fa0afedf-9c07-48f2-8551-03e459518789"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "workReportsView #loadWorkReports",
+                "designer|targetType": "Ext.Button",
+                "fn": "onLoadButtonTap",
+                "implHandler": [
+                    "var store = Ext.getStore('WorkReportsStore');\r",
+                    "var timeFundStore = Ext.getStore('TimeFundStore');\r",
+                    "var filterData = this.getWorkReportsForm().getValues();\r",
+                    "var intervalStore = Ext.getStore('WorkReportIntervals');\r",
+                    "var interval = intervalStore.getAt(intervalStore.findExact('id', filterData.timeInterval));\r",
+                    "var dateFrom = interval.get('dateFrom');\r",
+                    "var dateTo = interval.get('dateTo');\r",
+                    "\r",
+                    "timeFundStore.filter('year', dateFrom.getFullYear());\r",
+                    "timeFundStore.filter('month', dateFrom.getMonth()+1);\r",
+                    "timeFundStore.filter('id', filterData.employee);\r",
+                    "timeFundStore.load();\r",
+                    "\r",
+                    "store.filter('dateFrom', Ext.Date.format(dateFrom, 'Y-m-d\\\\TH:i:s'));\r",
+                    "store.filter('dateTo', Ext.Date.format(dateTo, 'Y-m-d\\\\TH:i:s'));\r",
+                    "store.filter('id', filterData.employee);\r",
+                    "store.load();\r",
+                    "\r",
+                    "this.getCreateWorkReportButton().setDisabled(false);"
+                ],
+                "name": "tap"
+            },
+            "designerId": "8fd1f55b-86ae-4d3d-82b4-047ffcbc576e"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "reportList",
+                "selector": "workReportsView list"
+            },
+            "designerId": "c4ce8896-c855-4b51-a21f-3fe32fac5c07"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "workReportsForm",
+                "selector": "workReportsView formpanel"
+            },
+            "designerId": "a01cdeb5-559a-46e0-a5fc-34efcdaf3a4d"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "workReportsView #createWorkReports",
+                "designer|targetType": "Ext.Button",
+                "fn": "onCreateWorkReportButtonTap",
+                "implHandler": [
+                    "var me = this;\r",
+                    "require(['resources/require/excel-builder/excel-builder'], function (builder) {\r",
+                    "    var workbook = builder.createWorkbook();\r",
+                    "    \r",
+                    "    var sheet = me.initSheet(workbook);\r",
+                    "    \r",
+                    "    var styles = me.initStyles(workbook);  \r",
+                    "    \r",
+                    "    var filterData = me.getWorkReportsForm().getValues();\r",
+                    "    var interval = CestaDomu.controller.Util.findInStore('WorkReportIntervals', 'id', filterData.timeInterval);\r",
+                    "    var dateFrom = interval.get('dateFrom');\r",
+                    "    var dateTo = interval.get('dateTo');\r",
+                    "    var employee = CestaDomu.controller.Util.findInStore('EmployeesStore', 'ID', filterData.employee);\r",
+                    "    \r",
+                    "    var buffer = me.initBuffer(me, dateFrom, dateTo);\r",
+                    "    \r",
+                    "    me.loadBuffer(buffer);\r",
+                    "    \r",
+                    "    var data = me.initData(sheet, employee, interval, dateFrom, dateTo, styles, buffer);\r",
+                    "    \r",
+                    "    me.flushBuffer(buffer, data, styles);\r",
+                    "\r",
+                    "    sheet.setData(data);\r",
+                    "    \r",
+                    "    location.href=\"data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,\" + builder.createFile(workbook);\r",
+                    "});"
+                ],
+                "name": "tap"
+            },
+            "designerId": "d38b67ca-7c19-442d-94c3-4416706f79f3"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "createWorkReportButton",
+                "selector": "workReportsView #createWorkReports"
+            },
+            "designerId": "2522e811-ba75-487e-a5ed-104a01e97f90"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "finalizeView",
+                "implHandler": [
+                    "Ext.Msg.hide();\r",
+                    "this.getMainContainer().setActiveItem(this.getWorkReportsView());"
+                ]
+            },
+            "designerId": "a6651732-41d5-4826-ac50-78fde47c1467"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "year"
+                ],
+                "fn": "getEasterMonday",
+                "implHandler": [
+                    "//http://techneilogy.blogspot.cz/2012/02/couple-of-years-ago-i-posted-source.html\r",
+                    "var a = year % 19;\r",
+                    "var b = Math.floor(year / 100);\r",
+                    "var c = year % 100;\r",
+                    "var d = Math.floor(b / 4); \r",
+                    "var e = b % 4;\r",
+                    "var f = Math.floor((b + 8) / 25);\r",
+                    "var g = Math.floor((b - f + 1) / 3); \r",
+                    "var h = (19 * a + b - d - g + 15) % 30;\r",
+                    "var i = Math.floor(c / 4);\r",
+                    "var k = c % 4;\r",
+                    "var l = (32 + 2 * e + 2 * i - h - k) % 7;\r",
+                    "var m = Math.floor((a + 11 * h + 22 * l) / 451);\r",
+                    "var n0 = (h + l + 7 * m + 114);\r",
+                    "var n = Math.floor(n0 / 31) - 1;\r",
+                    "var p = n0 % 31 + 1;\r",
+                    "var date = new Date(year,n,p+1);\r",
+                    "return date; "
+                ]
+            },
+            "designerId": "289664aa-5f7f-4b27-9cb2-41f88ee84b0d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "day"
+                ],
+                "fn": "isHoliday",
+                "implHandler": [
+                    "//http://www.mpsv.cz/cs/74\r",
+                    "var easterMonday = this.getEasterMonday(day.getFullYear());\r",
+                    "if (\r",
+                    "    (easterMonday.getDate() === day.getDate() && easterMonday.getMonth() === day.getMonth()) ||\r",
+                    "    (1 === day.getDate() && 0 === day.getMonth()) ||\r",
+                    "    (1 === day.getDate() && 4 === day.getMonth()) ||\r",
+                    "    (8 === day.getDate() && 4 === day.getMonth()) ||\r",
+                    "    (5 === day.getDate() && 6 === day.getMonth()) ||\r",
+                    "    (6 === day.getDate() && 6 === day.getMonth()) ||\r",
+                    "    (28 === day.getDate() && 8 === day.getMonth()) ||\r",
+                    "    (28 === day.getDate() && 9 === day.getMonth()) ||\r",
+                    "    (17 === day.getDate() && 10 === day.getMonth()) ||\r",
+                    "    (24 === day.getDate() && 11 === day.getMonth()) ||\r",
+                    "    (25 === day.getDate() && 11 === day.getMonth()) ||\r",
+                    "    (26 === day.getDate() && 11 === day.getMonth())\r",
+                    ") {\r",
+                    "    return true;\r",
+                    "} else {\r",
+                    "    return false;\r",
+                    "}"
+                ]
+            },
+            "designerId": "1f52c791-1d42-4714-ac5e-d916b93e2398"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "workbook"
+                ],
+                "fn": "initStyles",
+                "implHandler": [
+                    "var styles = {};\r",
+                    "    \r",
+                    "styles.workTimeStyle = workbook.getStyleSheet().createFormat({\r",
+                    "    format: '0.00',\r",
+                    "    alignment: {\r",
+                    "        horizontal: 'right'\r",
+                    "    },\r",
+                    "    border: {\r",
+                    "        bottom: {color: 'FF444444', style: 'thin'},\r",
+                    "        right:  {color: 'FF444444', style: 'thin'}\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "styles.sumsStyle = workbook.getStyleSheet().createFormat({\r",
+                    "    format: '0.00',\r",
+                    "    border: {\r",
+                    "        bottom: {color: 'FF444444', style: 'thin'},\r",
+                    "        right:  {color: 'FF444444', style: 'thin'}\r",
+                    "    },\r",
+                    "    font: {\r",
+                    "        bold: true\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "styles.statisticsStyle = workbook.getStyleSheet().createFormat({\r",
+                    "    format: '0.00'\r",
+                    "});\r",
+                    "\r",
+                    "styles.dateStyle = workbook.getStyleSheet().createFormat({\r",
+                    "    border: {\r",
+                    "        bottom: {color: 'FF444444', style: 'thin'},\r",
+                    "        right:  {color: 'FF444444', style: 'thin'}\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "styles.workTimeWeekendStyle = workbook.getStyleSheet().createFormat({\r",
+                    "    format: '0.00',\r",
+                    "    fill: {\r",
+                    "        type: 'pattern',\r",
+                    "        patternType: 'solid',\r",
+                    "        fgColor: 'FFDDDDDD'\r",
+                    "    },\r",
+                    "    alignment: {\r",
+                    "        horizontal: 'right'\r",
+                    "    },\r",
+                    "    border: {\r",
+                    "        bottom: {color: 'FF444444', style: 'thin'},\r",
+                    "        right:  {color: 'FF444444', style: 'thin'}\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "styles.workTimeHolidayStyle = workbook.getStyleSheet().createFormat({\r",
+                    "    format: '0.00',\r",
+                    "    fill: {\r",
+                    "        type: 'pattern',\r",
+                    "        patternType: 'solid',\r",
+                    "        fgColor: 'FF999999'\r",
+                    "    },\r",
+                    "    alignment: {\r",
+                    "        horizontal: 'right'\r",
+                    "    },\r",
+                    "    border: {\r",
+                    "        bottom: {color: 'FF444444', style: 'thin'},\r",
+                    "        right:  {color: 'FF444444', style: 'thin'}\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "styles.weekendStyle = workbook.getStyleSheet().createFormat({\r",
+                    "    fill: {\r",
+                    "        type: 'pattern',\r",
+                    "        patternType: 'solid',\r",
+                    "        fgColor: 'FFDDDDDD'\r",
+                    "    },\r",
+                    "    border: {\r",
+                    "        bottom: {color: 'FF444444', style: 'thin'},\r",
+                    "        right:  {color: 'FF444444', style: 'thin'}\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "styles.holidayStyle = workbook.getStyleSheet().createFormat({\r",
+                    "    fill: {\r",
+                    "        type: 'pattern',\r",
+                    "        patternType: 'solid',\r",
+                    "        fgColor: 'FF999999'\r",
+                    "    },\r",
+                    "    border: {\r",
+                    "        bottom: {color: 'FF444444', style: 'thin'},\r",
+                    "        right:  {color: 'FF444444', style: 'thin'}\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "styles.tableHeaderStyle = workbook.getStyleSheet().createFormat({\r",
+                    "    alignment: {\r",
+                    "        horizontal: 'right'\r",
+                    "    },\r",
+                    "    border: {\r",
+                    "        bottom: {color: 'FF444444', style: 'thin'},\r",
+                    "        right:  {color: 'FF444444', style: 'thin'}\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "styles.stravenkyStyle = workbook.getStyleSheet().createFormat({\r",
+                    "    format: '0'\r",
+                    "});\r",
+                    "\r",
+                    "return styles;"
+                ]
+            },
+            "designerId": "2fdfbd03-d96c-4018-8e39-6d925ab842c7"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "workbook"
+                ],
+                "fn": "initSheet",
+                "implHandler": [
+                    "var sheet = workbook.createWorksheet();\r",
+                    "\r",
+                    "sheet.setHeader([\r",
+                    "    '',\r",
+                    "    {text: \"VÝKAZ PRÁCE\", bold: true, font: 48},\r",
+                    "    ''\r",
+                    "]);\r",
+                    "\r",
+                    "sheet.setColumns([\r",
+                    "    {width: 11},\r",
+                    "    {width: 7},\r",
+                    "    {width: 7},\r",
+                    "    {width: 7},\r",
+                    "    {width: 7},\r",
+                    "    {width: 7},\r",
+                    "    {width: 7},\r",
+                    "    {width: 8},\r",
+                    "    {width: 8},\r",
+                    "    {width: 8},\r",
+                    "    {width: 13}\r",
+                    "]);\r",
+                    "\r",
+                    "workbook.addWorksheet(sheet);\r",
+                    "return sheet;"
+                ]
+            },
+            "designerId": "231e245e-01a5-4948-854c-580b63dd0811"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "worksheet",
+                    "employee",
+                    "interval",
+                    "dateFrom",
+                    "dateTo",
+                    "styles",
+                    "buffer"
+                ],
+                "fn": "initData",
+                "implHandler": [
+                    "var data = [];\r",
+                    "\r",
+                    "var timeFundStore = Ext.getStore('TimeFundStore');\r",
+                    "\r",
+                    "if (timeFundStore.getCount() != 1) {\r",
+                    "    Ext.Msg.alert('Chyba', 'Nepodařilo se načíst časový fond zaměstnance, generování výkazu práce bylo přerušeno.');\r",
+                    "    throw 'No time fund.';\r",
+                    "}\r",
+                    "\r",
+                    "var timeFund = timeFundStore.first();\r",
+                    "\r",
+                    "var statisticsMetadata = {\r",
+                    "    style: styles.statisticsStyle.id\r",
+                    "};\r",
+                    "\r",
+                    "data.push([employee.get('Forename') + ' ' + employee.get('Surname') + ', ' + interval.get('label')]);\r",
+                    "\r",
+                    "data.push(['Úvazek: ', '', '', timeFund.get('workLoad')]);\r",
+                    "worksheet.mergeCells('A'+data.length, 'C'+data.length);\r",
+                    "\r",
+                    "data.push(['Počet hodin k odpracování:', '', '', {value: timeFund.get('workingDaysWLWthHolidays')*8, metadata: statisticsMetadata}]);\r",
+                    "worksheet.mergeCells('A'+data.length, 'C'+data.length);\r",
+                    "var kOdpracovaniIndex = data.length;\r",
+                    "\r",
+                    "data.push(['Počet hodin úvazku za měsíc:', '', '', {value: timeFund.get('workingDaysWLCU')*8, metadata: statisticsMetadata}]);\r",
+                    "worksheet.mergeCells('A'+data.length, 'C'+data.length);\r",
+                    "\r",
+                    "data.push(['Práce ve státní svátek:', '', '', {value: buffer.celkem.praceSvatek/60, metadata: statisticsMetadata}]);\r",
+                    "worksheet.mergeCells('A'+data.length, 'C'+data.length);\r",
+                    "\r",
+                    "var cekani = ['Čekání na práci:', '', ''];\r",
+                    "data.push(cekani);\r",
+                    "worksheet.mergeCells('A'+data.length, 'C'+data.length);\r",
+                    "\r",
+                    "data.push(['Práce v pohotovosti bez sv.:', '', '', {value: buffer.celkem.pohotovostBezSvatku/60, metadata: statisticsMetadata}]);\r",
+                    "worksheet.mergeCells('A'+data.length, 'C'+data.length);\r",
+                    "\r",
+                    "var prescas = ['Přesčas k proplacení:', '', ''];\r",
+                    "data.push(prescas);\r",
+                    "worksheet.mergeCells('A'+data.length, 'C'+data.length);\r",
+                    "\r",
+                    "var stravenky = ['Počet stravenek:', '', ''];\r",
+                    "data.push(stravenky);\r",
+                    "worksheet.mergeCells('A'+data.length, 'C'+data.length);\r",
+                    "\r",
+                    "data.push(['']);\r",
+                    "\r",
+                    "var headerMetadata = {\r",
+                    "    style: styles.tableHeaderStyle.id\r",
+                    "};\r",
+                    "    \r",
+                    "data.push([\r",
+                    "    {value: 'Datum', metadata: {style: styles.dateStyle.id}},\r",
+                    "    {value: 'Nepoh.', metadata: headerMetadata},\r",
+                    "    {value: 'Poh.', metadata: headerMetadata},\r",
+                    "    {value: 'Celk.', metadata: headerMetadata},\r",
+                    "    {value: 'Ček.', metadata: headerMetadata},\r",
+                    "    {value: 'Nepl.', metadata: headerMetadata},\r",
+                    "    {value: 'Lék.', metadata: headerMetadata},\r",
+                    "    {value: 'Dov.[d]', metadata: headerMetadata},\r",
+                    "    {value: 'Par.[d]', metadata: headerMetadata},\r",
+                    "    {value: 'Nem.[d]', metadata: headerMetadata},\r",
+                    "    {value: 'Obědová pauza', metadata: headerMetadata}\r",
+                    "]);\r",
+                    "\r",
+                    "var sumsMetadata = {\r",
+                    "    type: 'formula',\r",
+                    "    style: styles.sumsStyle.id\r",
+                    "};\r",
+                    "\r",
+                    "var dataStartIndex = data.length+2;\r",
+                    "var dataEndIndex = dataStartIndex + dateTo.getDate() - 1;\r",
+                    "\r",
+                    "data.push([{value: 'Celkem', metadata: {style: styles.dateStyle.id}},\r",
+                    "           {value: 'SUM(B'+dataStartIndex+':B'+dataEndIndex+')', metadata: sumsMetadata},\r",
+                    "           {value: 'SUM(C'+dataStartIndex+':C'+dataEndIndex+')', metadata: sumsMetadata},\r",
+                    "           {value: 'SUM(D'+dataStartIndex+':D'+dataEndIndex+')', metadata: sumsMetadata},\r",
+                    "           {value: 'SUM(E'+dataStartIndex+':E'+dataEndIndex+')', metadata: sumsMetadata},\r",
+                    "           {value: 'SUM(F'+dataStartIndex+':F'+dataEndIndex+')', metadata: sumsMetadata},\r",
+                    "           {value: 'SUM(G'+dataStartIndex+':G'+dataEndIndex+')', metadata: sumsMetadata},\r",
+                    "           {value: 'SUM(H'+dataStartIndex+':H'+dataEndIndex+')', metadata: sumsMetadata},\r",
+                    "           {value: 'SUM(I'+dataStartIndex+':I'+dataEndIndex+')', metadata: sumsMetadata},\r",
+                    "           {value: 'SUM(J'+dataStartIndex+':J'+dataEndIndex+')', metadata: sumsMetadata},\r",
+                    "           {value: '', metadata: sumsMetadata}\r",
+                    "          ]);\r",
+                    "\r",
+                    "stravenky.push({\r",
+                    "    value: 'D'+(dataStartIndex-1)+'/8',\r",
+                    "    metadata: {\r",
+                    "        type: 'formula',\r",
+                    "        style: styles.stravenkyStyle.id\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "cekani.push({\r",
+                    "    value: 'E'+(dataStartIndex-1)+'-C'+(dataStartIndex-1),\r",
+                    "    metadata: {\r",
+                    "        type: 'formula',\r",
+                    "        style: styles.statisticsStyle.id\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "prescas.push({\r",
+                    "    value: 'D'+(dataStartIndex-1)+'-D'+kOdpracovaniIndex,\r",
+                    "    metadata: {\r",
+                    "        type: 'formula',\r",
+                    "        style: styles.statisticsStyle.id\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "return data;"
+                ]
+            },
+            "designerId": "c532eabb-871a-4f09-8e8b-78fcc37c8635"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "me",
+                    "dateFrom",
+                    "dateTo"
+                ],
+                "fn": "initBuffer",
+                "implHandler": [
+                    "var dny = {};\r",
+                    "for (var i = dateFrom.getDate(); i <= dateTo.getDate(); i++) {\r",
+                    "    var datum = new Date(dateFrom.getTime());\r",
+                    "    datum.setDate(i);\r",
+                    "    dny[i] = {\r",
+                    "        den: datum,\r",
+                    "        nepohotovost: 0,\r",
+                    "        pohotovost: 0,\r",
+                    "        celkemPrace: 0,\r",
+                    "        cekaniNaPraci: 0,\r",
+                    "        dovolena: 0,\r",
+                    "        nemoc: 0,\r",
+                    "        neplacene: 0,\r",
+                    "        lekar: 0,\r",
+                    "        paragraf: 0,\r",
+                    "        vykaz: [],\r",
+                    "        vykazDokumentace: [],\r",
+                    "        vykazDovolene: []\r",
+                    "    };\r",
+                    "    \r",
+                    "    if (datum.getDay() === 0 || datum.getDay() === 6) {\r",
+                    "        dny[i].vikend = true;\r",
+                    "    } else {\r",
+                    "        dny[i].vikend = false;\r",
+                    "    }\r",
+                    "    \r",
+                    "    if (me.isHoliday(datum)) {\r",
+                    "        dny[i].svatek = true;\r",
+                    "    } else {\r",
+                    "        dny[i].svatek = false;\r",
+                    "    }\r",
+                    "}\r",
+                    "\r",
+                    "var buffer = {\r",
+                    "    dny: dny,\r",
+                    "    celkem: {\r",
+                    "        praceSvatek: 0,\r",
+                    "        pohotovostBezSvatku: 0\r",
+                    "    }\r",
+                    "};\r",
+                    "\r",
+                    "return buffer;"
+                ]
+            },
+            "designerId": "c967c116-5909-43a9-abca-f87c04a1192d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "buffer"
+                ],
+                "fn": "loadBuffer",
+                "implHandler": [
+                    "var dny = buffer.dny;\r",
+                    "var store = Ext.getStore('WorkReportsStore');\r",
+                    "store.each(function (item, index, length) {\r",
+                    "    var category;\r",
+                    "    switch(item.get('TypeClass')) {\r",
+                    "        case 'Výkaz práce': //Výkaz práce 85953\r",
+                    "        case 'Výkaz práce na dokumentaci': //Výkaz práce na dokumentaci 85954\r",
+                    "            var poradi = item.get('start').getDate();\r",
+                    "            var totalDuration = item.get('durationtime') + item.get('transportDuration');\r",
+                    "            category = 'xxx';\r",
+                    "            if (item.get('ServiceType') == 'Z - Čekání na práci v pohotovosti') {\r",
+                    "                category = 'cekaniNaPraci';\r",
+                    "            } else if (item.get('ServiceType') == 'Návštěva u lékaře') {\r",
+                    "                category = 'lekar';\r",
+                    "            } else if (item.get('ServiceType') == 'Neplacené volno') {\r",
+                    "                category = 'lekar';\r",
+                    "            } else if(item.get('wayOfWorking') == 'Pohotovost') {\r",
+                    "                category = 'pohotovost';\r",
+                    "            } else if (item.get('wayOfWorking') == 'Nepohotovost') {\r",
+                    "                category = 'nepohotovost';\r",
+                    "            } else {\r",
+                    "                category = 'xxx';\r",
+                    "            }\r",
+                    "            dny[poradi][category] += totalDuration;\r",
+                    "            break;\r",
+                    "        case 'Dovolená': //dovolena 894\r",
+                    "            var startDay = item.get('AppointmentStart').getDate();\r",
+                    "            var endDay = item.get('AppointmentEnd').getDate();\r",
+                    "            switch (item.get('TypeOfAbsence')){\r",
+                    "                case 'Dovolená':\r",
+                    "                    category = 'dovolena';\r",
+                    "                    break;\r",
+                    "                case 'Nemoc':\r",
+                    "                    category = 'nemoc';\r",
+                    "                    break;\r",
+                    "                case 'Paragraf':\r",
+                    "                    category = 'paragraf';\r",
+                    "                    break;\r",
+                    "                default:\r",
+                    "                    category = 'xxx';\r",
+                    "                    break;\r",
+                    "            }\r",
+                    "            \r",
+                    "            dny[startDay][category] += item.get('DaysOfHoliday');\r",
+                    "            for (var i = startDay + 1; i <= endDay; i++) {\r",
+                    "                dny[i][category] = 'x';\r",
+                    "            }\r",
+                    "            break;\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "for (var row in dny) {\r",
+                    "    if (dny[row].svatek) {\r",
+                    "        buffer.celkem.praceSvatek += dny[row].pohotovost + dny[row].nepohotovost;\r",
+                    "    } else {\r",
+                    "        buffer.celkem.pohotovostBezSvatku += dny[row].pohotovost;\r",
+                    "    }\r",
+                    "}"
+                ]
+            },
+            "designerId": "8f553351-8318-4f6e-9dbe-7841adde8ebb"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "buffer",
+                    "data",
+                    "styles"
+                ],
+                "fn": "flushBuffer",
+                "implHandler": [
+                    "var dny = buffer.dny;\r",
+                    "\r",
+                    "var obedy = {};\r",
+                    "obedy['0'] = '11:30-12:00';\r",
+                    "obedy['1'] = '12:00-12:30';\r",
+                    "obedy['2'] = '12:30-13:00';\r",
+                    "obedy['3'] = '13:00-13:30';\r",
+                    "obedy['4'] = '13:30-14:00';\r",
+                    "\r",
+                    "for (var row in dny) {\r",
+                    "    var dateMetadata = {\r",
+                    "        style: styles.dateStyle.id\r",
+                    "    };\r",
+                    "\r",
+                    "    var workMetadata = {\r",
+                    "        style: styles.workTimeStyle.id\r",
+                    "    };\r",
+                    "    \r",
+                    "    if (dny[row].vikend) {\r",
+                    "        dateMetadata.style = styles.weekendStyle.id;\r",
+                    "        workMetadata.style = styles.workTimeWeekendStyle.id;\r",
+                    "    }\r",
+                    "    \r",
+                    "    if (dny[row].svatek) {\r",
+                    "        dateMetadata.style = styles.holidayStyle.id;\r",
+                    "        workMetadata.style = styles.workTimeHolidayStyle.id;\r",
+                    "    }\r",
+                    "    \r",
+                    "    var praceCelkem = (dny[row].nepohotovost+dny[row].pohotovost)/60;\r",
+                    "    \r",
+                    "    var obed = '';\r",
+                    "    if (praceCelkem) {\r",
+                    "        obed = obedy[Math.floor(Math.random()*5)];\r",
+                    "    }\r",
+                    "    \r",
+                    "    var dovolena =  {value: dny[row].dovolena ? dny[row].dovolena : '', metadata: workMetadata};\r",
+                    "    data.push([\r",
+                    "        {value: (dny[row].xxx > 0) ? 'Chyba: v tomto dni existuji vykaz(y) prace, u nichz nebyla rozpoznana kategorie.' : Ext.Date.format(dny[row].den, 'd. m. Y'), metadata: dateMetadata},\r",
+                    "        {value: dny[row].nepohotovost ? dny[row].nepohotovost/60 : '', metadata: workMetadata},\r",
+                    "        {value: dny[row].pohotovost ? dny[row].pohotovost/60 : '', metadata: workMetadata},\r",
+                    "        {value: praceCelkem ? praceCelkem : '', metadata: workMetadata},\r",
+                    "        {value: dny[row].cekaniNaPraci ? dny[row].cekaniNaPraci/60 : '', metadata: workMetadata},\r",
+                    "        {value: dny[row].neplacene ? dny[row].neplacene/60 : '', metadata: workMetadata},\r",
+                    "        {value: dny[row].lekar ? dny[row].lekar : '', metadata: workMetadata},\r",
+                    "        {value: dny[row].dovolena ? dny[row].dovolena : '', metadata: workMetadata},\r",
+                    "        {value: dny[row].paragraf ? dny[row].paragraf : '', metadata: workMetadata},\r",
+                    "        {value: dny[row].nemoc ? dny[row].nemoc : '', metadata: workMetadata},\r",
+                    "        {value: obed, metadata: dateMetadata}\r",
+                    "    ]);\r",
+                    "}\r",
+                    ""
+                ]
+            },
+            "designerId": "08ce1ca1-308b-4a55-a2b1-ba8dc21e6edb"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "workReportsView selectfield",
+                "designer|targetType": "Ext.field.Select",
+                "fn": "onSelectfieldChange",
+                "implHandler": [
+                    "this.getCreateWorkReportButton().setDisabled(true);"
+                ],
+                "name": "change"
+            },
+            "designerId": "61eba6c0-995b-45eb-8649-1dc6c3f7c678"
+        }
+    ]
+}

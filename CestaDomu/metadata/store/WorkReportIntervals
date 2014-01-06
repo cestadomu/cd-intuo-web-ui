@@ -1,0 +1,17 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "[{id: 0}, {id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}, {id: 6}, {id: 7}, {id: 8}, {id: 9}, {id: 10}, {id: 11}, {id: 12}]"
+        ],
+        "designer|userClassName": "WorkReportIntervals",
+        "model": "TimeInterval",
+        "storeId": "WorkReportIntervals"
+    },
+    "designerId": "8db6131a-1b80-490b-862d-5f3c357c1b64"
+}

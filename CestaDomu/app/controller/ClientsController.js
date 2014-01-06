@@ -62,8 +62,12 @@ Ext.define('CestaDomu.controller.ClientsController', {
 
     },
 
-    onLoggedIn: function() {
+    onCareRoleSelected: function() {
         this.getApplication().redirectTo("private/clients");
+    },
+
+    onLoggedIn: function() {
+        //this.getApplication().redirectTo("private/clients");
     },
 
     main: function() {
@@ -73,6 +77,7 @@ Ext.define('CestaDomu.controller.ClientsController', {
     init: function(application) {
 
         application.on([
+        { event: 'careRoleSelected', fn: this.onCareRoleSelected, scope: this },
         { event: 'loggedIn', fn: this.onLoggedIn, scope: this }
         ]);
     }

@@ -1,0 +1,69 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "EmployeesStore",
+        "model": "Employee",
+        "storeId": "EmployeesStore"
+    },
+    "designerId": "44933aef-9796-4dc7-b5ed-849b37bc03a9",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "api": [
+                    "{\r",
+                    "    read: {service: CestaDomu.controller.GetViewX},\r",
+                    "    mappingType: 'xml',\r",
+                    "    mapping: {Forename: 'c1', Surname: 'c2', Position: 'c3'}\r",
+                    "}"
+                ],
+                "designer|createAlias": "intuo",
+                "extraParams": [
+                    "{\r",
+                    "    viewId: 1707\r",
+                    "}"
+                ],
+                "url": "xxx"
+            },
+            "designerId": "8acd7424-10f0-4498-ba12-3d92a3310463",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Xml",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|createAlias": "intuo",
+                        "record": "WEB_x0020_zaměstnanci_x0020_pro_x0020_výkaz_x0020_práce",
+                        "rootProperty": "DocumentElement"
+                    },
+                    "designerId": "d15020dc-150a-4ccc-b92c-2baa5fd6a98a"
+                },
+                {
+                    "type": "Ext.data.writer.Xml",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|createAlias": "intuo"
+                    },
+                    "designerId": "b4394266-58df-4d71-ad8f-ef72d1a4dd32"
+                }
+            ]
+        }
+    ]
+}

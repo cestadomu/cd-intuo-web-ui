@@ -34,14 +34,11 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|controlQuery": "#roleSelectView button",
+                "designer|controlQuery": "roleSelectView #careRole",
                 "designer|targetType": "Ext.Button",
-                "fn": "onButtonTap",
+                "fn": "onCareButtonTap",
                 "implHandler": [
-                    "var nextView;\r",
-                    "nextView = Ext.create('CestaDomu.view.PacientsContainer', {});\r",
-                    "this.getMainContainer().setActiveItem(nextView);\r",
-                    "Ext.getStore(\"ContactsStore\").load();"
+                    "this.getApplication().fireEvent(\"careRoleSelected\");"
                 ],
                 "name": "tap"
             },
@@ -74,6 +71,41 @@
                 "xtype": "roleSelectView"
             },
             "designerId": "feae1f5d-85fe-4c89-8ed8-a35704668686"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onLoggedIn",
+                "implHandler": [
+                    "this.getApplication().redirectTo(\"private/roleSelect\");"
+                ],
+                "name": "loggedIn",
+                "scope": "this"
+            },
+            "designerId": "e6ee2e7c-1054-44ee-a8ff-367de06ee6ab"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "roleSelectView #officeRole",
+                "designer|targetType": "Ext.Button",
+                "fn": "onOfficeButtonTap",
+                "implHandler": [
+                    "this.getApplication().fireEvent(\"officeRoleSelected\");"
+                ],
+                "name": "tap"
+            },
+            "designerId": "3f370d3a-d0fb-4a6a-99de-d41c913c8ef4"
         }
     ]
 }

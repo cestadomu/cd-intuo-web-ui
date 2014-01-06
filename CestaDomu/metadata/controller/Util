@@ -1,0 +1,36 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Util",
+        "singleton": true
+    },
+    "designerId": "b7f67cc0-5d45-4cdc-9003-6cd85f7f71ae",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "store",
+                    "field",
+                    "value"
+                ],
+                "fn": "findInStore",
+                "implHandler": [
+                    "var store = Ext.getStore(store);\r",
+                    "return store.getAt(store.findExact(field, value));"
+                ]
+            },
+            "designerId": "aa664693-4fdd-4a9f-8cdc-b8333b50c85d"
+        }
+    ]
+}

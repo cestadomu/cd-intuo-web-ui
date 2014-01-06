@@ -34,7 +34,7 @@
                     "       '<soapenv:Body>',\r",
                     "          '<dig:GetObjectInfo>',\r",
                     "             '<dig:strAuthKey>{token}</dig:strAuthKey>',\r",
-                    "             '<dig:nID>{requestParams.id}</dig:nID>',\r",
+                    "             '<dig:nID>{requestParams.ID}</dig:nID>',\r",
                     "          '</dig:GetObjectInfo>',\r",
                     "       '</soapenv:Body>',\r",
                     "    '</soapenv:Envelope>'\r",

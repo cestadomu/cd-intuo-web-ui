@@ -1,0 +1,150 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "TimeInterval"
+    },
+    "designerId": "8e5312f1-5052-49fa-b698-24894256179b",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id",
+                "type": "auto"
+            },
+            "designerId": "96d082df-19b9-4d47-b8a5-82c87b317ae2"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "dateFrom",
+                "type": "date"
+            },
+            "designerId": "52fc022e-ae93-45a4-8986-ae0566d6870f",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "var date = new Date();\r",
+                            "date.setHours(0);\r",
+                            "date.setMinutes(0);\r",
+                            "date.setSeconds(0);\r",
+                            "date.setMilliseconds(0);\r",
+                            "\r",
+                            "var id = rec.get('id');\r",
+                            "date.setMonth(date.getMonth()-(1+id));\r",
+                            "date.setDate(1);\r",
+                            "\r",
+                            "return date;"
+                        ]
+                    },
+                    "designerId": "bbb80692-241b-4dc1-af16-551f0630b65b"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "dateTo",
+                "type": "date"
+            },
+            "designerId": "dfecf90d-defc-4fe2-8610-93e224ff4cd3",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "var date = new Date();\r",
+                            "date.setHours(23);\r",
+                            "date.setMinutes(59);\r",
+                            "date.setSeconds(59);\r",
+                            "date.setMilliseconds(0);\r",
+                            "\r",
+                            "var id = rec.get('id');\r",
+                            "date.setMonth(date.getMonth()-id);\r",
+                            "date.setDate(0);\r",
+                            "\r",
+                            "return date;"
+                        ]
+                    },
+                    "designerId": "1c589843-d6ee-426d-9749-85819b68d95c"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "label",
+                "type": "string"
+            },
+            "designerId": "830a761e-4d06-4682-a2ac-ac969eeabac2",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "var dateFrom = rec.get('dateFrom');\r",
+                            "return dateFrom.getFullYear() + '/' + (dateFrom.getMonth()+1);"
+                        ]
+                    },
+                    "designerId": "733330e0-1f94-41a4-aa8d-44a35f57ddfa"
+                }
+            ]
+        }
+    ]
+}

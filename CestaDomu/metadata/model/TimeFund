@@ -1,0 +1,67 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "TimeFund",
+        "idProperty": "ID"
+    },
+    "designerId": "79f82918-cacc-47f6-9553-6187bd3d8c7f",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "ID",
+                "type": "auto"
+            },
+            "designerId": "3d5f7575-a461-4b08-89c9-2c750054f49f"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "workLoad",
+                "type": "float"
+            },
+            "designerId": "9e2ab36f-45cf-4dba-b55a-915f78399642"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "workingDaysWLWthHolidays",
+                "type": "float"
+            },
+            "designerId": "fcc3ff78-cfeb-4f57-9f17-e28fd41d3b63"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "workingDaysWLCU",
+                "type": "float"
+            },
+            "designerId": "31bf0bff-a463-4636-9018-becfad951db4"
+        }
+    ]
+}

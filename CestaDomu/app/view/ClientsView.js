@@ -22,7 +22,6 @@ Ext.define('CestaDomu.view.ClientsView', {
     ],
 
     config: {
-        showAnimation: 'slideIn',
         layout: {
             type: 'vbox'
         },

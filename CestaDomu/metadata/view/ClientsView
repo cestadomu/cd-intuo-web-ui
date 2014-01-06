@@ -11,7 +11,7 @@
         "id": null,
         "itemId": null,
         "layout": "vbox",
-        "showAnimation": "slideIn"
+        "showAnimation": null
     },
     "designerId": "cca33f23-f526-4568-9d08-51f97baf994e",
     "cn": [

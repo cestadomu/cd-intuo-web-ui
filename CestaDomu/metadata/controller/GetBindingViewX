@@ -1,0 +1,49 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "GetBindingViewX",
+        "requires": [
+            "CestaDomu.controller.Intuo",
+            "Ext.XTemplate"
+        ],
+        "singleton": true
+    },
+    "designerId": "772be001-e564-452d-8753-c2ff0aaca7fe",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "constructor",
+                "implHandler": [
+                    "this.callParent(arguments);\r",
+                    "this.url = CestaDomu.controller.Intuo.commonServiceUrlPart;\r",
+                    "this.template = new Ext.XTemplate(\r",
+                    "    '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dig=\"http://digres.cz/\">',\r",
+                    "        '<soapenv:Header/>',\r",
+                    "        '<soapenv:Body>',\r",
+                    "            '<dig:GetBindingViewX>',\r",
+                    "                '<dig:strAuthKey>{token}</dig:strAuthKey>',\r",
+                    "                '<dig:nViewID>{requestParams.viewId}</dig:nViewID>',\r",
+                    "                '<dig:nFromID>{filters.id}</dig:nFromID>',\r",
+                    "                '<dig:strLanguage>CS</dig:strLanguage>',\r",
+                    "                '<tpl if=\"filterXml\"><dig:strXMLDefinitionOfRestriction><![CDATA[{filterXml}]]></dig:strXMLDefinitionOfRestriction></tpl>',\r",
+                    "            '</dig:GetBindingViewX>',\r",
+                    "        '</soapenv:Body>',\r",
+                    "    '</soapenv:Envelope>'\r",
+                    ");"
+                ]
+            },
+            "designerId": "262a008a-cad8-43c8-bad2-958fe72aaae3"
+        }
+    ]
+}

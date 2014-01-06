@@ -56,7 +56,10 @@
                 "implHandler": [
                     "this.callParent(arguments);\r",
                     "this.token = false;\r",
-                    "this.commonServiceUrlPart = 'http://localhost:8080/'; //'https://intuo.cestadomu.cz/webservice/service3auth.asmx';// 'http://localhost:8080/'; //'http://192.168.0.112:8080/';"
+                    "this.commonServiceUrlPart = 'https://intuo.cestadomu.cz/webservice/service3auth.asmx';\r",
+                    "//<debug>\r",
+                    "//this.commonServiceUrlPart = 'http://localhost:8080/';\r",
+                    "//</debug>"
                 ]
             },
             "designerId": "858eaa4e-5849-40fc-a16a-6e9126f1c1f4"

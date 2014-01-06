@@ -1,0 +1,15 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js5",
+        "remote": null,
+        "update": "full",
+        "url": "resources/require/init.js"
+    },
+    "designerId": "c1dda581-7a27-403b-804b-a74779a39632"
+}

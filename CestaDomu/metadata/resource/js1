@@ -7,9 +7,10 @@
     "codeClass": null,
     "userConfig": {
         "designer|userClassName": "js1",
-        "remote": false,
+        "remote": null,
+        "update": "full",
         "url": "lib/IntuoProxy.js",
-        "x-bootstrap": false
+        "x-bootstrap": null
     },
     "designerId": "2e87c985-9fec-42b7-ab7a-9142672b5636"
 }

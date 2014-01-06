@@ -7,6 +7,7 @@
     "codeClass": null,
     "userConfig": {
         "designer|userClassName": "js3",
+        "update": "full",
         "url": "lib/IntuoReader.js"
     },
     "designerId": "184d8e6d-c847-48ab-a93e-7034dde4f0d3"

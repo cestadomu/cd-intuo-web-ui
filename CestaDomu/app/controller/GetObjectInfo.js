@@ -35,7 +35,7 @@ Ext.define('CestaDomu.controller.GetObjectInfo', {
                '<soapenv:Body>',
                   '<dig:GetObjectInfo>',
                      '<dig:strAuthKey>{token}</dig:strAuthKey>',
-                     '<dig:nID>{requestParams.id}</dig:nID>',
+                     '<dig:nID>{requestParams.ID}</dig:nID>',
                   '</dig:GetObjectInfo>',
                '</soapenv:Body>',
             '</soapenv:Envelope>'
