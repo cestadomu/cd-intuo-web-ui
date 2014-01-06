@@ -14,21 +14,30 @@
       {
          "path": "app.js",
          "bundle": true,
-         "update": "delta"
+         "update": "full"
       },
       {
          "path": "lib/IntuoProxy.js",
-         "remote": false,
-         "x-bootstrap": false
+         "update": "full"
       },
       {
-         "path": "lib/IntuoWriter.js"
+         "path": "lib/IntuoWriter.js",
+         "update": "full"
       },
       {
-         "path": "lib/IntuoReader.js"
+         "path": "lib/IntuoReader.js",
+         "update": "full"
       },
       {
          "path": "app/override/Component.js"
+      },
+      {
+         "path": "resources/require/require.js",
+         "update": "full"
+      },
+      {
+         "path": "resources/require/init.js",
+         "update": "full"
       }
    ],
    "css": [
@@ -56,7 +65,8 @@
    "resources": [
       "resources/images",
       "resources/icons",
-      "resources/startup"
+      "resources/startup",
+      "resources/require"
    ],
    "ignore": [
       ".svn$"
@@ -71,17 +81,26 @@
       "js": [
          {
             "path": "lib/IntuoProxy.js",
-            "remote": false,
-            "x-bootstrap": false
+            "update": "full"
          },
          {
-            "path": "lib/IntuoWriter.js"
+            "path": "lib/IntuoWriter.js",
+            "update": "full"
          },
          {
-            "path": "lib/IntuoReader.js"
+            "path": "lib/IntuoReader.js",
+            "update": "full"
          },
          {
             "path": "app/override/Component.js"
+         },
+         {
+            "path": "resources/require/require.js",
+            "update": "full"
+         },
+         {
+            "path": "resources/require/init.js",
+            "update": "full"
          }
       ],
       "resources": [],
