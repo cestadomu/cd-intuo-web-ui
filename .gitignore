@@ -3,6 +3,8 @@
 #################
 
 .architect
+.sencha_backup
+.sass-cache
 
 #################
 ## Eclipse
