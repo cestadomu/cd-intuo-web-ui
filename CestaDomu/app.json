@@ -74,36 +74,5 @@
    "archivePath": "archive",
    "requires": [],
    "id": "3ccfd8f0-9bec-48ba-bae4-55f653127639",
-   "_architect": {
-      "_comment": "Please don't edit. This is Architect data.",
-      "name": "CestaDomu",
-      "css": [],
-      "js": [
-         {
-            "path": "lib/IntuoProxy.js",
-            "update": "full"
-         },
-         {
-            "path": "lib/IntuoWriter.js",
-            "update": "full"
-         },
-         {
-            "path": "lib/IntuoReader.js",
-            "update": "full"
-         },
-         {
-            "path": "app/override/Component.js"
-         },
-         {
-            "path": "resources/require/require.js",
-            "update": "full"
-         },
-         {
-            "path": "resources/require/init.js",
-            "update": "full"
-         }
-      ],
-      "resources": [],
-      "requires": []
-   }
+   "classpath": "${app.dir}/app,${app.dir}/lib/,${app.dir}/app/override/,${app.dir}/resources/require/"
 }
