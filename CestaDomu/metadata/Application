@@ -75,6 +75,25 @@
                 ]
             },
             "designerId": "66fcf855-48d8-4816-8f7b-faefde8ffb3c"
+        },
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "if((typeof(Storage)===\"undefined\")) {\r",
+                    "    Ext.Msg.alert('Nepodporovaný prohlížeč', 'Váš prohlížeč nepodporuje technologie (local storage) vyžadované touto aplikací, prosím použijte jiný prohlížeč.');\r",
+                    "} else {\r",
+                    "    CestaDomu.controller.Login.scheduleLoginRefresh();\r",
+                    "}"
+                ]
+            },
+            "designerId": "7c86f1cb-6df4-4e65-997a-274f019c7a2b"
         }
     ]
 }

@@ -23,35 +23,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|params": [
-                    "service",
-                    "data",
-                    "scope",
-                    "success",
-                    "failure"
-                ],
-                "fn": "call",
-                "implHandler": [
-                    "Ext.Ajax.request({\r",
-                    "    url: service.url,\r",
-                    "    method: 'POST',\r",
-                    "    scope: scope,\r",
-                    "    success: success,\r",
-                    "    failure: failure,\r",
-                    "    xmlData: service.template.apply(data)\r",
-                    "});"
-                ]
-            },
-            "designerId": "270f9778-2b3b-419a-8b39-e97f77cd8abc"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "fn": "constructor",
                 "implHandler": [
                     "this.callParent(arguments);\r",
@@ -63,47 +34,6 @@
                 ]
             },
             "designerId": "858eaa4e-5849-40fc-a16a-6e9126f1c1f4"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|params": [
-                    "service",
-                    "data",
-                    "scope",
-                    "success",
-                    "failure"
-                ],
-                "fn": "login",
-                "implHandler": [
-                    "var me = this;\r",
-                    "this.token = false;\r",
-                    "return this.call(\r",
-                    "    service,\r",
-                    "    data,\r",
-                    "    scope,\r",
-                    "    function(response, options) {\r",
-                    "        var authTokenTag = Ext.DomQuery.selectNode(\"LoginResult\", response.responseXML);\r",
-                    "        if (authTokenTag) {\r",
-                    "            me.token = authTokenTag.textContent;\r",
-                    "            if (me.token) {\r",
-                    "                Ext.callback(success, scope, [response, options]);\r",
-                    "                return;\r",
-                    "            }\r",
-                    "        }\r",
-                    "        Ext.callback(failure, scope, [response, options]);\r",
-                    "    },\r",
-                    "    function(response, options) {\r",
-                    "        Ext.callback(failure, scope, [response, options]);\r",
-                    "    });"
-                ]
-            },
-            "designerId": "34953ae9-ac48-430c-a6b4-11434ae07fd3"
         }
     ]
 }

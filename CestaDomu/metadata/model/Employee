@@ -90,7 +90,7 @@
                         ],
                         "fn": "convert",
                         "implHandler": [
-                            "return rec.get('Position') + ': ' +rec.get('Surname')+' '+rec.get('Forename');"
+                            "return rec.get('Surname') + ' ' + rec.get('Forename') + ' (' +rec.get('Position') + ')' ;"
                         ]
                     },
                     "designerId": "7a99c614-7bb4-4e5b-9010-f1d85db217c6"

@@ -26,7 +26,13 @@
             "userConfig": {
                 "fn": "main",
                 "implHandler": [
-                    "this.getMainContainer().setActiveItem(this.getLoginView());"
+                    "if (CestaDomu.controller.Login.isLoggedIn()) {\r",
+                    "    this.getApplication().fireEvent(\"loggedIn\");\r",
+                    "} else {\r",
+                    "    this.getMainContainer().setActiveItem(this.getLoginView());\r",
+                    "}\r",
+                    "\r",
+                    ""
                 ],
                 "url": "public/login"
             },
@@ -49,8 +55,7 @@
                     "    buttons: []\r",
                     "});\r",
                     "\r",
-                    "CestaDomu.controller.Intuo.login(\r",
-                    "    CestaDomu.controller.Login,\r",
+                    "CestaDomu.controller.Login.login(\r",
                     "    this.getLoginForm().getValues(),\r",
                     "    this,\r",
                     "    function(response){\r",
