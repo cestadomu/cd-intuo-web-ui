@@ -74,23 +74,28 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
     },
 
     main: function(clientId) {
-        var messageBox = Ext.Msg.show({
-            title: "Načítám data...",
-            buttons: []
-        });
+        CestaDomu.controller.Login.doLogged(this, function () {
+            var messageBox = Ext.Msg.show({
+                title: "Načítám data...",
+                buttons: []
+            });
 
-        var Contact = Ext.ModelManager.getModel('CestaDomu.model.Contact');
+            var Contact = Ext.ModelManager.getModel('CestaDomu.model.Contact');
 
-        Contact.load(clientId, {
-            scope: this,
-            success: function(client) {
-                this.getMainContainer().setActiveItem(this.getClientDetailView());
-                this.getClientInfoContainer().setRecordRecursive(client);
-                // ruční volání handleru události změny v caruselu pro nastavení nadpisu obrazovky
-                // jsou uvedeny pouze parametry, které se ve funkci používají, přestože signatura je rozsáhlejší
-                this.onCarouselActiveItemChange(null, this.getClientInfoContainer());
-                messageBox.hide();
-            }
+            Contact.load(clientId, {
+                scope: this,
+                success: function(client) {
+                    this.getMainContainer().setActiveItem(this.getClientDetailView());
+                    this.getClientInfoContainer().setRecordRecursive(client);
+                    // ruční volání handleru události změny v caruselu pro nastavení nadpisu obrazovky
+                    // jsou uvedeny pouze parametry, které se ve funkci používají, přestože signatura je rozsáhlejší
+                    this.onCarouselActiveItemChange(null, this.getClientInfoContainer());
+                    messageBox.hide();
+                },
+                failure: function () {
+                    Ext.Msg.alert('Chyba', 'Nepodařilo se načíst data klienta.');
+                }
+            });
         });
     },
 

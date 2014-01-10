@@ -28,8 +28,6 @@
                     "this.callParent(arguments);\r",
                     "this.url = CestaDomu.controller.Intuo.commonServiceUrlPart;\r",
                     "this.safeDifference = 1000*60*7;\r",
-                    "this.maxDifference = 1000*60*9;\r",
-                    "this.failDifference = 1000*60*12;\r",
                     "this.template = new Ext.XTemplate(\r",
                     "    '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dig=\"http://digres.cz/\">',\r",
                     "        '<soapenv:Header/>',\r",
@@ -76,16 +74,13 @@
                     "                if (token) {\r",
                     "                    this.saveToken(token);\r",
                     "                    this.saveCredentials(data.username, data.password);\r",
-                    "                    this.scheduleLoginRefresh();\r",
                     "                    Ext.callback(success, scope, [response, options]);\r",
                     "                    return;\r",
                     "                }\r",
                     "            }\r",
-                    "            this.scheduleLoginRefresh();\r",
                     "            Ext.callback(failure, scope, [response, options]);\r",
                     "        },\r",
                     "        failure: function(response, options) {\r",
-                    "            this.scheduleLoginRefresh();\r",
                     "            Ext.callback(failure, scope, [response, options]);\r",
                     "        }\r",
                     "    });\r",
@@ -102,84 +97,13 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "loginRefresh",
-                "implHandler": [
-                    "var lastTokenTimeDifference = 0;\r",
-                    "if (this.getTokenTime()) {\r",
-                    "    lastTokenTimeDifference = new Date().getTime() - this.getTokenTime();\r",
-                    "}\r",
-                    "\r",
-                    "this.login(\r",
-                    "    this.getCredentials,\r",
-                    "    this,\r",
-                    "    function (response, options) {\r",
-                    "        if (lastTokenTimeDifference > this.maxDifference) {\r",
-                    "            Ext.Msg.alert('Přihlášení obnoveno', 'Přihlášení k serveru bylo obnoveno.');\r",
-                    "        }\r",
-                    "    },\r",
-                    "    function(response, options) {\r",
-                    "        return;\r",
-                    "    }\r",
-                    ");\r",
-                    ""
-                ]
-            },
-            "designerId": "e5f1831b-662b-4297-9140-73c0ec8fe9f5"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "scheduleLoginRefresh",
-                "implHandler": [
-                    "if (this.getCredentials()) {\r",
-                    "    var tokenTime = this.getTokenTime();\r",
-                    "    if (tokenTime) {\r",
-                    "        var oneMinute = 1000*60;\r",
-                    "        var now = new Date();\r",
-                    "        var difference = now.getTime() - tokenTime;\r",
-                    "        if (difference > this.failDifference) {\r",
-                    "            Ext.Msg.alert('Přihlášení vypršelo', 'Všechny pokusy o obnovu přihlášení selhaly, server je pravděpodobně trvale nedostupný.');\r",
-                    "            this.saveCredentials('', '');\r",
-                    "            this.setToken('');\r",
-                    "        } else if (difference > this.maxDifference) {\r",
-                    "            Ext.Msg.alert('Přihlášení vypršelo', 'Další pokus o obnovu přihlášení proběhne za 1 min. Do té doby nebude aplikace funkční.');\r",
-                    "            Ext.defer(this.loginRefresh, oneMinute, this);\r",
-                    "        } else if (difference > this.safeDifference) {\r",
-                    "            Ext.defer(this.loginRefresh, oneMinute, this);\r",
-                    "        } else {\r",
-                    "            Ext.defer(this.loginRefresh, tokenTime + this.safeDifference - now.getTime(), this);\r",
-                    "        }\r",
-                    "    } else {\r",
-                    "        this.loginRefresh();\r",
-                    "    }\r",
-                    "}\r",
-                    ""
-                ]
-            },
-            "designerId": "6b6487eb-1b89-4055-8d02-8b157e32bb02"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "fn": "isLoggedIn",
                 "implHandler": [
-                    "if (this.getToken() && this.getTokenTime()) {\r",
-                    "    if (new Date().getTime() - this.getTokenTime() < this.maxDifference) {\r",
-                    "        return true;\r",
-                    "    }\r",
-                    "}\r",
-                    "\r",
-                    "return false;"
+                    "if (this.getCredentials()) {\r",
+                    "    return true;\r",
+                    "} else {\r",
+                    "    return false;\r",
+                    "}"
                 ]
             },
             "designerId": "8a8837cb-2d05-47f5-8315-c00956715e99"
@@ -259,6 +183,26 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|params": [
+                    "time"
+                ],
+                "fn": "saveTokenTime",
+                "implHandler": [
+                    "if((typeof(Storage) !== \"undefined\")) {\r",
+                    "    sessionStorage.tokenTime = time;\r",
+                    "}"
+                ]
+            },
+            "designerId": "952e41e7-e340-4a17-ba89-1034b1fb8d8b"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "fn": "getToken",
                 "implHandler": [
                     "if((typeof(Storage) !== \"undefined\")) {\r",
@@ -287,11 +231,53 @@
                 "implHandler": [
                     "if((typeof(Storage) !== \"undefined\")) {\r",
                     "    sessionStorage.token = token;\r",
-                    "    sessionStorage.tokenTime = new Date().getTime();\r",
+                    "    this.saveTokenTime(new Date().getTime());\r",
                     "}"
                 ]
             },
             "designerId": "6d5d4a61-4499-4d01-9e3b-b74255667d4f"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "scope",
+                    "success",
+                    "failure"
+                ],
+                "fn": "doLogged",
+                "implHandler": [
+                    "if (new Date().getTime() - this.getTokenTime() < this.safeDifference) {\r",
+                    "    Ext.callback(success, scope);\r",
+                    "} else {\r",
+                    "    Ext.Msg.show({\r",
+                    "        title: \"Obnova přihlášení k serveru...\",\r",
+                    "        buttons: []\r",
+                    "    });\r",
+                    "\r",
+                    "    this.login(\r",
+                    "        this.getCredentials(),\r",
+                    "        this,\r",
+                    "        function() {\r",
+                    "            Ext.Msg.hide();\r",
+                    "            Ext.callback(success, scope);\r",
+                    "        },\r",
+                    "        function () {\r",
+                    "            Ext.Msg.alert('Chyba', 'Nepodařilo se obnovit přihlášení k serveru, prosím opakujte akci později.');\r",
+                    "            if (failure) {\r",
+                    "                Ext.callback(failure, scope);\r",
+                    "            }\r",
+                    "        }\r",
+                    "    );\r",
+                    "}"
+                ]
+            },
+            "designerId": "5aa57d8e-540f-4323-89fb-6a977a5064d9"
         }
     ]
 }

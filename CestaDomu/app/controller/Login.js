@@ -29,8 +29,6 @@ Ext.define('CestaDomu.controller.Login', {
         this.callParent(arguments);
         this.url = CestaDomu.controller.Intuo.commonServiceUrlPart;
         this.safeDifference = 1000*60*7;
-        this.maxDifference = 1000*60*9;
-        this.failDifference = 1000*60*12;
         this.template = new Ext.XTemplate(
             '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dig="http://digres.cz/">',
                 '<soapenv:Header/>',
@@ -60,77 +58,25 @@ Ext.define('CestaDomu.controller.Login', {
                         if (token) {
                             this.saveToken(token);
                             this.saveCredentials(data.username, data.password);
-                            this.scheduleLoginRefresh();
                             Ext.callback(success, scope, [response, options]);
                             return;
                         }
                     }
-                    this.scheduleLoginRefresh();
                     Ext.callback(failure, scope, [response, options]);
                 },
                 failure: function(response, options) {
-                    this.scheduleLoginRefresh();
                     Ext.callback(failure, scope, [response, options]);
                 }
             });
         }
     },
 
-    loginRefresh: function() {
-        var lastTokenTimeDifference = 0;
-        if (this.getTokenTime()) {
-            lastTokenTimeDifference = new Date().getTime() - this.getTokenTime();
-        }
-
-        this.login(
-            this.getCredentials,
-            this,
-            function (response, options) {
-                if (lastTokenTimeDifference > this.maxDifference) {
-                    Ext.Msg.alert('Přihlášení obnoveno', 'Přihlášení k serveru bylo obnoveno.');
-                }
-            },
-            function(response, options) {
-                return;
-            }
-        );
-
-    },
-
-    scheduleLoginRefresh: function() {
-        if (this.getCredentials()) {
-            var tokenTime = this.getTokenTime();
-            if (tokenTime) {
-                var oneMinute = 1000*60;
-                var now = new Date();
-                var difference = now.getTime() - tokenTime;
-                if (difference > this.failDifference) {
-                    Ext.Msg.alert('Přihlášení vypršelo', 'Všechny pokusy o obnovu přihlášení selhaly, server je pravděpodobně trvale nedostupný.');
-                    this.saveCredentials('', '');
-                    this.setToken('');
-                } else if (difference > this.maxDifference) {
-                    Ext.Msg.alert('Přihlášení vypršelo', 'Další pokus o obnovu přihlášení proběhne za 1 min. Do té doby nebude aplikace funkční.');
-                    Ext.defer(this.loginRefresh, oneMinute, this);
-                } else if (difference > this.safeDifference) {
-                    Ext.defer(this.loginRefresh, oneMinute, this);
-                } else {
-                    Ext.defer(this.loginRefresh, tokenTime + this.safeDifference - now.getTime(), this);
-                }
-            } else {
-                this.loginRefresh();
-            }
-        }
-
-    },
-
     isLoggedIn: function() {
-        if (this.getToken() && this.getTokenTime()) {
-            if (new Date().getTime() - this.getTokenTime() < this.maxDifference) {
-                return true;
-            }
+        if (this.getCredentials()) {
+            return true;
+        } else {
+            return false;
         }
-
-        return false;
     },
 
     getCredentials: function() {
@@ -163,6 +109,12 @@ Ext.define('CestaDomu.controller.Login', {
         return 0;
     },
 
+    saveTokenTime: function(time) {
+        if((typeof(Storage) !== "undefined")) {
+            sessionStorage.tokenTime = time;
+        }
+    },
+
     getToken: function() {
         if((typeof(Storage) !== "undefined")) {
             if (sessionStorage.token) {
@@ -176,7 +128,33 @@ Ext.define('CestaDomu.controller.Login', {
     saveToken: function(token) {
         if((typeof(Storage) !== "undefined")) {
             sessionStorage.token = token;
-            sessionStorage.tokenTime = new Date().getTime();
+            this.saveTokenTime(new Date().getTime());
+        }
+    },
+
+    doLogged: function(scope, success, failure) {
+        if (new Date().getTime() - this.getTokenTime() < this.safeDifference) {
+            Ext.callback(success, scope);
+        } else {
+            Ext.Msg.show({
+                title: "Obnova přihlášení k serveru...",
+                buttons: []
+            });
+
+            this.login(
+                this.getCredentials(),
+                this,
+                function() {
+                    Ext.Msg.hide();
+                    Ext.callback(success, scope);
+                },
+                function () {
+                    Ext.Msg.alert('Chyba', 'Nepodařilo se obnovit přihlášení k serveru, prosím opakujte akci později.');
+                    if (failure) {
+                        Ext.callback(failure, scope);
+                    }
+                }
+            );
         }
     }
 

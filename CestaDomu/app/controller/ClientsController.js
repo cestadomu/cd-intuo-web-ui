@@ -46,15 +46,16 @@ Ext.define('CestaDomu.controller.ClientsController', {
     },
 
     onSearchButtonTap: function(button, e, eOpts) {
-        var searchText = this.getSearchText().getValue();
-        if (searchText && searchText.length > 2) {
-            var store = Ext.getStore('ContactsStore');
-            store.filter('name', searchText);
-            store.load();
-        } else {
-            Ext.Msg.alert('Příliš obecné hledání', 'Pro vyhledání podle jména je nutné zadat více než 2 znaky, jinak by množství nalezených záznamů mohlo být příliš velké.');
-        }
-
+        CestaDomu.controller.Login.doLogged( this, function () {
+            var searchText = this.getSearchText().getValue();
+            if (searchText && searchText.length > 2) {
+                var store = Ext.getStore('ContactsStore');
+                store.filter('name', searchText);
+                store.load();
+            } else {
+                Ext.Msg.alert('Příliš obecné hledání', 'Pro vyhledání podle jména je nutné zadat více než 2 znaky, jinak by množství nalezených záznamů mohlo být příliš velké.');
+            }
+        });
     },
 
     onListItemTap: function(dataview, index, target, record, e, eOpts) {

@@ -35,12 +35,11 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|createAlias": null,
                 "mapping": null,
-                "name": "Name",
-                "type": "string"
+                "name": "ID",
+                "type": "auto"
             },
-            "designerId": "bcc68c77-ad4f-4d5b-88be-c3b839c7f874"
+            "designerId": "41d9ecd9-6ea2-4b47-8dab-5c5fc589f5f0"
         },
         {
             "type": "Ext.data.Field",
@@ -50,11 +49,12 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|createAlias": null,
                 "mapping": null,
-                "name": "ID",
-                "type": "auto"
+                "name": "Name",
+                "type": "string"
             },
-            "designerId": "41d9ecd9-6ea2-4b47-8dab-5c5fc589f5f0"
+            "designerId": "bcc68c77-ad4f-4d5b-88be-c3b839c7f874"
         },
         {
             "type": "Ext.data.proxy.Ajax",

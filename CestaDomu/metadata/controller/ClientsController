@@ -100,15 +100,16 @@
                 "designer|targetType": "Ext.Button",
                 "fn": "onSearchButtonTap",
                 "implHandler": [
-                    "var searchText = this.getSearchText().getValue();\r",
-                    "if (searchText && searchText.length > 2) {\r",
-                    "    var store = Ext.getStore('ContactsStore');\r",
-                    "    store.filter('name', searchText);\r",
-                    "    store.load();\r",
-                    "} else {\r",
-                    "    Ext.Msg.alert('Příliš obecné hledání', 'Pro vyhledání podle jména je nutné zadat více než 2 znaky, jinak by množství nalezených záznamů mohlo být příliš velké.');\r",
-                    "}\r",
-                    ""
+                    "CestaDomu.controller.Login.doLogged( this, function () {\r",
+                    "    var searchText = this.getSearchText().getValue();\r",
+                    "    if (searchText && searchText.length > 2) {\r",
+                    "        var store = Ext.getStore('ContactsStore');\r",
+                    "        store.filter('name', searchText);\r",
+                    "        store.load();\r",
+                    "    } else {\r",
+                    "        Ext.Msg.alert('Příliš obecné hledání', 'Pro vyhledání podle jména je nutné zadat více než 2 znaky, jinak by množství nalezených záznamů mohlo být příliš velké.');\r",
+                    "    }\r",
+                    "});"
                 ],
                 "name": "tap"
             },

@@ -39,7 +39,7 @@ Ext.application({
         'Ext.Label',
         'Ext.field.Select',
         'Ext.XTemplate',
-        'CestaDomu.controller.Util'
+        'Ext.Logger'
     ],
     models: [
         'Contact',
@@ -78,9 +78,13 @@ Ext.application({
     launch: function() {
         if((typeof(Storage)==="undefined")) {
             Ext.Msg.alert('Nepodporovaný prohlížeč', 'Váš prohlížeč nepodporuje technologie (local storage) vyžadované touto aplikací, prosím použijte jiný prohlížeč.');
-        } else {
-            CestaDomu.controller.Login.scheduleLoginRefresh();
         }
+
+        Ext.Ajax.addListener('requestcomplete', function (conn, options, eOpts) {
+            if (options.request.options.url.indexOf(CestaDomu.controller.Intuo.commonServiceUrlPart) === 0) {
+                CestaDomu.controller.Login.saveTokenTime(new Date().getTime());
+            }
+        });
         Ext.create('CestaDomu.view.MainContainer', {fullscreen: true});
     }
 

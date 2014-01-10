@@ -35,7 +35,7 @@
             "Ext.Label",
             "Ext.field.Select",
             "Ext.XTemplate",
-            "CestaDomu.controller.Util"
+            "Ext.Logger"
         ],
         "stores": [
             "ContactsStore",
@@ -88,9 +88,13 @@
                 "implHandler": [
                     "if((typeof(Storage)===\"undefined\")) {\r",
                     "    Ext.Msg.alert('Nepodporovaný prohlížeč', 'Váš prohlížeč nepodporuje technologie (local storage) vyžadované touto aplikací, prosím použijte jiný prohlížeč.');\r",
-                    "} else {\r",
-                    "    CestaDomu.controller.Login.scheduleLoginRefresh();\r",
-                    "}"
+                    "}\r",
+                    "\r",
+                    "Ext.Ajax.addListener('requestcomplete', function (conn, options, eOpts) {\r",
+                    "    if (options.request.options.url.indexOf(CestaDomu.controller.Intuo.commonServiceUrlPart) === 0) {\r",
+                    "        CestaDomu.controller.Login.saveTokenTime(new Date().getTime());\r",
+                    "    }\r",
+                    "});"
                 ]
             },
             "designerId": "7c86f1cb-6df4-4e65-997a-274f019c7a2b"

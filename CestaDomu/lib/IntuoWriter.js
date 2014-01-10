@@ -20,6 +20,8 @@ Ext.define('Lib.IntuoWriter', {
         }
         request.setXmlData(operationApi.service.template.apply(templateParams));
         request.setParams({});
+        
+        CestaDomu.controller.Login.saveTokenTime(new Date().getTime());
         return request;
     },
     setProxyApi: function(value) {

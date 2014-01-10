@@ -31,12 +31,12 @@ Ext.define('CestaDomu.model.Contact', {
         },
         fields: [
             {
-                name: 'Name',
-                type: 'string'
-            },
-            {
                 name: 'ID',
                 type: 'auto'
+            },
+            {
+                name: 'Name',
+                type: 'string'
             }
         ],
         proxy: {

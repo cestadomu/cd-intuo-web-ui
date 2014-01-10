@@ -52,25 +52,28 @@ Ext.define('CestaDomu.controller.WorkReportsController', {
     },
 
     onLoadButtonTap: function(button, e, eOpts) {
-        var store = Ext.getStore('WorkReportsStore');
-        var timeFundStore = Ext.getStore('TimeFundStore');
-        var filterData = this.getWorkReportsForm().getValues();
-        var intervalStore = Ext.getStore('WorkReportIntervals');
-        var interval = intervalStore.getAt(intervalStore.findExact('id', filterData.timeInterval));
-        var dateFrom = interval.get('dateFrom');
-        var dateTo = interval.get('dateTo');
+        CestaDomu.controller.Login.doLogged(
+            this,
+            function () {
+                var store = Ext.getStore('WorkReportsStore');
+                var timeFundStore = Ext.getStore('TimeFundStore');
+                var filterData = this.getWorkReportsForm().getValues();
+                var interval = Ext.getStore('WorkReportIntervals').getById(filterData.timeInterval);
+                var dateFrom = interval.get('dateFrom');
+                var dateTo = interval.get('dateTo');
 
-        timeFundStore.filter('year', dateFrom.getFullYear());
-        timeFundStore.filter('month', dateFrom.getMonth()+1);
-        timeFundStore.filter('id', filterData.employee);
-        timeFundStore.load();
+                timeFundStore.filter('year', dateFrom.getFullYear());
+                timeFundStore.filter('month', dateFrom.getMonth()+1);
+                timeFundStore.filter('id', filterData.employee);
+                timeFundStore.load();
 
-        store.filter('dateFrom', Ext.Date.format(dateFrom, 'Y-m-d\\TH:i:s'));
-        store.filter('dateTo', Ext.Date.format(dateTo, 'Y-m-d\\TH:i:s'));
-        store.filter('id', filterData.employee);
-        store.load();
+                store.filter('dateFrom', Ext.Date.format(dateFrom, 'Y-m-d\\TH:i:s'));
+                store.filter('dateTo', Ext.Date.format(dateTo, 'Y-m-d\\TH:i:s'));
+                store.filter('id', filterData.employee);
+                store.load();
 
-        this.getCreateWorkReportButton().setDisabled(false);
+                this.getCreateWorkReportButton().setDisabled(false);
+            });
     },
 
     onCreateWorkReportButtonTap: function(button, e, eOpts) {
@@ -83,10 +86,10 @@ Ext.define('CestaDomu.controller.WorkReportsController', {
             var styles = me.initStyles(workbook);
 
             var filterData = me.getWorkReportsForm().getValues();
-            var interval = CestaDomu.controller.Util.findInStore('WorkReportIntervals', 'id', filterData.timeInterval);
+            var interval = Ext.getStore('WorkReportIntervals').getById(filterData.timeInterval);
             var dateFrom = interval.get('dateFrom');
             var dateTo = interval.get('dateTo');
-            var employee = CestaDomu.controller.Util.findInStore('EmployeesStore', 'ID', filterData.employee);
+            var employee = Ext.getStore('EmployeesStore').getById(filterData.employee);
 
             var buffer = me.initBuffer(me, dateFrom, dateTo);
 
@@ -111,27 +114,25 @@ Ext.define('CestaDomu.controller.WorkReportsController', {
     },
 
     main: function() {
-        Ext.Msg.show({
-            title: "Načítám data...",
-            buttons: []
+        CestaDomu.controller.Login.doLogged(this, function () {
+            this.getMainContainer().setActiveItem(this.getWorkReportsView());
+            var store = Ext.getStore('EmployeesStore');
+
+            if (!store.isLoaded()) {
+                Ext.Msg.show({
+                    title: "Načítání dat formuláře...",
+                    buttons: []
+                });
+                store.load(function(records, operation, success) {
+                    if (success) {
+                        Ext.Msg.hide();
+                    } else {
+                        Ext.Msg.alert('Chyba', 'Nepodařilo se načíst data zaměstnanců.');
+                        this.getApplication().getHistory().back();
+                    }
+                }, this);
+            }
         });
-
-
-        var store = Ext.getStore('EmployeesStore');
-
-        if (store.isLoaded()) {
-            this.finalizeView();
-        } else {
-            store.load(function(records, operation, success) {
-                if (success) {
-                    this.finalizeView();
-                } else {
-                    Ext.Msg.alert('Nepodařilo se získat seznam zaměstnanců');
-                }
-            }, this);
-        }
-
-
     },
 
     finalizeView: function() {
