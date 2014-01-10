@@ -1,3 +1,4 @@
+Ext.define('Lib.Require', {});
 /*
  RequireJS 2.0.5 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
  Available via the MIT or new BSD license.
@@ -33,3 +34,18 @@ c)},onScriptLoad:function(a){if(a.type==="load"||ma.test((a.currentTarget||a.src
 "html:script"):document.createElement("script"),f.type=g.scriptType||"text/javascript",f.charset="utf-8",f.async=!0,f.setAttribute("data-requirecontext",b.contextName),f.setAttribute("data-requiremodule",c),f.attachEvent&&!(f.attachEvent.toString&&f.attachEvent.toString().indexOf("[native code")<0)&&!R?(K=!0,f.attachEvent("onreadystatechange",b.onScriptLoad)):(f.addEventListener("load",b.onScriptLoad,!1),f.addEventListener("error",b.onScriptError,!1)),f.src=d,H=f,A?u.insertBefore(f,A):u.appendChild(f),
 H=null,f;else ea&&(importScripts(d),b.completeLoad(c))};v&&M(document.getElementsByTagName("script"),function(b){if(!u)u=b.parentNode;if(s=b.getAttribute("data-main")){if(!r.baseUrl)B=s.split("/"),ba=B.pop(),ca=B.length?B.join("/")+"/":"./",r.baseUrl=ca,s=ba;s=s.replace(da,"");r.deps=r.deps?r.deps.concat(s):[s];return!0}});define=function(b,c,d){var g,f;typeof b!=="string"&&(d=c,c=b,b=null);D(c)||(d=c,c=[]);!c.length&&w(d)&&d.length&&(d.toString().replace(ia,"").replace(ja,function(b,d){c.push(d)}),
 c=(d.length===1?["require"]:["require","exports","module"]).concat(c));if(K&&(g=H||ha()))b||(b=g.getAttribute("data-requiremodule")),f=y[g.getAttribute("data-requirecontext")];(f?f.defQueue:O).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(r)}})(this);
+
+require.config({
+    paths: {
+        underscore: 'resources/require/underscore/underscore',
+        JSZip: 'resources/require/jszip/jszip'
+    },
+    shim: {
+        'underscore': {
+            exports: '_'
+        },
+        'JSZip': {
+            exports: 'JSZip'
+        }
+    }
+});

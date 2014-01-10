@@ -31,7 +31,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "CestaDomu.controller.Login": [],
   "CestaDomu.controller.LoginController": [],
   "CestaDomu.controller.RoleSelectController": [],
-  "CestaDomu.controller.Util": [],
   "CestaDomu.controller.WorkReportsController": [],
   "CestaDomu.model.Contact": [],
   "CestaDomu.model.Employee": [],
@@ -777,7 +776,8 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Lib.IntuoProxy": [],
   "Lib.IntuoReader": [],
-  "Lib.IntuoWriter": []
+  "Lib.IntuoWriter": [],
+  "Lib.Require": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "CestaDomu.controller.ClientDetailController": [],
@@ -794,7 +794,6 @@ Ext.ClassManager.addNameAliasMappings({
     "controller.loginController"
   ],
   "CestaDomu.controller.RoleSelectController": [],
-  "CestaDomu.controller.Util": [],
   "CestaDomu.controller.WorkReportsController": [],
   "CestaDomu.model.Contact": [
     "model.contact"
@@ -1778,5 +1777,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Lib.IntuoWriter": [
     "writer.intuo"
-  ]
+  ],
+  "Lib.Require": []
 });

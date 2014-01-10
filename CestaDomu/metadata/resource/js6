@@ -1,0 +1,14 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js6",
+        "url": "lib/Require.js",
+        "x-bootstrap": true
+    },
+    "designerId": "618b7b34-c5b7-4ca9-bf19-c4a53d4e3adf"
+}

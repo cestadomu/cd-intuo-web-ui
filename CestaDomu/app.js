@@ -38,8 +38,7 @@ Ext.application({
         'Ext.carousel.Carousel',
         'Ext.Label',
         'Ext.field.Select',
-        'Ext.XTemplate',
-        'Ext.Logger'
+        'Ext.XTemplate'
     ],
     models: [
         'Contact',

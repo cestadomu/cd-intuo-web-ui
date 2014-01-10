@@ -18,7 +18,8 @@ Ext.define('CestaDomu.controller.WorkReportsController', {
 
     requires: [
         'Ext.app.Route',
-        'Ext.Date'
+        'Ext.Date',
+        'Lib.Require'
     ],
 
     config: {

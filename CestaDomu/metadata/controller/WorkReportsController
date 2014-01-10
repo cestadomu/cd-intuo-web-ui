@@ -8,7 +8,8 @@
     "userConfig": {
         "designer|userClassName": "WorkReportsController",
         "requires": [
-            "Ext.Date"
+            "Ext.Date",
+            "Lib.Require"
         ]
     },
     "designerId": "2b5840af-3b85-4e17-8005-95eb217a38f1",
