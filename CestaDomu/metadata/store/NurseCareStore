@@ -1,0 +1,72 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "NurseCareStore",
+        "model": "NurseCare",
+        "remoteFilter": true,
+        "remoteGroup": true,
+        "remoteSort": true,
+        "storeId": "NurseCareStore"
+    },
+    "designerId": "f4441ac1-ec9c-4bf3-a92f-e3c4aaeb1cba",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "api": [
+                    "{\r",
+                    "    read: {service: CestaDomu.controller.GetBindingViewX, templates: {}},\r",
+                    "    mappingType: 'xml',\r",
+                    "    mapping: {ID: 'c0', time: 'c1', nurse: 'c2', aggreement: 'c3', description: 'c4', length: 'c5'}\r",
+                    "}"
+                ],
+                "designer|createAlias": "intuo",
+                "extraParams": [
+                    "{\r",
+                    "    viewId: 1721\r",
+                    "}"
+                ],
+                "url": "xxx"
+            },
+            "designerId": "0e2de73e-3409-49c0-a3e9-47b2ca4386c4",
+            "cn": [
+                {
+                    "type": "Ext.data.writer.Xml",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|createAlias": "intuo"
+                    },
+                    "designerId": "c81238f0-20d5-4cd1-b29e-2135b61de6ec"
+                },
+                {
+                    "type": "Ext.data.reader.Xml",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|createAlias": "intuo",
+                        "record": "WEB_x0020_průběhy_x0020_péče",
+                        "rootProperty": "DocumentElement"
+                    },
+                    "designerId": "6ce7dfd6-12fd-4928-a99e-c7867a6eb04c"
+                }
+            ]
+        }
+    ]
+}

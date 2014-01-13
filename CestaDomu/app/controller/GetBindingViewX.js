@@ -35,7 +35,7 @@ Ext.define('CestaDomu.controller.GetBindingViewX', {
                     '<dig:GetBindingViewX>',
                         '<dig:strAuthKey>{token}</dig:strAuthKey>',
                         '<dig:nViewID>{requestParams.viewId}</dig:nViewID>',
-                        '<dig:nFromID>{filters.id}</dig:nFromID>',
+                        '<dig:nFromID><tpl if="filters.id">{filters.id}</tpl><tpl if="requestParams.ID">{requestParams.ID}</tpl></dig:nFromID>',
                         '<dig:strLanguage>CS</dig:strLanguage>',
                         '<tpl if="filterXml"><dig:strXMLDefinitionOfRestriction><![CDATA[{filterXml}]]></dig:strXMLDefinitionOfRestriction></tpl>',
                     '</dig:GetBindingViewX>',

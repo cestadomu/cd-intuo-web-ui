@@ -28,7 +28,7 @@
                     "{\r",
                     "    read: {service: CestaDomu.controller.GetViewX, templates: {filterXml: new Ext.XTemplate('<Element type=\"Comparison\"><SubElements><ElementCollection><Item><Element type=\"ColumnName\"><AdditionalData columnName=\"name\" displayName=\"Název\" type=\"1\" /></Element></Item><Item><Element type=\"Constant\"><AdditionalData><anyType xmlns:q1=\"http://www.w3.org/2001/XMLSchema\" d7p1:type=\"q1:string\" xmlns:d7p1=\"http://www.w3.org/2001/XMLSchema-instance\">{filters.name}%</anyType></AdditionalData></Element></Item></ElementCollection></SubElements><AdditionalData Operator=\"Like\" /></Element>')}},\r",
                     "    mappingType: 'xml',\r",
-                    "    mapping: {Name: 'c1'}\r",
+                    "    mapping: {Name: 'c1', pacientId: 'c2'}\r",
                     "}"
                 ],
                 "designer|createAlias": "intuo",

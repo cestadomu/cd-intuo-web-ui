@@ -22,7 +22,7 @@ Ext.define('CestaDomu.controller.ClientsController', {
 
     config: {
         routes: {
-            'private/clients': 'main'
+            'private/contacts': 'main'
         },
 
         refs: {
@@ -59,16 +59,12 @@ Ext.define('CestaDomu.controller.ClientsController', {
     },
 
     onListItemTap: function(dataview, index, target, record, e, eOpts) {
-        this.getApplication().fireEvent("clientSelected", record.get('ID'));
+        this.getApplication().fireEvent("pacientSelected", record.get('pacientId'));
 
     },
 
     onCareRoleSelected: function() {
-        this.getApplication().redirectTo("private/clients");
-    },
-
-    onLoggedIn: function() {
-        //this.getApplication().redirectTo("private/clients");
+        this.getApplication().redirectTo("private/contacts");
     },
 
     main: function() {
@@ -78,8 +74,7 @@ Ext.define('CestaDomu.controller.ClientsController', {
     init: function(application) {
 
         application.on([
-        { event: 'careRoleSelected', fn: this.onCareRoleSelected, scope: this },
-        { event: 'loggedIn', fn: this.onLoggedIn, scope: this }
+        { event: 'careRoleSelected', fn: this.onCareRoleSelected, scope: this }
         ]);
     }
 

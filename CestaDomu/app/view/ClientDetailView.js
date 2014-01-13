@@ -19,9 +19,10 @@ Ext.define('CestaDomu.view.ClientDetailView', {
 
     requires: [
         'Ext.Toolbar',
+        'Ext.Label',
         'Ext.Button',
         'Ext.carousel.Carousel',
-        'Ext.Label',
+        'Ext.dataview.List',
         'Ext.XTemplate'
     ],
 
@@ -31,35 +32,74 @@ Ext.define('CestaDomu.view.ClientDetailView', {
             {
                 xtype: 'toolbar',
                 docked: 'top',
+                height: 50,
                 items: [
+                    {
+                        xtype: 'label',
+                        html: '',
+                        itemId: 'caruselTitle',
+                        margin: 5,
+                        width: 100
+                    },
+                    {
+                        xtype: 'label',
+                        itemId: 'quickInfo'
+                    },
                     {
                         xtype: 'button',
                         docked: 'right',
-                        text: 'Nový...'
+                        width: 50,
+                        text: '+'
                     }
                 ]
             },
             {
                 xtype: 'carousel',
-                margin: 5,
                 items: [
                     {
                         xtype: 'container',
-                        title: 'Informace',
+                        title: 'Průběhy<br />péče',
                         itemId: 'clientInfoContainer',
+                        layout: 'hbox',
                         items: [
                             {
-                                xtype: 'label',
-                                html: 'test 1',
-                                tpl: [
-                                    '{Name}'
+                                xtype: 'list',
+                                flex: 500,
+                                width: 500,
+                                itemTpl: [
+                                    '{[Ext.Date.format(values.time, \'d. m. Y H:i\')]} {nurse}<br/>',
+                                    '{aggreement}'
+                                ],
+                                store: 'NurseCareStore'
+                            },
+                            {
+                                xtype: 'container',
+                                flex: 268,
+                                layout: 'vbox',
+                                items: [
+                                    {
+                                        xtype: 'label',
+                                        html: 'Délka [min]:'
+                                    },
+                                    {
+                                        xtype: 'label',
+                                        itemId: 'nurseCareLength'
+                                    },
+                                    {
+                                        xtype: 'label',
+                                        html: 'Popis:'
+                                    },
+                                    {
+                                        xtype: 'label',
+                                        itemId: 'nurseCareDescription'
+                                    }
                                 ]
                             }
                         ]
                     },
                     {
                         xtype: 'container',
-                        title: 'Průběhy péče',
+                        title: 'Medikace',
                         items: [
                             {
                                 xtype: 'label',

@@ -57,6 +57,19 @@
             "designerId": "bcc68c77-ad4f-4d5b-88be-c3b839c7f874"
         },
         {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "pacientId",
+                "type": "int"
+            },
+            "designerId": "c06dd4a9-be00-4ea6-9987-ce033f920d06"
+        },
+        {
             "type": "Ext.data.proxy.Ajax",
             "reference": {
                 "name": "proxy",

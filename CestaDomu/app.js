@@ -45,14 +45,17 @@ Ext.application({
         'Employee',
         'TimeInterval',
         'WorkReport',
-        'TimeFund'
+        'TimeFund',
+        'Pacient',
+        'NurseCare'
     ],
     stores: [
         'ContactsStore',
         'EmployeesStore',
         'WorkReportIntervals',
         'WorkReportsStore',
-        'TimeFundStore'
+        'TimeFundStore',
+        'NurseCareStore'
     ],
     views: [
         'LoginView',
@@ -61,7 +64,6 @@ Ext.application({
         'RoleSelectView',
         'LoadingView',
         'ClientDetailView',
-        'ClientNewMenu',
         'WorkReportsView'
     ],
     controllers: [

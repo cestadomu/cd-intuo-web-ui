@@ -22,7 +22,7 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
 
     config: {
         routes: {
-            'private/clients/:clientId': 'main'
+            'private/pacients/:pacientId': 'main'
         },
 
         refs: {
@@ -43,7 +43,11 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
                 xtype: 'clientNewMenu'
             },
             clientDetailTitle: 'clientDetailView toolbar',
-            clientInfoContainer: 'clientDetailView #clientInfoContainer'
+            clientInfoContainer: 'clientDetailView #clientInfoContainer',
+            caruselTitle: 'clientDetailView #caruselTitle',
+            quickInfo: 'clientDetailView #quickInfo',
+            nurseCareLength: 'clientDetailView #nurseCareLength',
+            nurseCareDescription: 'clientDetailView #nurseCareDescription'
         },
 
         control: {
@@ -53,40 +57,43 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
             "clientDetailView button": {
                 tap: 'onShowNewItemMenu'
             },
-            "clientNewMenu image": {
-                tap: 'onImageTap'
+            "clientDetailView #clientInfoContainer list": {
+                itemtap: 'onListItemTap'
             }
         }
     },
 
     onCarouselActiveItemChange: function(container, value, oldValue, eOpts) {
-        if (this.getClientInfoContainer().getRecord()) {
-            this.getClientDetailTitle().setTitle({title: this.getClientInfoContainer().getRecord().get('Name') + ': ' + value.title, 'text-align': 'left'});
-        }
+        this.getCaruselTitle().setHtml(value.title);
     },
 
     onShowNewItemMenu: function(button, e, eOpts) {
-        this.getClientNewMenu().showBy(button);
+
     },
 
-    onImageTap: function(image, e, eOpts) {
-        alert('ahoj');
+    onListItemTap: function(dataview, index, target, record, e, eOpts) {
+        this.getNurseCareLength().setHtml(record.get('length'));
+        this.getNurseCareDescription().setHtml(record.get('description'));
     },
 
-    main: function(clientId) {
+    main: function(pacientId) {
         CestaDomu.controller.Login.doLogged(this, function () {
             var messageBox = Ext.Msg.show({
                 title: "Načítám data...",
                 buttons: []
             });
 
-            var Contact = Ext.ModelManager.getModel('CestaDomu.model.Contact');
+            var Pacient = Ext.ModelManager.getModel('CestaDomu.model.Pacient');
 
-            Contact.load(clientId, {
+            Pacient.load(pacientId, {
                 scope: this,
-                success: function(client) {
+                success: function(pacient) {
+                    var nurseCareStore = Ext.getStore('NurseCareStore');
+                    nurseCareStore.filter('id', pacient.get('ID'));
+                    nurseCareStore.load();
+
                     this.getMainContainer().setActiveItem(this.getClientDetailView());
-                    this.getClientInfoContainer().setRecordRecursive(client);
+                    this.getQuickInfo().setHtml(this.quickInfoTemplate.apply(pacient.getData()));
                     // ruční volání handleru události změny v caruselu pro nastavení nadpisu obrazovky
                     // jsou uvedeny pouze parametry, které se ve funkci používají, přestože signatura je rozsáhlejší
                     this.onCarouselActiveItemChange(null, this.getClientInfoContainer());
@@ -99,14 +106,22 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
         });
     },
 
-    onClientSelected: function(clientId) {
-        this.getApplication().redirectTo("private/clients/"+clientId);
+    onPacientSelected: function(pacientId) {
+        this.getApplication().redirectTo("private/pacients/"+pacientId);
+    },
+
+    constructor: function() {
+        this.callParent(arguments);
+        this.quickInfoTemplate = new Ext.XTemplate(
+            '{Name}, <a href="http://mapy.cz/?q={street}, {city}" style="color: #99CCFF; text-decoration: none;" target="_blank">{street}, {city}</a><br/>',
+            'Ošetřuje: {contactPerson}<tpl if="mobileNumber">, {mobilePrefix} {mobileNumber}</tpl><tpl if="phoneNumber">, {phonePrefix} {phoneNumber}</tpl>'
+        );
     },
 
     init: function(application) {
 
         application.on([
-        { event: 'clientSelected', fn: this.onClientSelected, scope: this }
+        { event: 'pacientSelected', fn: this.onPacientSelected, scope: this }
         ]);
     }
 

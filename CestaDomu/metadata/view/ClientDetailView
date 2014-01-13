@@ -22,14 +22,44 @@
             "codeClass": null,
             "userConfig": {
                 "docked": "top",
-                "id": null,
-                "title": null
+                "height": 50,
+                "id": null
             },
             "configAlternates": {
                 "title": "object"
             },
             "designerId": "9fd04809-2b14-4d21-8d4d-8b7836216daa",
             "cn": [
+                {
+                    "type": "Ext.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "",
+                        "itemId": "caruselTitle",
+                        "margin": 5,
+                        "width": 100
+                    },
+                    "designerId": "79470f9a-a1eb-4a78-80f1-d3bb562b29cd"
+                },
+                {
+                    "type": "Ext.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "docked": null,
+                        "html": null,
+                        "itemId": "quickInfo",
+                        "margin": null
+                    },
+                    "designerId": "d1a5224c-c46d-4cc4-a093-5c55fd6954a3"
+                },
                 {
                     "type": "Ext.Button",
                     "reference": {
@@ -40,7 +70,8 @@
                     "userConfig": {
                         "docked": "right",
                         "itemId": null,
-                        "text": "Nový..."
+                        "text": "+",
+                        "width": 50
                     },
                     "designerId": "c234fcf4-4bb1-4a9a-9aa2-917db9c349a5"
                 }
@@ -54,7 +85,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "margin": 5
+                "margin": null
             },
             "designerId": "3e444efc-1710-4b12-a37f-68e794877137",
             "cn": [
@@ -67,8 +98,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "itemId": "clientInfoContainer",
+                        "layout": "hbox",
                         "margin": null,
-                        "title": "Informace"
+                        "title": "Průběhy<br />péče"
                     },
                     "designerId": "13c4ada3-a114-4ad0-97d1-d183fe71a882",
                     "customConfigs": [
@@ -80,31 +112,98 @@
                     ],
                     "cn": [
                         {
-                            "type": "Ext.Label",
+                            "type": "Ext.dataview.List",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "html": "test 1"
+                                "layout|flex": 500,
+                                "store": "NurseCareStore",
+                                "width": 500
                             },
-                            "designerId": "e490bef2-1999-49d9-8d75-3e004b4c453c",
+                            "designerId": "9b3464b7-75d5-46b2-a1be-ff14c3e4cdc5",
                             "cn": [
                                 {
                                     "type": "Ext.XTemplate",
                                     "reference": {
-                                        "name": "tpl",
+                                        "name": "itemTpl",
                                         "type": "object"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "designer|displayName": "tpl",
+                                        "designer|displayName": "itemTpl",
                                         "implHandler": [
-                                            "{Name}"
+                                            "{[Ext.Date.format(values.time, 'd. m. Y H:i')]} {nurse}<br/>\r",
+                                            "{aggreement}"
                                         ]
                                     },
-                                    "designerId": "88cc513f-b779-442f-8b61-d6840655349b"
+                                    "designerId": "3244a831-0d3b-4ff7-bea3-1a452c672411"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout": "vbox",
+                                "layout|flex": 268,
+                                "width": null
+                            },
+                            "designerId": "c6b5df6c-18c7-4fba-af3b-c293149a1bb3",
+                            "cn": [
+                                {
+                                    "type": "Ext.Label",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "html": "Délka [min]:"
+                                    },
+                                    "designerId": "80cef709-b945-43ef-80de-7ce5a2653355"
+                                },
+                                {
+                                    "type": "Ext.Label",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "nurseCareLength"
+                                    },
+                                    "designerId": "abb0fb46-bf8c-4a5f-b40f-0b7507e06f4b"
+                                },
+                                {
+                                    "type": "Ext.Label",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "html": "Popis:"
+                                    },
+                                    "designerId": "21efd7ec-4440-4d73-8dd9-d6afc71ca774"
+                                },
+                                {
+                                    "type": "Ext.Label",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "nurseCareDescription"
+                                    },
+                                    "designerId": "439a85c0-27da-49a7-952c-17a23e3aafd2"
                                 }
                             ]
                         }
@@ -118,7 +217,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "title": "Průběhy péče"
+                        "title": "Medikace"
                     },
                     "designerId": "120bfb31-989b-45d5-bba1-475eb0e75064",
                     "customConfigs": [

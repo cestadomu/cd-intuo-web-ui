@@ -19,7 +19,9 @@
             "Employee",
             "TimeInterval",
             "WorkReport",
-            "TimeFund"
+            "TimeFund",
+            "Pacient",
+            "NurseCare"
         ],
         "name": "CestaDomu",
         "requires": [
@@ -41,7 +43,8 @@
             "EmployeesStore",
             "WorkReportIntervals",
             "WorkReportsStore",
-            "TimeFundStore"
+            "TimeFundStore",
+            "NurseCareStore"
         ],
         "views": [
             "LoginView",
@@ -50,7 +53,6 @@
             "RoleSelectView",
             "LoadingView",
             "ClientDetailView",
-            "ClientNewMenu",
             "WorkReportsView"
         ]
     },

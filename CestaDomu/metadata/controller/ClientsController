@@ -20,29 +20,12 @@
             "userConfig": {
                 "fn": "onCareRoleSelected",
                 "implHandler": [
-                    "this.getApplication().redirectTo(\"private/clients\");"
+                    "this.getApplication().redirectTo(\"private/contacts\");"
                 ],
                 "name": "careRoleSelected",
                 "scope": "this"
             },
             "designerId": "9010ca06-1012-4b74-bd29-fccf0b06bdd8"
-        },
-        {
-            "type": "applicationaction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "onLoggedIn",
-                "implHandler": [
-                    "//this.getApplication().redirectTo(\"private/clients\");"
-                ],
-                "name": "loggedIn",
-                "scope": "this"
-            },
-            "designerId": "09a8d03f-84ba-4893-8029-c07526a361ea"
         },
         {
             "type": "controllerref",
@@ -84,7 +67,7 @@
                 "implHandler": [
                     "this.getMainContainer().setActiveItem(this.getClientsView());"
                 ],
-                "url": "private/clients"
+                "url": "private/contacts"
             },
             "designerId": "bd61d330-7d47-4ae9-9f94-acaef9d339e6"
         },
@@ -140,7 +123,7 @@
                 "designer|targetType": "Ext.dataview.List",
                 "fn": "onListItemTap",
                 "implHandler": [
-                    "this.getApplication().fireEvent(\"clientSelected\", record.get('ID'));\r",
+                    "this.getApplication().fireEvent(\"pacientSelected\", record.get('pacientId'));\r",
                     ""
                 ],
                 "name": "itemtap"

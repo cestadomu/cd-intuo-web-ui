@@ -34,7 +34,7 @@
                     "            '<dig:GetBindingViewX>',\r",
                     "                '<dig:strAuthKey>{token}</dig:strAuthKey>',\r",
                     "                '<dig:nViewID>{requestParams.viewId}</dig:nViewID>',\r",
-                    "                '<dig:nFromID>{filters.id}</dig:nFromID>',\r",
+                    "                '<dig:nFromID><tpl if=\"filters.id\">{filters.id}</tpl><tpl if=\"requestParams.ID\">{requestParams.ID}</tpl></dig:nFromID>',\r",
                     "                '<dig:strLanguage>CS</dig:strLanguage>',\r",
                     "                '<tpl if=\"filterXml\"><dig:strXMLDefinitionOfRestriction><![CDATA[{filterXml}]]></dig:strXMLDefinitionOfRestriction></tpl>',\r",
                     "            '</dig:GetBindingViewX>',\r",

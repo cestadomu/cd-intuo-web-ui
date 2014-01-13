@@ -1,0 +1,93 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "NurseCare",
+        "idProperty": "ID"
+    },
+    "designerId": "78aea2ba-d3af-48a3-b8c9-9eb77c1e9970",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "ID",
+                "type": "auto"
+            },
+            "designerId": "fc8427ab-3926-4b0d-9c0b-2b71f35c3daa"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "time",
+                "type": "date"
+            },
+            "designerId": "cfebde8e-b4a3-40b3-b55c-0c523c4addf8"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "nurse",
+                "type": "string"
+            },
+            "designerId": "d74561e3-4b0f-46de-a1d6-4078f51e2163"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "aggreement",
+                "type": "string"
+            },
+            "designerId": "7ed654e7-3734-487b-98a6-6d81fd4d20ad"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "description",
+                "type": "string"
+            },
+            "designerId": "3b9e5d05-1aea-4e4d-be4b-d7fcbe0c5924"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "length",
+                "type": "int"
+            },
+            "designerId": "0f43cb5b-f25b-490c-b9ba-d418e982dfad"
+        }
+    ]
+}
