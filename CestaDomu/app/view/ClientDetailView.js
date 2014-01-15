@@ -45,19 +45,16 @@ Ext.define('CestaDomu.view.ClientDetailView', {
                         items: [
                             {
                                 xtype: 'button',
-                                menuItem: 0,
                                 itemId: 'nurse',
                                 text: 'Průběhy'
                             },
                             {
                                 xtype: 'button',
-                                menuItem: 1,
                                 itemId: 'drug',
                                 text: 'Medikace'
                             },
                             {
                                 xtype: 'button',
-                                menuItem: 2,
                                 itemId: 'doctor',
                                 text: 'Lékařské'
                             }
