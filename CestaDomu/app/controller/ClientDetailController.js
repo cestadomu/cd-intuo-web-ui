@@ -62,7 +62,18 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
     },
 
     onMenuButton: function(button, e, eOpts) {
-        this.getClientDetailView().setActiveItem(button.menuItem);
+        //Ext.Msg.alert('test');
+        switch (button.getItemId()) {
+            case 'nurse':
+                this.getClientDetailView().setActiveItem(0);
+                break;
+            case 'drug':
+                this.getClientDetailView().setActiveItem(1);
+                break;
+            case 'doctor':
+                this.getClientDetailView().setActiveItem(2);
+                break;
+        }
     },
 
     main: function(pacientId) {
