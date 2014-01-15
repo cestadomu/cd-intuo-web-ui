@@ -19,15 +19,19 @@ Ext.define('CestaDomu.view.ClientDetailView', {
 
     requires: [
         'Ext.Toolbar',
-        'Ext.Label',
+        'Ext.SegmentedButton',
         'Ext.Button',
-        'Ext.carousel.Carousel',
+        'Ext.Label',
         'Ext.dataview.List',
-        'Ext.XTemplate'
+        'Ext.XTemplate',
+        'Ext.tab.Panel'
     ],
 
     config: {
-        layout: 'card',
+        layout: {
+            type: 'card',
+            animation: 'fade'
+        },
         items: [
             {
                 xtype: 'toolbar',
@@ -35,11 +39,29 @@ Ext.define('CestaDomu.view.ClientDetailView', {
                 height: 50,
                 items: [
                     {
-                        xtype: 'label',
-                        html: '',
-                        itemId: 'caruselTitle',
+                        xtype: 'segmentedbutton',
+                        itemId: 'menu',
                         margin: 5,
-                        width: 100
+                        items: [
+                            {
+                                xtype: 'button',
+                                menuItem: 0,
+                                itemId: 'nurse',
+                                text: 'Průběhy'
+                            },
+                            {
+                                xtype: 'button',
+                                menuItem: 1,
+                                itemId: 'drug',
+                                text: 'Medikace'
+                            },
+                            {
+                                xtype: 'button',
+                                menuItem: 2,
+                                itemId: 'doctor',
+                                text: 'Lékařské'
+                            }
+                        ]
                     },
                     {
                         xtype: 'label',
@@ -54,60 +76,53 @@ Ext.define('CestaDomu.view.ClientDetailView', {
                 ]
             },
             {
-                xtype: 'carousel',
+                xtype: 'container',
+                title: 'Průběhy<br />péče',
+                itemId: 'clientInfoContainer',
+                layout: 'hbox',
                 items: [
                     {
-                        xtype: 'container',
-                        title: 'Průběhy<br />péče',
-                        itemId: 'clientInfoContainer',
-                        layout: 'hbox',
-                        items: [
-                            {
-                                xtype: 'list',
-                                flex: 500,
-                                width: 500,
-                                itemTpl: [
-                                    '{[Ext.Date.format(values.time, \'d. m. Y H:i\')]} {nurse}<br/>',
-                                    '{aggreement}'
-                                ],
-                                store: 'NurseCareStore'
-                            },
-                            {
-                                xtype: 'container',
-                                flex: 268,
-                                layout: 'vbox',
-                                items: [
-                                    {
-                                        xtype: 'label',
-                                        html: 'Délka [min]:'
-                                    },
-                                    {
-                                        xtype: 'label',
-                                        itemId: 'nurseCareLength'
-                                    },
-                                    {
-                                        xtype: 'label',
-                                        html: 'Popis:'
-                                    },
-                                    {
-                                        xtype: 'label',
-                                        itemId: 'nurseCareDescription'
-                                    }
-                                ]
-                            }
-                        ]
+                        xtype: 'list',
+                        flex: 40,
+                        minWidth: 400,
+                        itemTpl: [
+                            '{[Ext.Date.format(values.time, \'d. m. Y H:i\')]} {nurse}<br/>',
+                            '{aggreement}'
+                        ],
+                        store: 'NurseCareStore'
                     },
                     {
                         xtype: 'container',
-                        title: 'Medikace',
-                        items: [
-                            {
-                                xtype: 'label',
-                                html: 'test 2'
-                            }
-                        ]
+                        flex: 60,
+                        itemId: 'nurseCareInfo',
+                        margin: 5,
+                        layout: 'vbox'
                     }
                 ]
+            },
+            {
+                xtype: 'container',
+                title: 'Medikace',
+                itemId: 'drugContainer',
+                layout: 'fit',
+                items: [
+                    {
+                        xtype: 'list',
+                        itemTpl: [
+                            '<span style="color: {[ values.authorizedByDoctor ? \'green\' : \'red\' ]};">{name}</span> {applicationType} {dose}<tpl if="symptom"> na {symptom}</tpl>',
+                            '<tpl if="endDate">, od {[Ext.Date.format(values.startDate, \'d. m. Y\')]}</tpl><tpl if="endDate"> do {[Ext.Date.format(values.endDate, \'d. m. Y\')]}</tpl>',
+                            '<tpl if="interval">, interval další aplikace: {interval}</tpl><tpl if="maxDose">, maximálně {maxDose}</tpl><tpl if="note">, {note}</tpl>'
+                        ],
+                        store: 'DrugStore',
+                        grouped: true
+                    }
+                ]
+            },
+            {
+                xtype: 'container',
+                html: 'Lékařské zprávy',
+                itemId: 'doctorContainer',
+                margin: 5
             }
         ]
     }

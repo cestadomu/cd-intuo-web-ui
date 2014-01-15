@@ -6,10 +6,14 @@
     },
     "codeClass": null,
     "userConfig": {
+        "container|animation": "fade",
         "designer|userAlias": "clientDetailView",
         "designer|userClassName": "ClientDetailView",
         "itemId": null,
-        "layout": "card"
+        "layout": "card",
+        "requires": [
+            "Ext.tab.Panel"
+        ]
     },
     "designerId": "904356d9-e5e1-4ff8-97b3-c2ce9702d4d4",
     "cn": [
@@ -31,19 +35,91 @@
             "designerId": "9fd04809-2b14-4d21-8d4d-8b7836216daa",
             "cn": [
                 {
-                    "type": "Ext.Label",
+                    "type": "Ext.SegmentedButton",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "html": "",
-                        "itemId": "caruselTitle",
-                        "margin": 5,
-                        "width": 100
+                        "itemId": "menu",
+                        "margin": 5
                     },
-                    "designerId": "79470f9a-a1eb-4a78-80f1-d3bb562b29cd"
+                    "designerId": "cb1a27b2-c928-4b38-b9f1-0221200f61b4",
+                    "cn": [
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "nurse",
+                                "menuItem": 0,
+                                "text": "Průběhy"
+                            },
+                            "configAlternates": {
+                                "menuItem": "number"
+                            },
+                            "designerId": "d6154613-2bac-4b2e-b905-09d2aa071d71",
+                            "customConfigs": [
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "menuItem",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "drug",
+                                "menuItem": 1,
+                                "text": "Medikace"
+                            },
+                            "configAlternates": {
+                                "menuItem": "number"
+                            },
+                            "designerId": "a81406ab-f8ea-4b5b-b206-649e848afdb9",
+                            "customConfigs": [
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "menuItem",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "doctor",
+                                "menuItem": 2,
+                                "text": "Lékařské"
+                            },
+                            "configAlternates": {
+                                "menuItem": "number"
+                            },
+                            "designerId": "a571a280-4925-4f3e-abb5-3ab04607d04b",
+                            "customConfigs": [
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "menuItem",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.Label",
@@ -78,134 +154,57 @@
             ]
         },
         {
-            "type": "Ext.carousel.Carousel",
+            "type": "Ext.Container",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "margin": null
+                "itemId": "clientInfoContainer",
+                "layout": "hbox",
+                "margin": null,
+                "title": "Průběhy<br />péče"
             },
-            "designerId": "3e444efc-1710-4b12-a37f-68e794877137",
+            "designerId": "13c4ada3-a114-4ad0-97d1-d183fe71a882",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "title",
+                    "type": "string"
+                }
+            ],
             "cn": [
                 {
-                    "type": "Ext.Container",
+                    "type": "Ext.dataview.List",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "itemId": "clientInfoContainer",
-                        "layout": "hbox",
-                        "margin": null,
-                        "title": "Průběhy<br />péče"
+                        "layout|flex": 40,
+                        "minWidth": 400,
+                        "store": "NurseCareStore",
+                        "width": null
                     },
-                    "designerId": "13c4ada3-a114-4ad0-97d1-d183fe71a882",
-                    "customConfigs": [
-                        {
-                            "group": "(Custom Properties)",
-                            "name": "title",
-                            "type": "string"
-                        }
-                    ],
+                    "designerId": "9b3464b7-75d5-46b2-a1be-ff14c3e4cdc5",
                     "cn": [
                         {
-                            "type": "Ext.dataview.List",
+                            "type": "Ext.XTemplate",
                             "reference": {
-                                "name": "items",
-                                "type": "array"
+                                "name": "itemTpl",
+                                "type": "object"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "layout|flex": 500,
-                                "store": "NurseCareStore",
-                                "width": 500
+                                "designer|displayName": "itemTpl",
+                                "implHandler": [
+                                    "{[Ext.Date.format(values.time, 'd. m. Y H:i')]} {nurse}<br/>\r",
+                                    "{aggreement}"
+                                ]
                             },
-                            "designerId": "9b3464b7-75d5-46b2-a1be-ff14c3e4cdc5",
-                            "cn": [
-                                {
-                                    "type": "Ext.XTemplate",
-                                    "reference": {
-                                        "name": "itemTpl",
-                                        "type": "object"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|displayName": "itemTpl",
-                                        "implHandler": [
-                                            "{[Ext.Date.format(values.time, 'd. m. Y H:i')]} {nurse}<br/>\r",
-                                            "{aggreement}"
-                                        ]
-                                    },
-                                    "designerId": "3244a831-0d3b-4ff7-bea3-1a452c672411"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Ext.Container",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "layout": "vbox",
-                                "layout|flex": 268,
-                                "width": null
-                            },
-                            "designerId": "c6b5df6c-18c7-4fba-af3b-c293149a1bb3",
-                            "cn": [
-                                {
-                                    "type": "Ext.Label",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "html": "Délka [min]:"
-                                    },
-                                    "designerId": "80cef709-b945-43ef-80de-7ce5a2653355"
-                                },
-                                {
-                                    "type": "Ext.Label",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "itemId": "nurseCareLength"
-                                    },
-                                    "designerId": "abb0fb46-bf8c-4a5f-b40f-0b7507e06f4b"
-                                },
-                                {
-                                    "type": "Ext.Label",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "html": "Popis:"
-                                    },
-                                    "designerId": "21efd7ec-4440-4d73-8dd9-d6afc71ca774"
-                                },
-                                {
-                                    "type": "Ext.Label",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "itemId": "nurseCareDescription"
-                                    },
-                                    "designerId": "439a85c0-27da-49a7-952c-17a23e3aafd2"
-                                }
-                            ]
+                            "designerId": "3244a831-0d3b-4ff7-bea3-1a452c672411"
                         }
                     ]
                 },
@@ -217,32 +216,84 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "title": "Medikace"
+                        "itemId": "nurseCareInfo",
+                        "layout": "vbox",
+                        "layout|flex": 60,
+                        "margin": 5,
+                        "width": null
                     },
-                    "designerId": "120bfb31-989b-45d5-bba1-475eb0e75064",
-                    "customConfigs": [
-                        {
-                            "group": "(Custom Properties)",
-                            "name": "title",
-                            "type": "string"
-                        }
-                    ],
+                    "designerId": "c6b5df6c-18c7-4fba-af3b-c293149a1bb3"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "drugContainer",
+                "layout": "fit",
+                "title": "Medikace"
+            },
+            "designerId": "120bfb31-989b-45d5-bba1-475eb0e75064",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "title",
+                    "type": "string"
+                }
+            ],
+            "cn": [
+                {
+                    "type": "Ext.dataview.List",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "grouped": true,
+                        "store": "DrugStore"
+                    },
+                    "designerId": "307234ba-127b-48b0-b32f-426dd22b3e32",
                     "cn": [
                         {
-                            "type": "Ext.Label",
+                            "type": "Ext.XTemplate",
                             "reference": {
-                                "name": "items",
-                                "type": "array"
+                                "name": "itemTpl",
+                                "type": "object"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "html": "test 2"
+                                "designer|displayName": "itemTpl",
+                                "implHandler": [
+                                    "<span style=\"color: {[ values.authorizedByDoctor ? 'green' : 'red' ]};\">{name}</span> {applicationType} {dose}<tpl if=\"symptom\"> na {symptom}</tpl>\r",
+                                    "<tpl if=\"endDate\">, od {[Ext.Date.format(values.startDate, 'd. m. Y')]}</tpl><tpl if=\"endDate\"> do {[Ext.Date.format(values.endDate, 'd. m. Y')]}</tpl>\r",
+                                    "<tpl if=\"interval\">, interval další aplikace: {interval}</tpl><tpl if=\"maxDose\">, maximálně {maxDose}</tpl><tpl if=\"note\">, {note}</tpl>"
+                                ]
                             },
-                            "designerId": "09c2e9bc-42f8-42e6-a7dd-656ea1db945a"
+                            "designerId": "1a002422-30af-47e3-b874-47ea0a396244"
                         }
                     ]
                 }
             ]
+        },
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "html": "Lékařské zprávy",
+                "itemId": "doctorContainer",
+                "margin": 5
+            },
+            "designerId": "c1401bcb-2653-40d0-961f-08a3d4de72e0"
         }
     ]
 }

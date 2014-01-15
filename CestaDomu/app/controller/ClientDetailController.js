@@ -31,40 +31,26 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
                 selector: 'clientDetailView',
                 xtype: 'clientDetailView'
             },
-            loadingView: {
-                autoCreate: true,
-                selector: 'loadingView',
-                xtype: 'loadingView'
-            },
             mainContainer: 'mainContainer',
-            clientNewMenu: {
-                autoCreate: true,
-                selector: 'clientNewMenu',
-                xtype: 'clientNewMenu'
-            },
             clientDetailTitle: 'clientDetailView toolbar',
-            clientInfoContainer: 'clientDetailView #clientInfoContainer',
-            caruselTitle: 'clientDetailView #caruselTitle',
             quickInfo: 'clientDetailView #quickInfo',
-            nurseCareLength: 'clientDetailView #nurseCareLength',
-            nurseCareDescription: 'clientDetailView #nurseCareDescription'
+            nurseCareInfo: 'clientDetailView #clientInfoContainer #nurseCareInfo',
+            menu: 'clientDetailView #menu',
+            drugList: 'clientDetailView #drugContainer list',
+            nurseCareList: 'clientDetailView #clientInfoContainer list'
         },
 
         control: {
-            "clientDetailView carousel": {
-                activeitemchange: 'onCarouselActiveItemChange'
-            },
             "clientDetailView button": {
                 tap: 'onShowNewItemMenu'
             },
             "clientDetailView #clientInfoContainer list": {
                 itemtap: 'onListItemTap'
+            },
+            "clientDetailView #menu button": {
+                tap: 'onMenuButton'
             }
         }
-    },
-
-    onCarouselActiveItemChange: function(container, value, oldValue, eOpts) {
-        this.getCaruselTitle().setHtml(value.title);
     },
 
     onShowNewItemMenu: function(button, e, eOpts) {
@@ -72,8 +58,11 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
     },
 
     onListItemTap: function(dataview, index, target, record, e, eOpts) {
-        this.getNurseCareLength().setHtml(record.get('length'));
-        this.getNurseCareDescription().setHtml(record.get('description'));
+        this.getNurseCareInfo().setHtml(this.nurseCareTemplate.apply(record.getData()));
+    },
+
+    onMenuButton: function(button, e, eOpts) {
+        this.getClientDetailView().setActiveItem(button.menuItem);
     },
 
     main: function(pacientId) {
@@ -83,20 +72,27 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
                 buttons: []
             });
 
+            this.getMainContainer().setActiveItem(this.getClientDetailView());
+            this.getMenu().setPressedButtons([0]);
+
             var Pacient = Ext.ModelManager.getModel('CestaDomu.model.Pacient');
 
             Pacient.load(pacientId, {
                 scope: this,
                 success: function(pacient) {
-                    var nurseCareStore = Ext.getStore('NurseCareStore');
+                    var nurseCareStore = this.getNurseCareList().getStore();
                     nurseCareStore.filter('id', pacient.get('ID'));
-                    nurseCareStore.load();
+                    nurseCareStore.load(function(records, operation, success) {
+                        if (success && records[0]) {
+                            this.onListItemTap(null, null, null, records[0]);
+                        }
+                    }, this);
 
-                    this.getMainContainer().setActiveItem(this.getClientDetailView());
+                    var drugStore = this.getDrugList().getStore();
+                    drugStore.filter('id', pacient.get('ID'));
+                    drugStore.load();
+
                     this.getQuickInfo().setHtml(this.quickInfoTemplate.apply(pacient.getData()));
-                    // ruční volání handleru události změny v caruselu pro nastavení nadpisu obrazovky
-                    // jsou uvedeny pouze parametry, které se ve funkci používají, přestože signatura je rozsáhlejší
-                    this.onCarouselActiveItemChange(null, this.getClientInfoContainer());
                     messageBox.hide();
                 },
                 failure: function () {
@@ -114,7 +110,12 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
         this.callParent(arguments);
         this.quickInfoTemplate = new Ext.XTemplate(
             '{Name}, <a href="http://mapy.cz/?q={street}, {city}" style="color: #99CCFF; text-decoration: none;" target="_blank">{street}, {city}</a><br/>',
-            'Ošetřuje: {contactPerson}<tpl if="mobileNumber">, {mobilePrefix} {mobileNumber}</tpl><tpl if="phoneNumber">, {phonePrefix} {phoneNumber}</tpl>'
+            'Pečující: {contactPerson}<tpl if="mobileNumber">, {mobilePrefix} {mobileNumber}</tpl><tpl if="phoneNumber">, {phonePrefix} {phoneNumber}</tpl>'
+        );
+
+        this.nurseCareTemplate = new Ext.XTemplate(
+            'Délka: {length} min.<br/>',
+            'Popis: {description}'
         );
     },
 

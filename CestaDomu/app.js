@@ -47,7 +47,8 @@ Ext.application({
         'WorkReport',
         'TimeFund',
         'Pacient',
-        'NurseCare'
+        'NurseCare',
+        'Drug'
     ],
     stores: [
         'ContactsStore',
@@ -55,7 +56,8 @@ Ext.application({
         'WorkReportIntervals',
         'WorkReportsStore',
         'TimeFundStore',
-        'NurseCareStore'
+        'NurseCareStore',
+        'DrugStore'
     ],
     views: [
         'LoginView',

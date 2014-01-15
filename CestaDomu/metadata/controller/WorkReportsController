@@ -742,7 +742,7 @@
                     "                    category = 'xxx';\r",
                     "                    break;\r",
                     "            }\r",
-                    "            \r",
+                    "\r",
                     "            dny[startDay][category] += item.get('DaysOfHoliday');\r",
                     "            for (var i = startDay + 1; i <= endDay; i++) {\r",
                     "                dny[i][category] = 'x';\r",

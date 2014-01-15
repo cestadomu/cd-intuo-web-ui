@@ -6,10 +6,10 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "WorkReport",
+        "designer|userClassName": "Drug",
         "idProperty": "ID"
     },
-    "designerId": "dad09c14-66bd-479d-b981-f7e48b4cd025",
+    "designerId": "f0dfc428-cb3b-4d55-8e40-cb037dad3f2e",
     "cn": [
         {
             "type": "Ext.data.Field",
@@ -22,7 +22,7 @@
                 "name": "ID",
                 "type": "auto"
             },
-            "designerId": "6ec9c27b-ccf4-420b-8f95-d59ca0520789"
+            "designerId": "27d63ea0-7946-40a2-b9e5-436e730051ee"
         },
         {
             "type": "Ext.data.Field",
@@ -32,23 +32,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "TypeClass",
-                "type": "string"
-            },
-            "designerId": "6ba5f16b-8b94-4ffe-bd9b-c6438ee960ef"
-        },
-        {
-            "type": "Ext.data.Field",
-            "reference": {
-                "name": "fields",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "name": "start",
+                "name": "drugDate",
                 "type": "date"
             },
-            "designerId": "f3d8ba30-1257-43e2-8b94-a4e55b2240bf"
+            "designerId": "7307e250-cf99-4b2a-a5e4-7fcd958a6fe1"
         },
         {
             "type": "Ext.data.Field",
@@ -58,10 +45,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "durationtime",
-                "type": "int"
+                "name": "sos",
+                "type": "boolean"
             },
-            "designerId": "825a6dd9-e0e7-4664-85a5-254f402f1b56"
+            "designerId": "ae3c42de-f00e-4bda-9dce-5892f7849bdf"
         },
         {
             "type": "Ext.data.Field",
@@ -71,10 +58,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "transportDuration",
-                "type": "int"
+                "name": "name",
+                "type": "string"
             },
-            "designerId": "dbac5e86-1da0-4f36-becd-1aec99b6b746"
+            "designerId": "35d2d45d-5f34-4727-bc35-c3cf47fda24e"
         },
         {
             "type": "Ext.data.Field",
@@ -84,10 +71,62 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "AppointmentStart",
+                "name": "applicationType",
+                "type": "string"
+            },
+            "designerId": "9147c8c4-2224-4a4e-9608-6cd167125795"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "dose",
+                "type": "string"
+            },
+            "designerId": "20037a9e-7e26-456e-83fc-6e64ce9a5446"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "symptom",
+                "type": "string"
+            },
+            "designerId": "d1595905-1e11-4ae4-b623-ae0787cf93c5"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "authorizedByDoctor",
+                "type": "boolean"
+            },
+            "designerId": "5973e9bb-121a-4116-b982-71e24d9b20cd"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "startDate",
                 "type": "date"
             },
-            "designerId": "839828f0-6c81-4a13-8b0b-113fa900736c"
+            "designerId": "35de1aee-f7bb-40a1-ab90-3f46cc50dc85"
         },
         {
             "type": "Ext.data.Field",
@@ -97,10 +136,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "AppointmentEnd",
+                "name": "endDate",
                 "type": "date"
             },
-            "designerId": "98cb4eaa-6c7e-4b02-a6dc-2ae42a16d129"
+            "designerId": "2549793d-fd4a-4a83-ad43-318c13e45bb2"
         },
         {
             "type": "Ext.data.Field",
@@ -110,10 +149,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "ServiceType",
+                "name": "interval",
                 "type": "string"
             },
-            "designerId": "e7430101-3aad-4cd5-a42e-4cb5f0532069"
+            "designerId": "1d579cb2-65d9-4ecc-9641-19a0f487cbc1"
         },
         {
             "type": "Ext.data.Field",
@@ -123,10 +162,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "wayOfWorking",
+                "name": "maxDose",
                 "type": "string"
             },
-            "designerId": "c208a145-60fe-4d6c-8935-50ca1f895114"
+            "designerId": "c18bd859-28a0-4f00-a1ea-f0203066c406"
         },
         {
             "type": "Ext.data.Field",
@@ -136,23 +175,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "DaysOfHoliday",
-                "type": "float"
-            },
-            "designerId": "bc72f9c0-64a5-4118-ae1a-73dc36a9e134"
-        },
-        {
-            "type": "Ext.data.Field",
-            "reference": {
-                "name": "fields",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "name": "TypeOfAbsence",
+                "name": "note",
                 "type": "string"
             },
-            "designerId": "bb9b13af-1f28-42f6-a46c-45af9648bf1d"
+            "designerId": "e47549b0-6b5b-4626-9163-1d2719ed2917"
         },
         {
             "type": "Ext.data.Field",
@@ -162,9 +188,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "label"
+                "name": "group",
+                "type": "string"
             },
-            "designerId": "d77f55f5-2586-4cdd-97e2-f4e33f52cd7d",
+            "designerId": "2b1e1444-0e5c-4f0f-9aca-8e4a94c9fb67",
             "cn": [
                 {
                     "type": "fixedfunction",
@@ -180,25 +207,10 @@
                         ],
                         "fn": "convert",
                         "implHandler": [
-                            "var label = rec.get('TypeClass');\r",
-                            "\r",
-                            "switch(rec.get('TypeClass')) {\r",
-                            "    case 'Výkaz práce':\r",
-                            "    case 'Výkaz práce na dokumentaci':\r",
-                            "        label += ' (' + rec.get('ServiceType') + ', ' + rec.get('wayOfWorking') + '), ';\r",
-                            "        label += ' ' + Ext.Date.format(rec.get('start'), 'd. m. Y') + ', ';\r",
-                            "        label += rec.get('durationtime') + '/' + rec.get('transportDuration') + ' min';\r",
-                            "        break;\r",
-                            "    case 'Dovolená':\r",
-                            "        label += ' (' + rec.get('TypeOfAbsence') + '), ';\r",
-                            "        label += Ext.Date.format(rec.get('AppointmentStart'), 'd. m. Y') + ' - ';\r",
-                            "        label += Ext.Date.format(rec.get('AppointmentEnd'), 'd. m. Y');\r",
-                            "        break;\r",
-                            "}\r",
-                            "return label;"
+                            "return Ext.Date.format(rec.get('drugDate'), 'Ymd') + (rec.get('sos') ? ' b' : 'a');"
                         ]
                     },
-                    "designerId": "29480957-d942-426e-9717-67999865af4f"
+                    "designerId": "f69a0e78-621a-4859-8669-d2c699175a7b"
                 }
             ]
         }

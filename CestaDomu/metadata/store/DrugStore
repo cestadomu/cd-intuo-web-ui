@@ -1,0 +1,107 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "DrugStore",
+        "groupDir": null,
+        "groupField": null,
+        "model": "Drug",
+        "remoteFilter": true,
+        "storeId": "DrugStore"
+    },
+    "designerId": "59e18f36-60ff-431f-bfb4-7517be193281",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "api": [
+                    "{\r",
+                    "    read: {service: CestaDomu.controller.GetBindingViewX, templates: {}},\r",
+                    "    mappingType: 'xml',\r",
+                    "    mapping: {ID: 'c0', drugDate: 'c1', sos: 'c2', name: 'c3', applicationType: 'c4', dose: 'c5', symptom: 'c6', authorizedByDoctor: 'c7', startDate: 'c8', endDate: 'c9', interval: 'c10', maxDose: 'c11', note: 'c12'}\r",
+                    "}"
+                ],
+                "designer|createAlias": "intuo",
+                "extraParams": [
+                    "{\r",
+                    "    viewId: 1723\r",
+                    "}"
+                ],
+                "url": "xxx"
+            },
+            "designerId": "87c19482-cf04-4db1-b2fc-10713ba3ef3e",
+            "cn": [
+                {
+                    "type": "Ext.data.writer.Xml",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|createAlias": "intuo"
+                    },
+                    "designerId": "9e0a6f07-5634-43cc-aa19-7cf184a76c31"
+                },
+                {
+                    "type": "Ext.data.reader.Xml",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|createAlias": "intuo",
+                        "record": "WEB_x0020_medikace",
+                        "rootProperty": "DocumentElement"
+                    },
+                    "designerId": "efdf36fe-cf91-4c46-b2ed-5cc111d21293"
+                }
+            ]
+        },
+        {
+            "type": "Ext.util.Grouper",
+            "reference": {
+                "name": "grouper",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "direction": "DESC",
+                "property": null,
+                "root": null,
+                "sortProperty": "group"
+            },
+            "designerId": "32b1bc76-32bd-40a8-8367-e8579aaa67a3",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "item"
+                        ],
+                        "fn": "groupFn",
+                        "implHandler": [
+                            "return Ext.Date.format(item.get('drugDate'), 'd. m. Y H:i') + (item.get('sos') ? ' SOS' : '');"
+                        ]
+                    },
+                    "designerId": "cb581835-a5b9-4ec1-8c27-4afe83f9679c"
+                }
+            ]
+        }
+    ]
+}

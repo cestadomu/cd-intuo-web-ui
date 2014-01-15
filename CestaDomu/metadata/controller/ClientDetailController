@@ -28,21 +28,28 @@
                     "        title: \"Načítám data...\",\r",
                     "        buttons: []\r",
                     "    });\r",
+                    "    \r",
+                    "    this.getMainContainer().setActiveItem(this.getClientDetailView());\r",
+                    "    this.getMenu().setPressedButtons([0]);\r",
                     "\r",
                     "    var Pacient = Ext.ModelManager.getModel('CestaDomu.model.Pacient');\r",
                     "\r",
                     "    Pacient.load(pacientId, {\r",
                     "        scope: this,\r",
                     "        success: function(pacient) {\r",
-                    "            var nurseCareStore = Ext.getStore('NurseCareStore');\r",
+                    "            var nurseCareStore = this.getNurseCareList().getStore();\r",
                     "            nurseCareStore.filter('id', pacient.get('ID'));\r",
-                    "            nurseCareStore.load();\r",
-                    "\r",
-                    "            this.getMainContainer().setActiveItem(this.getClientDetailView());\r",
+                    "            nurseCareStore.load(function(records, operation, success) {\r",
+                    "                if (success && records[0]) {\r",
+                    "                    this.onListItemTap(null, null, null, records[0]);\r",
+                    "                }\r",
+                    "            }, this);\r",
+                    "            \r",
+                    "            var drugStore = this.getDrugList().getStore();\r",
+                    "            drugStore.filter('id', pacient.get('ID'));\r",
+                    "            drugStore.load();\r",
+                    "            \r",
                     "            this.getQuickInfo().setHtml(this.quickInfoTemplate.apply(pacient.getData()));\r",
-                    "            // ruční volání handleru události změny v caruselu pro nastavení nadpisu obrazovky\r",
-                    "            // jsou uvedeny pouze parametry, které se ve funkci používají, přestože signatura je rozsáhlejší\r",
-                    "            this.onCarouselActiveItemChange(null, this.getClientInfoContainer());\r",
                     "            messageBox.hide();\r",
                     "        },\r",
                     "        failure: function () {\r",
@@ -98,21 +105,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "autoCreate": true,
-                "ref": "loadingView",
-                "selector": "loadingView",
-                "xtype": "loadingView"
-            },
-            "designerId": "a911677d-4a4c-43aa-b4a8-4b174a0f8929"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "ref": "mainContainer",
                 "selector": "mainContainer"
             },
@@ -131,29 +123,16 @@
                     "this.callParent(arguments);\r",
                     "this.quickInfoTemplate = new Ext.XTemplate(\r",
                     "    '{Name}, <a href=\"http://mapy.cz/?q={street}, {city}\" style=\"color: #99CCFF; text-decoration: none;\" target=\"_blank\">{street}, {city}</a><br/>',\r",
-                    "    'Ošetřuje: {contactPerson}<tpl if=\"mobileNumber\">, {mobilePrefix} {mobileNumber}</tpl><tpl if=\"phoneNumber\">, {phonePrefix} {phoneNumber}</tpl>'\r",
+                    "    'Pečující: {contactPerson}<tpl if=\"mobileNumber\">, {mobilePrefix} {mobileNumber}</tpl><tpl if=\"phoneNumber\">, {phonePrefix} {phoneNumber}</tpl>'\r",
+                    ");\r",
+                    "\r",
+                    "this.nurseCareTemplate = new Ext.XTemplate(\r",
+                    "    'Délka: {length} min.<br/>',\r",
+                    "    'Popis: {description}'\r",
                     ");"
                 ]
             },
             "designerId": "7231fc16-0c89-403f-a1c8-635659e958b2"
-        },
-        {
-            "type": "controlleraction",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|controlQuery": "clientDetailView carousel",
-                "designer|targetType": "Ext.carousel.Carousel",
-                "fn": "onCarouselActiveItemChange",
-                "implHandler": [
-                    "this.getCaruselTitle().setHtml(value.title);"
-                ],
-                "name": "activeitemchange"
-            },
-            "designerId": "3317a508-7149-4fb1-844f-cb6fd420d275"
         },
         {
             "type": "controlleraction",
@@ -181,51 +160,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "autoCreate": true,
-                "ref": "clientNewMenu",
-                "selector": "clientNewMenu",
-                "xtype": "clientNewMenu"
-            },
-            "designerId": "d431b8d7-fd34-4315-a07c-dac2c9c9b623"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "ref": "clientDetailTitle",
                 "selector": "clientDetailView toolbar"
             },
             "designerId": "c70c645c-a24e-4317-92d3-74e3e3d6b6f1"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "ref": "clientInfoContainer",
-                "selector": "clientDetailView #clientInfoContainer"
-            },
-            "designerId": "42a21487-1b81-486a-aa53-73d67363e2c5"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "ref": "caruselTitle",
-                "selector": "clientDetailView #caruselTitle"
-            },
-            "designerId": "bcf4c85c-0b34-42bc-8dc6-6e5e2914e055"
         },
         {
             "type": "controllerref",
@@ -241,32 +179,6 @@
             "designerId": "5fe3c674-b92f-4868-aecf-b8b8d09f8f4e"
         },
         {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "ref": "nurseCareLength",
-                "selector": "clientDetailView #nurseCareLength"
-            },
-            "designerId": "91593799-8d42-4def-9c6b-7a708fafac31"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "ref": "nurseCareDescription",
-                "selector": "clientDetailView #nurseCareDescription"
-            },
-            "designerId": "5ba480f8-37c1-4b42-8f18-9be14574cc18"
-        },
-        {
             "type": "controlleraction",
             "reference": {
                 "name": "listeners",
@@ -278,12 +190,81 @@
                 "designer|targetType": "Ext.dataview.List",
                 "fn": "onListItemTap",
                 "implHandler": [
-                    "this.getNurseCareLength().setHtml(record.get('length'));\r",
-                    "this.getNurseCareDescription().setHtml(record.get('description'));"
+                    "this.getNurseCareInfo().setHtml(this.nurseCareTemplate.apply(record.getData()));"
                 ],
                 "name": "itemtap"
             },
             "designerId": "187d9324-b938-49ee-8fe1-8e2cd6abb04f"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "nurseCareInfo",
+                "selector": "clientDetailView #clientInfoContainer #nurseCareInfo"
+            },
+            "designerId": "ec15503b-26b1-496e-b6de-0150a8701d51"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "menu",
+                "selector": "clientDetailView #menu"
+            },
+            "designerId": "7f909fcf-b337-4e23-a4ff-82fb1cde9f64"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "clientDetailView #menu button",
+                "designer|targetType": "Ext.Button",
+                "fn": "onMenuButton",
+                "implHandler": [
+                    "this.getClientDetailView().setActiveItem(button.menuItem);"
+                ],
+                "name": "tap"
+            },
+            "designerId": "0003ef26-3fc5-41dd-9674-2b2f81975d86"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "drugList",
+                "selector": "clientDetailView #drugContainer list"
+            },
+            "designerId": "4d3b3853-f825-4bab-beab-fa37bc8f99e8"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "nurseCareList",
+                "selector": "clientDetailView #clientInfoContainer list"
+            },
+            "designerId": "5fff4a19-c8ee-4ca2-a29d-5c625294d1a5"
         }
     ]
 }

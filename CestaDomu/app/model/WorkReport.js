@@ -24,7 +24,8 @@ Ext.define('CestaDomu.model.WorkReport', {
         idProperty: 'ID',
         fields: [
             {
-                name: 'ID'
+                name: 'ID',
+                type: 'auto'
             },
             {
                 name: 'TypeClass',
