@@ -77,6 +77,9 @@
                         "margin": 5,
                         "name": "timeInterval",
                         "store": "WorkReportIntervals",
+                        "value": [
+                            "1"
+                        ],
                         "valueField": "id"
                     },
                     "designerId": "913d631c-829a-4caa-a6e0-35f961b3f668"

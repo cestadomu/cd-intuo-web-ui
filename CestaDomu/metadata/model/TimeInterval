@@ -57,7 +57,8 @@
                             "date.setMilliseconds(0);\r",
                             "\r",
                             "var id = rec.get('id');\r",
-                            "date.setMonth(date.getMonth()-(1+id));\r",
+                            "//date.setMonth(date.getMonth()-(1+id));\r",
+                            "date.setMonth(date.getMonth()-(id));\r",
                             "date.setDate(1);\r",
                             "\r",
                             "return date;"
@@ -101,7 +102,7 @@
                             "date.setMilliseconds(0);\r",
                             "\r",
                             "var id = rec.get('id');\r",
-                            "date.setMonth(date.getMonth()-id);\r",
+                            "date.setMonth(date.getMonth() - id + 1);\r",
                             "date.setDate(0);\r",
                             "\r",
                             "return date;"
