@@ -35,6 +35,21 @@
             "designerId": "9fd04809-2b14-4d21-8d4d-8b7836216daa",
             "cn": [
                 {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "back",
+                        "itemId": "back",
+                        "text": "Klienti",
+                        "ui": "back"
+                    },
+                    "designerId": "41e3f639-46db-46d5-9299-97fe45a9c334"
+                },
+                {
                     "type": "Ext.SegmentedButton",
                     "reference": {
                         "name": "items",
@@ -145,7 +160,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "docked": "right",
-                        "itemId": null,
+                        "itemId": "newRecord",
                         "text": "+",
                         "width": 50
                     },
@@ -183,8 +198,8 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "layout|flex": 40,
-                        "minWidth": 400,
+                        "layout|flex": 50,
+                        "minWidth": null,
                         "store": "NurseCareStore",
                         "width": null
                     },
@@ -200,8 +215,8 @@
                             "userConfig": {
                                 "designer|displayName": "itemTpl",
                                 "implHandler": [
-                                    "{[Ext.Date.format(values.time, 'd. m. Y H:i')]} {nurse}<br/>\r",
-                                    "{aggreement}"
+                                    "{[Ext.Date.format(values.start, 'd. m. Y H:i')]} {nurse}<br/>\r",
+                                    "{Name}"
                                 ]
                             },
                             "designerId": "3244a831-0d3b-4ff7-bea3-1a452c672411"
@@ -218,8 +233,9 @@
                     "userConfig": {
                         "itemId": "nurseCareInfo",
                         "layout": "vbox",
-                        "layout|flex": 60,
+                        "layout|flex": 50,
                         "margin": 5,
+                        "scrollable": "vertical",
                         "width": null
                     },
                     "designerId": "c6b5df6c-18c7-4fba-af3b-c293149a1bb3"

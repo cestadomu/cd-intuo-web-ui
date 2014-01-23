@@ -15,7 +15,7 @@ Ext.define('Lib.IntuoReader', {
                 mapping = this.getProxyApi().mapping[field.getName()] || field.getName();
             }
             if (this.getProxyApi().mappingType === 'xml') {
-                var node = Ext.DomQuery.selectNode(mapping, source);
+                var node = Ext.DomQuery.selectNode(this.getRecord() + ' > ' + mapping, source);
                 if (node) {
                     return node.textContent;
                 }

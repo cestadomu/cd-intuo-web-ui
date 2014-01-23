@@ -116,6 +116,25 @@
             },
             "codeClass": null,
             "userConfig": {
+                "fn": "isLoginActive",
+                "implHandler": [
+                    "if (new Date().getTime() - this.getTokenTime() < this.safeDifference) {\r",
+                    "    return true;\r",
+                    "} else {\r",
+                    "    return false;\r",
+                    "}"
+                ]
+            },
+            "designerId": "77d5146d-73ea-49ad-957a-ec7b893dc51f"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "fn": "getCredentials",
                 "implHandler": [
                     "if((typeof(Storage) !== \"undefined\")) {\r",
@@ -247,37 +266,52 @@
             "userConfig": {
                 "designer|params": [
                     "scope",
-                    "success",
-                    "failure"
+                    "success"
                 ],
                 "fn": "doLogged",
                 "implHandler": [
-                    "if (new Date().getTime() - this.getTokenTime() < this.safeDifference) {\r",
+                    "if (this.isLoginActive()) {\r",
                     "    Ext.callback(success, scope);\r",
                     "} else {\r",
-                    "    Ext.Msg.show({\r",
-                    "        title: \"Obnova přihlášení k serveru...\",\r",
-                    "        buttons: []\r",
-                    "    });\r",
-                    "\r",
-                    "    this.login(\r",
-                    "        this.getCredentials(),\r",
-                    "        this,\r",
-                    "        function() {\r",
-                    "            Ext.Msg.hide();\r",
-                    "            Ext.callback(success, scope);\r",
-                    "        },\r",
-                    "        function () {\r",
-                    "            Ext.Msg.alert('Chyba', 'Nepodařilo se obnovit přihlášení k serveru, prosím opakujte akci později.');\r",
-                    "            if (failure) {\r",
-                    "                Ext.callback(failure, scope);\r",
-                    "            }\r",
-                    "        }\r",
-                    "    );\r",
+                    "    this.refreshLogin(scope, success);\r",
                     "}"
                 ]
             },
             "designerId": "5aa57d8e-540f-4323-89fb-6a977a5064d9"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "scope",
+                    "success"
+                ],
+                "fn": "refreshLogin",
+                "implHandler": [
+                    "Ext.Msg.show({\r",
+                    "    title: \"Obnova přihlášení k serveru...\",\r",
+                    "    buttons: []\r",
+                    "});\r",
+                    "\r",
+                    "this.login(\r",
+                    "    this.getCredentials(),\r",
+                    "    this,\r",
+                    "    function() {\r",
+                    "        Ext.Msg.hide();\r",
+                    "        Ext.callback(success, scope);\r",
+                    "    },\r",
+                    "    function () {\r",
+                    "        Ext.Msg.alert('Chyba', 'Nepodařilo se obnovit přihlášení k serveru, prosím opakujte akci později.');\r",
+                    "    }\r",
+                    ");"
+                ]
+            },
+            "designerId": "a6a5b623-0fec-4671-b045-a5fbccb39930"
         }
     ]
 }

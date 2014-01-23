@@ -23,37 +23,50 @@ Ext.Loader.addClassPathMappings({
 Ext.ClassManager.addNameAlternateMappings({
   "CestaDomu.controller.ClientDetailController": [],
   "CestaDomu.controller.ClientsController": [],
+  "CestaDomu.controller.CreateObject": [],
   "CestaDomu.controller.DefaultController": [],
   "CestaDomu.controller.GetBindingViewX": [],
+  "CestaDomu.controller.GetEnumerationActiveDataByReference": [],
+  "CestaDomu.controller.GetEnumerationDataByReference": [],
   "CestaDomu.controller.GetObjectInfo": [],
   "CestaDomu.controller.GetViewX": [],
   "CestaDomu.controller.Intuo": [],
   "CestaDomu.controller.Login": [],
   "CestaDomu.controller.LoginController": [],
+  "CestaDomu.controller.NewNurseCareController": [],
   "CestaDomu.controller.RoleSelectController": [],
   "CestaDomu.controller.WorkReportsController": [],
   "CestaDomu.model.Contact": [],
   "CestaDomu.model.Drug": [],
   "CestaDomu.model.Employee": [],
+  "CestaDomu.model.Enumeration": [],
   "CestaDomu.model.NurseCare": [],
   "CestaDomu.model.Pacient": [],
+  "CestaDomu.model.RawDocReport": [],
+  "CestaDomu.model.RawWorkReport": [],
   "CestaDomu.model.TimeFund": [],
   "CestaDomu.model.TimeInterval": [],
+  "CestaDomu.model.TimeNumber": [],
   "CestaDomu.model.WorkReport": [],
   "CestaDomu.override.Component": [],
   "CestaDomu.store.ContactsStore": [],
   "CestaDomu.store.DrugStore": [],
   "CestaDomu.store.EmployeesStore": [],
+  "CestaDomu.store.FormWork": [],
+  "CestaDomu.store.Hours": [],
+  "CestaDomu.store.Minutes": [],
   "CestaDomu.store.NurseCareStore": [],
+  "CestaDomu.store.ServiceType": [],
   "CestaDomu.store.TimeFundStore": [],
+  "CestaDomu.store.WayOfWorking": [],
   "CestaDomu.store.WorkReportIntervals": [],
   "CestaDomu.store.WorkReportsStore": [],
   "CestaDomu.view.ClientDetailView": [],
   "CestaDomu.view.ClientsView": [],
-  "CestaDomu.view.LoadingView": [],
   "CestaDomu.view.LoginView": [],
   "CestaDomu.view.Main": [],
   "CestaDomu.view.MainContainer": [],
+  "CestaDomu.view.NewNurseCareView": [],
   "CestaDomu.view.RoleSelectView": [],
   "CestaDomu.view.WorkReportsView": [],
   "Ext.AbstractComponent": [],
@@ -786,8 +799,11 @@ Ext.ClassManager.addNameAlternateMappings({
 Ext.ClassManager.addNameAliasMappings({
   "CestaDomu.controller.ClientDetailController": [],
   "CestaDomu.controller.ClientsController": [],
+  "CestaDomu.controller.CreateObject": [],
   "CestaDomu.controller.DefaultController": [],
   "CestaDomu.controller.GetBindingViewX": [],
+  "CestaDomu.controller.GetEnumerationActiveDataByReference": [],
+  "CestaDomu.controller.GetEnumerationDataByReference": [],
   "CestaDomu.controller.GetObjectInfo": [],
   "CestaDomu.controller.GetViewX": [],
   "CestaDomu.controller.Intuo": [
@@ -797,6 +813,7 @@ Ext.ClassManager.addNameAliasMappings({
   "CestaDomu.controller.LoginController": [
     "controller.loginController"
   ],
+  "CestaDomu.controller.NewNurseCareController": [],
   "CestaDomu.controller.RoleSelectController": [],
   "CestaDomu.controller.WorkReportsController": [],
   "CestaDomu.model.Contact": [
@@ -804,17 +821,26 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "CestaDomu.model.Drug": [],
   "CestaDomu.model.Employee": [],
+  "CestaDomu.model.Enumeration": [],
   "CestaDomu.model.NurseCare": [],
   "CestaDomu.model.Pacient": [],
+  "CestaDomu.model.RawDocReport": [],
+  "CestaDomu.model.RawWorkReport": [],
   "CestaDomu.model.TimeFund": [],
   "CestaDomu.model.TimeInterval": [],
+  "CestaDomu.model.TimeNumber": [],
   "CestaDomu.model.WorkReport": [],
   "CestaDomu.override.Component": [],
   "CestaDomu.store.ContactsStore": [],
   "CestaDomu.store.DrugStore": [],
   "CestaDomu.store.EmployeesStore": [],
+  "CestaDomu.store.FormWork": [],
+  "CestaDomu.store.Hours": [],
+  "CestaDomu.store.Minutes": [],
   "CestaDomu.store.NurseCareStore": [],
+  "CestaDomu.store.ServiceType": [],
   "CestaDomu.store.TimeFundStore": [],
+  "CestaDomu.store.WayOfWorking": [],
   "CestaDomu.store.WorkReportIntervals": [],
   "CestaDomu.store.WorkReportsStore": [],
   "CestaDomu.view.ClientDetailView": [
@@ -822,9 +848,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "CestaDomu.view.ClientsView": [
     "widget.clientsView"
-  ],
-  "CestaDomu.view.LoadingView": [
-    "widget.loadingView"
   ],
   "CestaDomu.view.LoginView": [
     "widget.loginView"
@@ -834,6 +857,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "CestaDomu.view.MainContainer": [
     "widget.mainContainer"
+  ],
+  "CestaDomu.view.NewNurseCareView": [
+    "widget.newNurseCareView"
   ],
   "CestaDomu.view.RoleSelectView": [
     "widget.roleSelectView"

@@ -38,7 +38,14 @@ Ext.application({
         'Ext.carousel.Carousel',
         'Ext.Label',
         'Ext.field.Select',
-        'Ext.XTemplate'
+        'Ext.XTemplate',
+        'CestaDomu.controller.Login',
+        'CestaDomu.controller.GetViewX',
+        'CestaDomu.controller.GetObjectInfo',
+        'CestaDomu.controller.GetBindingViewX',
+        'CestaDomu.controller.GetEnumerationDataByReference',
+        'CestaDomu.controller.GetEnumerationActiveDataByReference',
+        'CestaDomu.controller.CreateObject'
     ],
     models: [
         'Contact',
@@ -48,7 +55,11 @@ Ext.application({
         'TimeFund',
         'Pacient',
         'NurseCare',
-        'Drug'
+        'Drug',
+        'TimeNumber',
+        'Enumeration',
+        'RawWorkReport',
+        'RawDocReport'
     ],
     stores: [
         'ContactsStore',
@@ -57,16 +68,21 @@ Ext.application({
         'WorkReportsStore',
         'TimeFundStore',
         'NurseCareStore',
-        'DrugStore'
+        'DrugStore',
+        'Hours',
+        'Minutes',
+        'WayOfWorking',
+        'FormWork',
+        'ServiceType'
     ],
     views: [
         'LoginView',
         'MainContainer',
         'ClientsView',
         'RoleSelectView',
-        'LoadingView',
         'ClientDetailView',
-        'WorkReportsView'
+        'WorkReportsView',
+        'NewNurseCareView'
     ],
     controllers: [
         'LoginController',
@@ -74,7 +90,8 @@ Ext.application({
         'DefaultController',
         'ClientsController',
         'ClientDetailController',
-        'WorkReportsController'
+        'WorkReportsController',
+        'NewNurseCareController'
     ],
     name: 'CestaDomu',
 

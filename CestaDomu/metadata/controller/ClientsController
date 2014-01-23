@@ -28,6 +28,23 @@
             "designerId": "9010ca06-1012-4b74-bd29-fccf0b06bdd8"
         },
         {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onClientsView",
+                "implHandler": [
+                    "this.getApplication().redirectTo(\"private/contacts\");"
+                ],
+                "name": "clientsView",
+                "scope": "this"
+            },
+            "designerId": "ab821288-1feb-41c7-8ae3-e0b9a098f661"
+        },
+        {
             "type": "controllerref",
             "reference": {
                 "name": "items",
@@ -65,7 +82,8 @@
             "userConfig": {
                 "fn": "main",
                 "implHandler": [
-                    "this.getMainContainer().setActiveItem(this.getClientsView());"
+                    "this.getMainContainer().setActiveItem(this.getClientsView());\r",
+                    "this.onSearchButtonTap();"
                 ],
                 "url": "private/contacts"
             },
@@ -85,12 +103,18 @@
                 "implHandler": [
                     "CestaDomu.controller.Login.doLogged( this, function () {\r",
                     "    var searchText = this.getSearchText().getValue();\r",
-                    "    if (searchText && searchText.length > 2) {\r",
-                    "        var store = Ext.getStore('ContactsStore');\r",
-                    "        store.filter('name', searchText);\r",
-                    "        store.load();\r",
+                    "    var store = this.getClientsList().getStore();\r",
+                    "    store.clearFilter(true);\r",
+                    "    if (searchText) {\r",
+                    "        if (searchText.length > 2) {\r",
+                    "            store.filter('name', searchText);\r",
+                    "            store.load();\r",
+                    "        } else {\r",
+                    "            Ext.Msg.alert('Příliš obecné hledání', 'Pro vyhledání podle jména je nutné zadat více než 2 znaky, jinak by množství nalezených záznamů mohlo být příliš velké.');\r",
+                    "        }\r",
                     "    } else {\r",
-                    "        Ext.Msg.alert('Příliš obecné hledání', 'Pro vyhledání podle jména je nutné zadat více než 2 znaky, jinak by množství nalezených záznamů mohlo být příliš velké.');\r",
+                    "        store.filter('xml', '<Element type=\"LogicalOperator\"><SubElements><ElementCollection><Item><Element type=\"LogicalOperator\"><SubElements><ElementCollection><Item><Element type=\"LogicalOperator\"><SubElements><ElementCollection><Item><Element type=\"Parenthesis\"><SubElements><ElementCollection><Item><Element type=\"IsNULL\"><SubElements><ElementCollection><Item><Element type=\"ColumnName\"><AdditionalData columnName=\"DateOfDeath\" displayName=\"Datum úmrtí\" type=\"3\" /></Element></Item></ElementCollection></SubElements><AdditionalData function=\"false\" /></Element></Item></ElementCollection></SubElements><AdditionalData /></Element></Item><Item><Element type=\"Parenthesis\"><SubElements><ElementCollection><Item><Element type=\"LogicalOperator\"><SubElements><ElementCollection><Item><Element type=\"IsNULL\"><SubElements><ElementCollection><Item><Element type=\"ColumnName\"><AdditionalData columnName=\"{pb:Project}.{b:CareStartEnd}.careStart\" displayName=\"-Karty pacientů.+Přijetí/propuštění z péče.Datum začátku\" type=\"3\" /></Element></Item></ElementCollection></SubElements><AdditionalData function=\"false\" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator=\"NOT\" /></Element></Item></ElementCollection></SubElements><AdditionalData /></Element></Item></ElementCollection></SubElements><AdditionalData Operator=\"AND\" /></Element></Item><Item><Element type=\"Parenthesis\"><SubElements><ElementCollection><Item><Element type=\"LogicalOperator\"><SubElements><ElementCollection><Item><Element type=\"IsNULL\"><SubElements><ElementCollection><Item><Element type=\"ColumnName\"><AdditionalData columnName=\"{pb:Project}.{b:CareStartEnd}.careEnd\" displayName=\"-Karty pacientů.+Přijetí/propuštění z péče.Datum konce\" type=\"3\" /></Element></Item></ElementCollection></SubElements><AdditionalData function=\"false\" /></Element></Item><Item><Element type=\"Comparison\"><SubElements><ElementCollection><Item><Element type=\"DynamicElement\"><AdditionalData elementType=\"Now\" /></Element></Item><Item><Element type=\"ColumnName\"><AdditionalData columnName=\"{pb:Project}.{b:CareStartEnd}.careEnd\" displayName=\"-Karty pacientů.+Přijetí/propuštění z péče.Datum konce\" type=\"3\" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator=\"Less\" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator=\"OR\" /></Element></Item></ElementCollection></SubElements><AdditionalData /></Element></Item></ElementCollection></SubElements><AdditionalData Operator=\"AND\" /></Element></Item><Item><Element type=\"LogicalOperator\"><SubElements><ElementCollection><Item><Element type=\"Comparison\"><SubElements><ElementCollection><Item><Element type=\"ColumnName\"><AdditionalData columnName=\"{pb:Project}.{b:CareStartEnd}.careType\" displayName=\"-Karty pacientů.+Přijetí/propuštění z péče.Typ data\" type=\"5\" /></Element></Item><Item><Element type=\"EnumerationValue\"><AdditionalData valueID=\"2461\" valueOrder=\"0\" enumRef=\"cd_careTypeE\" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator=\"Equal\" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator=\"NOT\" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator=\"AND\" /></Element>');\r",
+                    "        store.load();\r",
                     "    }\r",
                     "});"
                 ],
@@ -119,7 +143,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|controlQuery": "#clientsList",
+                "designer|controlQuery": "clientsView #clientsList",
                 "designer|targetType": "Ext.dataview.List",
                 "fn": "onListItemTap",
                 "implHandler": [
@@ -129,6 +153,19 @@
                 "name": "itemtap"
             },
             "designerId": "adee95e4-27d4-4cda-b4ad-47f6209c6d2c"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "clientsList",
+                "selector": "clientsView #clientsList"
+            },
+            "designerId": "30da7364-fb48-4a9f-b347-c97486c72864"
         }
     ]
 }

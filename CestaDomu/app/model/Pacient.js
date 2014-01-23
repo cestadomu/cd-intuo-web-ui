@@ -65,6 +65,10 @@ Ext.define('CestaDomu.model.Pacient', {
             {
                 name: 'mobileNumber',
                 type: 'string'
+            },
+            {
+                name: 'contactId',
+                type: 'int'
             }
         ],
         proxy: {
@@ -78,7 +82,7 @@ Ext.define('CestaDomu.model.Pacient', {
                 },
                 mappingType: 'xml',
                 mapping: {
-                    ID: 'c2',
+                    ID: 'c1',
                     Name: 'c3',
                     note: 'c4',
                     street: 'c5',
@@ -87,7 +91,8 @@ Ext.define('CestaDomu.model.Pacient', {
                     phonePrefix: 'c8',
                     phoneNumber: 'c9',
                     mobilePrefix: 'c10',
-                    mobileNumber: 'c11'
+                    mobileNumber: 'c11',
+                    contactId: 'c2'
                 }
             },
             extraParams: {

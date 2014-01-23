@@ -13,7 +13,7 @@
                 "height": 1024,
                 "width": 768
             },
-            "viewportOrientation": "portrait"
+            "viewportOrientation": "landscape"
         },
         "urlPrefix": "http://localhost:1841",
         "exportPath": "C:/Users/frezac/Documents/cesta/web-klient/prod-build",
@@ -40,9 +40,9 @@
             "5abb570e-dbd3-4ee8-820a-3a8be3dc40cc",
             "88327bb8-89c2-4965-8880-eb064e78bc96",
             "cca33f23-f526-4568-9d08-51f97baf994e",
-            "787ce2d3-c466-4613-af79-8ca9f2fc347b",
             "904356d9-e5e1-4ff8-97b3-c2ce9702d4d4",
-            "51456d36-ba40-4cfe-a34a-e991c963b35f"
+            "51456d36-ba40-4cfe-a34a-e991c963b35f",
+            "e05de542-1b04-41fe-b72a-b8c4ce14791b"
         ],
         "store": [
             "6270e90b-5658-4f97-bce8-5db328fdc069",
@@ -51,7 +51,12 @@
             "cf2e0f84-57c7-4986-9c6f-6f41dd59b06d",
             "f9979463-b3d2-4741-b582-a71f2f73fd2b",
             "f4441ac1-ec9c-4bf3-a92f-e3c4aaeb1cba",
-            "59e18f36-60ff-431f-bfb4-7517be193281"
+            "59e18f36-60ff-431f-bfb4-7517be193281",
+            "cc8cd380-ec5c-48a0-a7ae-16c7fae1a390",
+            "618fa8e0-ef6f-4769-babb-655c23bed144",
+            "224c48d6-3890-431c-b4a1-23ec626b7fd8",
+            "09d4f718-1bee-4b80-b0b2-32d4c6f18fcd",
+            "3878f219-f7a2-463f-ba6a-3ea339706075"
         ],
         "controller": [
             "bc0e8c1b-3f8b-4cd5-9438-033dda1e0582",
@@ -59,12 +64,16 @@
             "fef04321-f456-434e-b324-8d13ace4d23a",
             "72bc9e21-12d1-4b6c-8dd0-ea324315ff79",
             "772be001-e564-452d-8753-c2ff0aaca7fe",
+            "3795ee90-d8f5-4b61-a2b6-17a49fc197c2",
+            "471482d2-8e3c-4c87-8293-bea57ec22a21",
+            "aaf42218-4a01-4f72-94a3-91d556a60315",
             "af543529-d757-452c-b766-ffaadbd6700f",
             "9ed2c46b-635c-41bf-ac4c-ec682c9f8d86",
             "6c754d05-23bf-4610-a879-71b3c9265af4",
             "cca28193-8432-4349-b236-aab57db69219",
             "c771f618-666b-418e-84d8-4f67a62e68fe",
-            "2b5840af-3b85-4e17-8005-95eb217a38f1"
+            "2b5840af-3b85-4e17-8005-95eb217a38f1",
+            "a5d1a44d-390a-40a1-858a-e3aca51615a3"
         ],
         "model": [
             "22d64f78-9e1c-4416-bf98-91cae5faffe7",
@@ -74,7 +83,11 @@
             "79f82918-cacc-47f6-9553-6187bd3d8c7f",
             "30e97615-4d90-47ab-b7b0-c6a06d19e784",
             "78aea2ba-d3af-48a3-b8c9-9eb77c1e9970",
-            "f0dfc428-cb3b-4d55-8e40-cb037dad3f2e"
+            "f0dfc428-cb3b-4d55-8e40-cb037dad3f2e",
+            "19e97cd5-571d-444d-b9bd-aed6a9dedad1",
+            "05c75d1b-7470-4314-af91-faaff3bfa779",
+            "a4f45a93-1f3f-4e80-8c9d-ed2ece8c10b5",
+            "b49843a3-c7cd-44e4-927f-7bd296a72196"
         ],
         "resource": [
             "31e47147-84b1-466b-9563-8da5c2ffcc0b",

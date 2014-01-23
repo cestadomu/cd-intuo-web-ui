@@ -1,0 +1,96 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "CreateObject",
+        "requires": [
+            "CestaDomu.controller.Intuo",
+            "Ext.XTemplate"
+        ],
+        "singleton": true
+    },
+    "designerId": "aaf42218-4a01-4f72-94a3-91d556a60315",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "constructor",
+                "implHandler": [
+                    "this.callParent(arguments);\r",
+                    "this.url = CestaDomu.controller.Intuo.commonServiceUrlPart;\r",
+                    "this.template = new Ext.XTemplate(\r",
+                    "    '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dig=\"http://digres.cz/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">',\r",
+                    "        '<soapenv:Header/>',\r",
+                    "        '<soapenv:Body>',\r",
+                    "            '<dig:CreateObject>',\r",
+                    "                '<dig:strAuthKey>{token}</dig:strAuthKey>',\r",
+                    "                '<dig:strClassName>{requestParams.className}</dig:strClassName>',\r",
+                    "                '<dig:aData>',\r",
+                    "                    '<tpl for=\"this.createDataArray(data[0])\">',\r",
+                    "                        '<dig:ArrayOfAnyType>',\r",
+                    "                            '<dig:anyType xsi:type=\"xsd:string\">{name}</dig:anyType>',\r",
+                    "                            '<dig:anyType xsi:type=\"xsd:{type}\">{value}</dig:anyType>',\r",
+                    "                        '</dig:ArrayOfAnyType>',\r",
+                    "                    '</tpl>',\r",
+                    "                    '{dataXml}',\r",
+                    "                '</dig:aData>',\r",
+                    "            '</dig:CreateObject>',\r",
+                    "        '</soapenv:Body>',\r",
+                    "    '</soapenv:Envelope>',\r",
+                    "    {\r",
+                    "        createDataArray: function (data) {\r",
+                    "            var dataArray = [];\r",
+                    "            for (var key in data) {\r",
+                    "                if (key != 'ID') {\r",
+                    "                    var o = data[key];\r",
+                    "                    var type;\r",
+                    "                    if (o!==null) {\r",
+                    "                        switch(typeof(o)) {\r",
+                    "                            case \"object\":\r",
+                    "                                if(o.constructor.toString().indexOf(\"function Date()\") > -1) {\r",
+                    "                                    type = 'dateTime';\r",
+                    "                                    //2014-01-14T12:15:54\r",
+                    "                                    o = Ext.Date.format(o, 'Y-m-d\\\\TH:i:s');\r",
+                    "                                } else {\r",
+                    "                                    throw 'Unknown data type.';\r",
+                    "                                }\r",
+                    "                                break;\r",
+                    "                            case \"string\":\r",
+                    "                                type = 'string';\r",
+                    "                                break;\r",
+                    "                            case \"number\":\r",
+                    "                                type = 'int';\r",
+                    "                                break;\r",
+                    "                            case \"boolean\":\r",
+                    "                                type = 'boolean';\r",
+                    "                                break;\r",
+                    "                            default:\r",
+                    "                                throw 'Unknown data type.';\r",
+                    "                        }\r",
+                    "                        dataArray.push({\r",
+                    "                            name: key,\r",
+                    "                            value: o,\r",
+                    "                            type: type\r",
+                    "                        });\r",
+                    "                    }\r",
+                    "                }\r",
+                    "            }\r",
+                    "            return dataArray;\r",
+                    "        }\r",
+                    "    }\r",
+                    ");"
+                ]
+            },
+            "designerId": "11fe6dbf-9718-43af-ae28-b62457873ae2"
+        }
+    ]
+}

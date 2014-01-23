@@ -41,23 +41,27 @@
             "userConfig": {
                 "fn": "main",
                 "implHandler": [
-                    "CestaDomu.controller.Login.doLogged(this, function () {\r",
-                    "    this.getMainContainer().setActiveItem(this.getWorkReportsView());\r",
-                    "    var store = Ext.getStore('EmployeesStore');\r",
-                    "    \r",
+                    "this.getApplication().fireEvent(\"loginRequested\", this, function () {\r",
+                    "    this.getWorkReportsView(); // inicializace pomocí autoload\r",
+                    "\r",
+                    "    var store = this.getEmployee().getStore();\r",
+                    "\r",
                     "    if (!store.isLoaded()) {\r",
+                    "        store.load();\r",
                     "        Ext.Msg.show({\r",
-                    "            title: \"Načítání dat formuláře...\",\r",
+                    "            title: \"Načítání dat...\",\r",
                     "            buttons: []\r",
                     "        });\r",
                     "        store.load(function(records, operation, success) {\r",
                     "            if (success) {\r",
+                    "                this.getMainContainer().setActiveItem(this.getWorkReportsView());\r",
                     "                Ext.Msg.hide();\r",
                     "            } else {\r",
                     "                Ext.Msg.alert('Chyba', 'Nepodařilo se načíst data zaměstnanců.');\r",
-                    "                this.getApplication().getHistory().back();\r",
                     "            }\r",
                     "        }, this);\r",
+                    "    } else {\r",
+                    "        this.getMainContainer().setActiveItem(this.getWorkReportsView());\r",
                     "    }\r",
                     "});"
                 ],
@@ -213,6 +217,19 @@
                 "selector": "workReportsView #createWorkReports"
             },
             "designerId": "2522e811-ba75-487e-a5ed-104a01e97f90"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "employee",
+                "selector": "workReportsView #employee"
+            },
+            "designerId": "a5e7b3d1-c625-432b-a3ba-2c823bea6a6e"
         },
         {
             "type": "basicfunction",

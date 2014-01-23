@@ -56,8 +56,14 @@ Ext.define('CestaDomu.controller.LoginController', {
             this.getLoginForm().getValues(),
             this,
             function(response){
-                this.getApplication().fireEvent("loggedIn");
                 messageBox.hide();
+                if (this.loginAction) {
+                    var loginAction = this.loginAction;
+                    this.loginAction = null;
+                    Ext.callback(loginAction.loginSuccess, loginAction.loginCallbackScope);
+                } else {
+                    this.getApplication().fireEvent("loggedIn");
+                }
             },function(response) {
                 Ext.Msg.alert("Přihlášení se nezdařilo");
             });
@@ -66,23 +72,32 @@ Ext.define('CestaDomu.controller.LoginController', {
     },
 
     main: function() {
-        if (CestaDomu.controller.Login.isLoggedIn()) {
-            this.getApplication().fireEvent("loggedIn");
-        } else {
-            this.getMainContainer().setActiveItem(this.getLoginView());
-        }
-
-
+        this.getMainContainer().setActiveItem(this.getLoginView());
     },
 
     onHome: function() {
         this.getApplication().redirectTo("public/login");
     },
 
+    onLoginRequested: function(scope, success) {
+        if (CestaDomu.controller.Login.isLoginActive()) {
+            Ext.callback(success, scope);
+        } else if (CestaDomu.controller.Login.isLoggedIn()) {
+            CestaDomu.controller.Login.refreshLogin(scope, success);
+        } else {
+            this.loginAction = {
+                loginCallbackScope: scope,
+                loginSuccess: success
+            };
+            this.getMainContainer().setActiveItem(this.getLoginView());
+        }
+    },
+
     init: function(application) {
 
         application.on([
-        { event: 'home', fn: this.onHome, scope: this }
+        { event: 'home', fn: this.onHome, scope: this },
+        { event: 'loginRequested', fn: this.onLoginRequested, scope: this }
         ]);
     }
 

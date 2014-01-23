@@ -6,14 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "NurseCareStore",
-        "model": "NurseCare",
-        "remoteFilter": true,
-        "remoteGroup": true,
-        "remoteSort": true,
-        "storeId": "NurseCareStore"
+        "designer|userClassName": "ServiceType",
+        "model": "Enumeration",
+        "storeId": "ServiceType"
     },
-    "designerId": "f4441ac1-ec9c-4bf3-a92f-e3c4aaeb1cba",
+    "designerId": "3878f219-f7a2-463f-ba6a-3ea339706075",
     "cn": [
         {
             "type": "Ext.data.proxy.Ajax",
@@ -25,21 +22,35 @@
             "userConfig": {
                 "api": [
                     "{\r",
-                    "    read: {service: CestaDomu.controller.GetBindingViewX, templates: {}},\r",
+                    "    read: {service: CestaDomu.controller.GetEnumerationActiveDataByReference},\r",
                     "    mappingType: 'xml',\r",
-                    "    mapping: {ID: 'c0', start: 'c1', nurse: 'c2', Name: 'c3', Description: 'c4', durationtime: 'c5'}\r",
+                    "    mapping: {}\r",
                     "}"
                 ],
                 "designer|createAlias": "intuo",
                 "extraParams": [
                     "{\r",
-                    "    viewId: 1721\r",
+                    "    enumReference: 'ServiceType'\r",
                     "}"
                 ],
                 "url": "xxx"
             },
-            "designerId": "0e2de73e-3409-49c0-a3e9-47b2ca4386c4",
+            "designerId": "bf7efd90-560f-4cf5-a26e-6c585b6acea9",
             "cn": [
+                {
+                    "type": "Ext.data.reader.Xml",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|createAlias": "intuo",
+                        "record": "EnumerationValueData",
+                        "rootProperty": "Values"
+                    },
+                    "designerId": "4d7c8bbe-d89b-41a9-a856-04cac33c6bd8"
+                },
                 {
                     "type": "Ext.data.writer.Xml",
                     "reference": {
@@ -50,21 +61,7 @@
                     "userConfig": {
                         "designer|createAlias": "intuo"
                     },
-                    "designerId": "c81238f0-20d5-4cd1-b29e-2135b61de6ec"
-                },
-                {
-                    "type": "Ext.data.reader.Xml",
-                    "reference": {
-                        "name": "reader",
-                        "type": "object"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|createAlias": "intuo",
-                        "record": "WEB_x0020_průběhy_x0020_péče",
-                        "rootProperty": "DocumentElement"
-                    },
-                    "designerId": "6ce7dfd6-12fd-4928-a99e-c7867a6eb04c"
+                    "designerId": "6eb83d31-3cf9-4aaf-9170-ca05aa747f15"
                 }
             ]
         }

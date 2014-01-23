@@ -79,6 +79,14 @@ Ext.define('CestaDomu.controller.Login', {
         }
     },
 
+    isLoginActive: function() {
+        if (new Date().getTime() - this.getTokenTime() < this.safeDifference) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+
     getCredentials: function() {
         if((typeof(Storage) !== "undefined")) {
             if (sessionStorage.username) {
@@ -132,30 +140,31 @@ Ext.define('CestaDomu.controller.Login', {
         }
     },
 
-    doLogged: function(scope, success, failure) {
-        if (new Date().getTime() - this.getTokenTime() < this.safeDifference) {
+    doLogged: function(scope, success) {
+        if (this.isLoginActive()) {
             Ext.callback(success, scope);
         } else {
-            Ext.Msg.show({
-                title: "Obnova přihlášení k serveru...",
-                buttons: []
-            });
-
-            this.login(
-                this.getCredentials(),
-                this,
-                function() {
-                    Ext.Msg.hide();
-                    Ext.callback(success, scope);
-                },
-                function () {
-                    Ext.Msg.alert('Chyba', 'Nepodařilo se obnovit přihlášení k serveru, prosím opakujte akci později.');
-                    if (failure) {
-                        Ext.callback(failure, scope);
-                    }
-                }
-            );
+            this.refreshLogin(scope, success);
         }
+    },
+
+    refreshLogin: function(scope, success) {
+        Ext.Msg.show({
+            title: "Obnova přihlášení k serveru...",
+            buttons: []
+        });
+
+        this.login(
+            this.getCredentials(),
+            this,
+            function() {
+                Ext.Msg.hide();
+                Ext.callback(success, scope);
+            },
+            function () {
+                Ext.Msg.alert('Chyba', 'Nepodařilo se obnovit přihlášení k serveru, prosím opakujte akci později.');
+            }
+        );
     }
 
 });

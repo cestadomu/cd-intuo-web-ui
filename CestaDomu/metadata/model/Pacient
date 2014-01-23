@@ -142,6 +142,19 @@
             "designerId": "3ccc9b73-cba7-4623-b5d3-cabe72d73fd1"
         },
         {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "contactId",
+                "type": "int"
+            },
+            "designerId": "fbb21728-e51e-4ad4-8336-25f3e84ae845"
+        },
+        {
             "type": "Ext.data.proxy.Ajax",
             "reference": {
                 "name": "proxy",
@@ -153,7 +166,7 @@
                     "{\r",
                     "    read: {service: CestaDomu.controller.GetBindingViewX, templates: {filterXml: new Ext.XTemplate('<Element type=\"LogicalOperator\"><SubElements><ElementCollection><Item><Element type=\"Parenthesis\"><SubElements><ElementCollection><Item><Element type=\"ColumnName\"><AdditionalData columnName=\"To.(Company).{[\"{\"]}b:Address{[\"}\"]}.ActualAddress\" displayName=\"Konec vazby.Kontakty.+Adresy.Aktuální bydliště\" type=\"4\" /></Element></Item></ElementCollection></SubElements><AdditionalData /></Element></Item><Item><Element type=\"Parenthesis\"><SubElements><ElementCollection><Item><Element type=\"Comparison\"><SubElements><ElementCollection><Item><Element type=\"ColumnName\"><AdditionalData columnName=\"To.(Company).{[\"{\"]}pb:Company{[\"}\"]}.{[\"{\"]}ba:cdRole{[\"}\"]}\" displayName=\"Role\" type=\"5\" /></Element></Item><Item><Element type=\"EnumerationValue\"><AdditionalData valueID=\"1944\" valueOrder=\"0\" enumRef=\"155\" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator=\"Equal\" /></Element></Item></ElementCollection></SubElements><AdditionalData /></Element></Item></ElementCollection></SubElements><AdditionalData Operator=\"AND\" /></Element>')}},\r",
                     "    mappingType: 'xml',\r",
-                    "    mapping: {ID: 'c2', Name: 'c3', note: 'c4', street: 'c5', city: 'c6', contactPerson: 'c7', phonePrefix: 'c8', phoneNumber: 'c9', mobilePrefix: 'c10', mobileNumber: 'c11'}\r",
+                    "    mapping: {ID: 'c1', Name: 'c3', note: 'c4', street: 'c5', city: 'c6', contactPerson: 'c7', phonePrefix: 'c8', phoneNumber: 'c9', mobilePrefix: 'c10', mobileNumber: 'c11', contactId: 'c2'}\r",
                     "}"
                 ],
                 "designer|createAlias": "intuo",

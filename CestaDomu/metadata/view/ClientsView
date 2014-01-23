@@ -85,8 +85,8 @@
                 "designer|displayName": "",
                 "emptyText": "Žádné výsledky",
                 "height": "100%",
-                "id": "clientsList",
-                "itemId": null,
+                "id": null,
+                "itemId": "clientsList",
                 "loadingText": "Pracuji...",
                 "onItemDisclosure": null,
                 "store": "ContactsStore"

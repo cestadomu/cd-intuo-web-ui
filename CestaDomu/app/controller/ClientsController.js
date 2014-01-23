@@ -32,14 +32,15 @@ Ext.define('CestaDomu.controller.ClientsController', {
                 selector: 'clientsView',
                 xtype: 'clientsView'
             },
-            searchText: '#searchText'
+            searchText: '#searchText',
+            clientsList: 'clientsView #clientsList'
         },
 
         control: {
             "#searchButton": {
                 tap: 'onSearchButtonTap'
             },
-            "#clientsList": {
+            "clientsView #clientsList": {
                 itemtap: 'onListItemTap'
             }
         }
@@ -48,12 +49,18 @@ Ext.define('CestaDomu.controller.ClientsController', {
     onSearchButtonTap: function(button, e, eOpts) {
         CestaDomu.controller.Login.doLogged( this, function () {
             var searchText = this.getSearchText().getValue();
-            if (searchText && searchText.length > 2) {
-                var store = Ext.getStore('ContactsStore');
-                store.filter('name', searchText);
-                store.load();
+            var store = this.getClientsList().getStore();
+            store.clearFilter(true);
+            if (searchText) {
+                if (searchText.length > 2) {
+                    store.filter('name', searchText);
+                    store.load();
+                } else {
+                    Ext.Msg.alert('Příliš obecné hledání', 'Pro vyhledání podle jména je nutné zadat více než 2 znaky, jinak by množství nalezených záznamů mohlo být příliš velké.');
+                }
             } else {
-                Ext.Msg.alert('Příliš obecné hledání', 'Pro vyhledání podle jména je nutné zadat více než 2 znaky, jinak by množství nalezených záznamů mohlo být příliš velké.');
+                store.filter('xml', '<Element type="LogicalOperator"><SubElements><ElementCollection><Item><Element type="LogicalOperator"><SubElements><ElementCollection><Item><Element type="LogicalOperator"><SubElements><ElementCollection><Item><Element type="Parenthesis"><SubElements><ElementCollection><Item><Element type="IsNULL"><SubElements><ElementCollection><Item><Element type="ColumnName"><AdditionalData columnName="DateOfDeath" displayName="Datum úmrtí" type="3" /></Element></Item></ElementCollection></SubElements><AdditionalData function="false" /></Element></Item></ElementCollection></SubElements><AdditionalData /></Element></Item><Item><Element type="Parenthesis"><SubElements><ElementCollection><Item><Element type="LogicalOperator"><SubElements><ElementCollection><Item><Element type="IsNULL"><SubElements><ElementCollection><Item><Element type="ColumnName"><AdditionalData columnName="{pb:Project}.{b:CareStartEnd}.careStart" displayName="-Karty pacientů.+Přijetí/propuštění z péče.Datum začátku" type="3" /></Element></Item></ElementCollection></SubElements><AdditionalData function="false" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator="NOT" /></Element></Item></ElementCollection></SubElements><AdditionalData /></Element></Item></ElementCollection></SubElements><AdditionalData Operator="AND" /></Element></Item><Item><Element type="Parenthesis"><SubElements><ElementCollection><Item><Element type="LogicalOperator"><SubElements><ElementCollection><Item><Element type="IsNULL"><SubElements><ElementCollection><Item><Element type="ColumnName"><AdditionalData columnName="{pb:Project}.{b:CareStartEnd}.careEnd" displayName="-Karty pacientů.+Přijetí/propuštění z péče.Datum konce" type="3" /></Element></Item></ElementCollection></SubElements><AdditionalData function="false" /></Element></Item><Item><Element type="Comparison"><SubElements><ElementCollection><Item><Element type="DynamicElement"><AdditionalData elementType="Now" /></Element></Item><Item><Element type="ColumnName"><AdditionalData columnName="{pb:Project}.{b:CareStartEnd}.careEnd" displayName="-Karty pacientů.+Přijetí/propuštění z péče.Datum konce" type="3" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator="Less" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator="OR" /></Element></Item></ElementCollection></SubElements><AdditionalData /></Element></Item></ElementCollection></SubElements><AdditionalData Operator="AND" /></Element></Item><Item><Element type="LogicalOperator"><SubElements><ElementCollection><Item><Element type="Comparison"><SubElements><ElementCollection><Item><Element type="ColumnName"><AdditionalData columnName="{pb:Project}.{b:CareStartEnd}.careType" displayName="-Karty pacientů.+Přijetí/propuštění z péče.Typ data" type="5" /></Element></Item><Item><Element type="EnumerationValue"><AdditionalData valueID="2461" valueOrder="0" enumRef="cd_careTypeE" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator="Equal" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator="NOT" /></Element></Item></ElementCollection></SubElements><AdditionalData Operator="AND" /></Element>');
+                store.load();
             }
         });
     },
@@ -67,14 +74,20 @@ Ext.define('CestaDomu.controller.ClientsController', {
         this.getApplication().redirectTo("private/contacts");
     },
 
+    onClientsView: function() {
+        this.getApplication().redirectTo("private/contacts");
+    },
+
     main: function() {
         this.getMainContainer().setActiveItem(this.getClientsView());
+        this.onSearchButtonTap();
     },
 
     init: function(application) {
 
         application.on([
-        { event: 'careRoleSelected', fn: this.onCareRoleSelected, scope: this }
+        { event: 'careRoleSelected', fn: this.onCareRoleSelected, scope: this },
+        { event: 'clientsView', fn: this.onClientsView, scope: this }
         ]);
     }
 

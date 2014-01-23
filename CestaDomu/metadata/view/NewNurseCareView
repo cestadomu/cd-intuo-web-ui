@@ -1,0 +1,319 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "newNurseCareView",
+        "designer|userClassName": "NewNurseCareView",
+        "itemId": "myformpanel2"
+    },
+    "designerId": "e05de542-1b04-41fe-b72a-b8c4ce14791b",
+    "cn": [
+        {
+            "type": "Ext.Toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "itemId": null,
+                "title": null
+            },
+            "designerId": "4107865f-835a-441b-bace-215c58a8a1a6"
+        },
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout": "hbox",
+                "title": "Datum"
+            },
+            "designerId": "34d480f0-e2d2-40e6-8ee4-7c03e03a037a",
+            "cn": [
+                {
+                    "type": "Ext.field.DatePicker",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dateFormat": "d. m. Y",
+                        "itemId": "date",
+                        "label": "Den",
+                        "layout|flex": 40,
+                        "placeHolder": "mm/dd/yyyy"
+                    },
+                    "designerId": "23d72a57-f544-438b-9be0-b2ac94dd7a69",
+                    "cn": [
+                        {
+                            "type": "Ext.picker.Date",
+                            "reference": {
+                                "name": "picker",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dayText": "Den",
+                                "height": 400,
+                                "monthText": "Měsíc",
+                                "slotOrder": [
+                                    "day",
+                                    "month",
+                                    "year"
+                                ],
+                                "yearFrom": 2013,
+                                "yearText": "Rok"
+                            },
+                            "designerId": "1f30328d-a81e-4582-ad11-11d968531ca7",
+                            "cn": [
+                                {
+                                    "type": "Ext.Button",
+                                    "reference": {
+                                        "name": "doneButton",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "text": "Hotovo"
+                                    },
+                                    "designerId": "1ef69ef2-6c86-4387-abce-f8b88f5c0e0a"
+                                },
+                                {
+                                    "type": "Ext.Button",
+                                    "reference": {
+                                        "name": "cancelButton",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "text": "Zrušit"
+                                    },
+                                    "designerId": "2913ba11-7d74-4c00-a286-e10ef992e7ca"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.field.Select",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "displayField": "value",
+                        "itemId": "hour",
+                        "label": "Hod.",
+                        "layout|flex": 30,
+                        "store": "Hours"
+                    },
+                    "designerId": "1171c56f-303a-4825-b220-a56852f6c12c"
+                },
+                {
+                    "type": "Ext.field.Select",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "displayField": "label",
+                        "itemId": "minute",
+                        "label": "Min.",
+                        "layout|flex": 30,
+                        "store": "Minutes"
+                    },
+                    "designerId": "b10e8cae-a235-4c73-954d-16775e2f50a8"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout": "hbox",
+                "title": "Trvání"
+            },
+            "designerId": "cfb21189-bad5-4987-99df-c92a4cb64f1f",
+            "cn": [
+                {
+                    "type": "Ext.field.Number",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "workDuration",
+                        "label": "Práce",
+                        "layout|flex": 34
+                    },
+                    "designerId": "c1e8af8c-6026-4562-9551-9e8243edb02a"
+                },
+                {
+                    "type": "Ext.field.Number",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "transportDuration",
+                        "label": "Doprava",
+                        "labelWidth": "40%",
+                        "layout|flex": 33
+                    },
+                    "designerId": "2cbf2314-1840-4a66-945c-eeb2996f0475"
+                },
+                {
+                    "type": "Ext.field.Number",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "documentationDuration",
+                        "label": "Dokumentace",
+                        "labelWidth": "50%",
+                        "layout|flex": 33
+                    },
+                    "designerId": "19119034-bd9a-44ca-a04d-b999a2ec5a68"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout": "hbox",
+                "title": "Práce"
+            },
+            "designerId": "713b3986-7309-4399-808a-574b9b2e4e8f",
+            "cn": [
+                {
+                    "type": "Ext.field.Select",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "displayField": "Value",
+                        "itemId": "serviceType",
+                        "label": "Z.P.",
+                        "labelWidth": "20%",
+                        "layout|flex": 40,
+                        "store": "ServiceType",
+                        "valueField": "ID"
+                    },
+                    "designerId": "fff37ba9-5670-4ee9-b8c3-a92bd9e6063f"
+                },
+                {
+                    "type": "Ext.field.Select",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "displayField": "Value",
+                        "itemId": "wayOfWorking",
+                        "label": "Typ",
+                        "labelWidth": "25%",
+                        "layout|flex": 30,
+                        "store": "WayOfWorking",
+                        "valueField": "ID"
+                    },
+                    "designerId": "98e1fa85-14b4-45be-b901-c92072c9a6d3"
+                },
+                {
+                    "type": "Ext.field.Select",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "displayField": "Value",
+                        "itemId": "formWork",
+                        "label": "Forma",
+                        "layout|flex": 30,
+                        "store": "FormWork",
+                        "valueField": "ID"
+                    },
+                    "designerId": "ee3ac8b9-1ea8-47f0-a312-f167dfb36d05"
+                }
+            ]
+        },
+        {
+            "type": "Ext.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "aggreement",
+                "label": "Domluva",
+                "labelWidth": "15%",
+                "margin": 10,
+                "name": "domluva",
+                "width": null
+            },
+            "designerId": "1dc2f0f6-eb91-46b5-8f06-0da45ecc990c"
+        },
+        {
+            "type": "Ext.field.TextArea",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "description",
+                "label": "Popis",
+                "labelWidth": "15%",
+                "margin": 10,
+                "name": "popis",
+                "width": null
+            },
+            "designerId": "8275d3ad-0d63-48b5-911b-3dcb75526f66"
+        },
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": null,
+                "itemId": "save",
+                "margin": 10,
+                "text": "Uložit",
+                "width": "30%"
+            },
+            "designerId": "44e90fe7-1b27-4b0b-a5ad-73627370e41b"
+        }
+    ]
+}

@@ -1,0 +1,381 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "NewNurseCareController"
+    },
+    "designerId": "a5d1a44d-390a-40a1-858a-e3aca51615a3",
+    "cn": [
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "pacientId"
+                ],
+                "fn": "onNewNurseCareRequested",
+                "implHandler": [
+                    "this.getApplication().redirectTo(\"private/new-care/\"+pacientId);"
+                ],
+                "name": "newNurseCareRequested",
+                "scope": "this"
+            },
+            "designerId": "48f4af73-0d98-49d6-b9d1-be448a814d33"
+        },
+        {
+            "type": "Ext.app.Route",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "pacientId"
+                ],
+                "fn": "main",
+                "implHandler": [
+                    "this.getApplication().fireEvent(\"loginRequested\", this, function () {\r",
+                    "    var messageBox = Ext.Msg.show({\r",
+                    "        title: \"Načítám data...\",\r",
+                    "        buttons: []\r",
+                    "    });\r",
+                    "\r",
+                    "    this.getNewNurseCareView(); // inicializace pomocí autoload\r",
+                    "\r",
+                    "    var Pacient = Ext.ModelManager.getModel('CestaDomu.model.Pacient');\r",
+                    "\r",
+                    "    Pacient.load(pacientId, {\r",
+                    "        scope: this,\r",
+                    "        success: function(pacient) {\r",
+                    "\r",
+                    "            this.pacient = pacient;\r",
+                    "\r",
+                    "            var now = new Date();\r",
+                    "            this.getDate().setValue(now);\r",
+                    "            this.getHour().setValue(now.getHours());\r",
+                    "            this.getMinute().setValue(now.getMinutes());\r",
+                    "\r",
+                    "            this.getWayOfWorking().getStore().load(function (records, operation, success) {\r",
+                    "                if (success) {\r",
+                    "                    this.getWayOfWorking().setValue(1858); // Nepohotovost (1)\r",
+                    "                }\r",
+                    "            }, this);\r",
+                    "            this.getServiceType().getStore().load(function (records, operation, success) {\r",
+                    "                if (success) {\r",
+                    "                    this.getServiceType().setValue(558); // Z - Návštěva (17)\r",
+                    "                }\r",
+                    "            }, this);\r",
+                    "            this.getFormWork().getStore().load(function (records, operation, success) {\r",
+                    "                if (success) {\r",
+                    "                    this.getFormWork().setValue(1856); // Teréní (3)\r",
+                    "                }\r",
+                    "            }, this);\r",
+                    "\r",
+                    "            this.getToolbar().setTitle('Nový průběh péče u '+this.pacient.get('Name'));\r",
+                    "\r",
+                    "            this.getMainContainer().setActiveItem(this.getNewNurseCareView());\r",
+                    "\r",
+                    "            messageBox.hide();\r",
+                    "        },\r",
+                    "        failure: function () {\r",
+                    "            Ext.Msg.alert('Chyba', 'Nepodařilo se načíst data.');\r",
+                    "        }\r",
+                    "    });\r",
+                    "});\r",
+                    "\r",
+                    "//CestaDomu.controller.Login.doLogged(this, );\r",
+                    ""
+                ],
+                "url": "private/new-care/:pacientId"
+            },
+            "designerId": "5ae4b885-b990-4a64-adca-9131f177a072"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainContainer",
+                "selector": "mainContainer"
+            },
+            "designerId": "9e3f508e-c991-478d-aad3-24f2890b65ff"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "newNurseCareView",
+                "selector": "newNurseCareView",
+                "xtype": "newNurseCareView"
+            },
+            "designerId": "5eaa245d-3f12-4348-aeb5-050a613d4de7"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "wayOfWorking",
+                "selector": "newNurseCareView #wayOfWorking"
+            },
+            "designerId": "b09ca612-7232-49d9-bd60-ec5295f79207"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "date",
+                "selector": "newNurseCareView #date"
+            },
+            "designerId": "f4f00dd2-c4b0-493d-ac01-61c5bcc8c40b"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "hour",
+                "selector": "newNurseCareView #hour"
+            },
+            "designerId": "8e960458-18de-48d1-8932-5130e09515f7"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "minute",
+                "selector": "newNurseCareView #minute"
+            },
+            "designerId": "f78330cd-f864-42c0-a2e2-37ec38c1c1be"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "workDuration",
+                "selector": "newNurseCareView #workDuration"
+            },
+            "designerId": "85a1d795-4a2a-47aa-87b4-af37b3a0d37e"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "documentationDuration",
+                "selector": "newNurseCareView #documentationDuration"
+            },
+            "designerId": "6cc67900-5866-4576-8ca1-ac000e0a628a"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "transportDuration",
+                "selector": "newNurseCareView #transportDuration"
+            },
+            "designerId": "16672fac-702a-43e0-9b8e-88bd247483ad"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "serviceType",
+                "selector": "newNurseCareView #serviceType"
+            },
+            "designerId": "8aef2d15-3d31-4999-836c-64b44f01074a"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "formWork",
+                "selector": "newNurseCareView #formWork"
+            },
+            "designerId": "340936d4-760a-4301-a45c-cca661a7e9d6"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "newNurseCareView #save",
+                "designer|targetType": "Ext.Button",
+                "fn": "onSave",
+                "implHandler": [
+                    "CestaDomu.controller.Login.doLogged(this, function() {\r",
+                    "    var start = this.getDate().getValue();\r",
+                    "    start.setHours(this.getHour().getValue());\r",
+                    "    start.setMinutes(this.getMinute().getValue());\r",
+                    "\r",
+                    "    var care = Ext.create('CestaDomu.model.NurseCare', {\r",
+                    "        start: start,\r",
+                    "        Name: this.getAggreement().getValue(),\r",
+                    "        Description: this.getDescription().getValue(),\r",
+                    "        durationtime: this.getWorkDuration().getValue()\r",
+                    "    });\r",
+                    "\r",
+                    "\r",
+                    "    Ext.Msg.show({\r",
+                    "        title: \"Ukládám...\",\r",
+                    "        buttons: []\r",
+                    "    });\r",
+                    "    care.save({\r",
+                    "        params: {\r",
+                    "            pacientId: this.pacient.get('ID'),\r",
+                    "            contactId: this.pacient.get('contactId'),\r",
+                    "            classId: 57081\r",
+                    "        },\r",
+                    "        failure: function() {\r",
+                    "            Ext.Msg.alert('Chyba', 'Nepodařilo se uložit záznam, zkuste to prosím za chvíli.');\r",
+                    "        },\r",
+                    "        success: function(careRecord, operation) {\r",
+                    "            var workReport = Ext.create('CestaDomu.model.RawWorkReport', {\r",
+                    "                startDate: start,\r",
+                    "                Class: 85953,\r",
+                    "                durationtime: this.getWorkDuration().getValue(),\r",
+                    "                transportDuration: this.getTransportDuration().getValue(),\r",
+                    "                ServiceTypeID: this.getServiceType().getValue(),\r",
+                    "                wayOfWorking: this.getWayOfWorking().getValue(),\r",
+                    "                formWork: this.getFormWork().getValue(),\r",
+                    "                Description: this.getDescription().getValue()\r",
+                    "            });\r",
+                    "            workReport.save({\r",
+                    "                params: {\r",
+                    "                    pacientId: this.pacient.get('ID'),\r",
+                    "                    contactId: this.pacient.get('contactId'),\r",
+                    "                    careId: careRecord.get('ID')\r",
+                    "                },\r",
+                    "                failure: function() {\r",
+                    "                    Ext.Msg.alert('Chyba', 'Nepodařilo se uložit výkaz práce k zápisu, opravte prosím vytvořená data v Intuu ručně.');\r",
+                    "                },\r",
+                    "                success: function(workReportRecord, operation) {\r",
+                    "                    var docReport = Ext.create('CestaDomu.model.RawDocReport', {\r",
+                    "                        startDate: start,\r",
+                    "                        Class: 85954,\r",
+                    "                        durationtime: this.getDocumentationDuration().getValue(),\r",
+                    "                        wayOfWorking: 1858, //výkaz práce je vždy nepohotovost\r",
+                    "                        documentationWayOfWorking: 1858, //výkaz práce je vždy nepohotovost\r",
+                    "                        Description: this.getDescription().getValue()\r",
+                    "                    });\r",
+                    "                    docReport.save({\r",
+                    "                        params: {\r",
+                    "                            pacientId: this.pacient.get('ID'),\r",
+                    "                            contactId: this.pacient.get('contactId'),\r",
+                    "                            careId: careRecord.get('ID'),\r",
+                    "                            reportId: workReportRecord.get('ID')\r",
+                    "                        },\r",
+                    "                        failure: function() {\r",
+                    "                            Ext.Msg.alert('Chyba', 'Nepodařilo se uložit výkaz práce na dokumentaci k zápisu, opravte prosím vytvořená data v Intuu ručně.');\r",
+                    "                        },\r",
+                    "                        success: function(docReportRecord, operation) {\r",
+                    "                            Ext.Msg.alert('Uloženo', 'Průběh péče (ID:'+careRecord.get('ID')+'), výkaz práce (ID:'+workReportRecord.get('ID')+'), výkaz práce na dokumentaci (ID:'+docReportRecord.get('ID')+').',\r",
+                    "                                          function () {\r",
+                    "                                              this.getApplication().fireEvent(\"pacientSelected\", this.pacient.get('ID'));\r",
+                    "                                          }, this);\r",
+                    "                        }\r",
+                    "                    }, this);\r",
+                    "                }\r",
+                    "            }, this);\r",
+                    "        }\r",
+                    "    }, this);\r",
+                    "});"
+                ],
+                "name": "tap"
+            },
+            "designerId": "d3a55a49-080d-42a4-a539-ae5a6f194410"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "toolbar",
+                "selector": "newNurseCareView toolbar"
+            },
+            "designerId": "f1c1411a-ad5d-43a9-9d44-902ca499e218"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "aggreement",
+                "selector": "newNurseCareView #aggreement"
+            },
+            "designerId": "3553f4c3-6526-4caf-af14-e4896f0911bd"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "description",
+                "selector": "newNurseCareView #description"
+            },
+            "designerId": "e78c1b6c-dbb5-4f83-b04c-964fea407896"
+        }
+    ]
+}

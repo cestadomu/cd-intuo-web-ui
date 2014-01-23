@@ -6,10 +6,10 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "NurseCare",
+        "designer|userClassName": "RawDocReport",
         "idProperty": "ID"
     },
-    "designerId": "78aea2ba-d3af-48a3-b8c9-9eb77c1e9970",
+    "designerId": "b49843a3-c7cd-44e4-927f-7bd296a72196",
     "cn": [
         {
             "type": "Ext.data.Field",
@@ -22,7 +22,7 @@
                 "name": "ID",
                 "type": "auto"
             },
-            "designerId": "fc8427ab-3926-4b0d-9c0b-2b71f35c3daa"
+            "designerId": "28cc87f5-5a7f-42cc-ace8-8dfbe090c0b3"
         },
         {
             "type": "Ext.data.Field",
@@ -32,10 +32,23 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "start",
+                "name": "Class",
+                "type": "int"
+            },
+            "designerId": "607dcbf1-3c59-415f-83eb-5b95cfda7323"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "startDate",
                 "type": "date"
             },
-            "designerId": "cfebde8e-b4a3-40b3-b55c-0c523c4addf8"
+            "designerId": "b6a04b9c-5a79-41f3-8274-176998d15603"
         },
         {
             "type": "Ext.data.Field",
@@ -45,10 +58,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "nurse",
-                "type": "string"
+                "name": "durationtime",
+                "type": "int"
             },
-            "designerId": "d74561e3-4b0f-46de-a1d6-4078f51e2163"
+            "designerId": "45464333-8278-4d90-9649-fd5e93ddccdd"
         },
         {
             "type": "Ext.data.Field",
@@ -58,10 +71,23 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "Name",
-                "type": "string"
+                "name": "wayOfWorking",
+                "type": "int"
             },
-            "designerId": "7ed654e7-3734-487b-98a6-6d81fd4d20ad"
+            "designerId": "f4cd994e-b93c-4e3a-bc32-9d31f9e009d8"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "documentationWayOfWorking",
+                "type": "int"
+            },
+            "designerId": "61e34ae1-906e-47ef-9e99-16c104440597"
         },
         {
             "type": "Ext.data.Field",
@@ -74,21 +100,7 @@
                 "name": "Description",
                 "type": "string"
             },
-            "designerId": "3b9e5d05-1aea-4e4d-be4b-d7fcbe0c5924"
-        },
-        {
-            "type": "Ext.data.Field",
-            "reference": {
-                "name": "fields",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "name": "durationtime",
-                "persist": null,
-                "type": "int"
-            },
-            "designerId": "0f43cb5b-f25b-490c-b9ba-d418e982dfad"
+            "designerId": "825ebc95-ab23-448e-acf8-b47f90bd58df"
         },
         {
             "type": "Ext.data.proxy.Ajax",
@@ -100,7 +112,7 @@
             "userConfig": {
                 "api": [
                     "{\r",
-                    "    create: { service: CestaDomu.controller.CreateObject, templates: { dataXml: new Ext.XTemplate('<dig:ArrayOfAnyType><dig:anyType xsi:type=\"xsd:string\">Class</dig:anyType><dig:anyType xsi:type=\"xsd:int\">{requestParams.classId}</dig:anyType></dig:ArrayOfAnyType><dig:ArrayOfAnyType><dig:anyType xsi:type=\"xsd:string\">{[\"{\"]}pb:Company{[\"}\"]}</dig:anyType><dig:anyType xsi:type=\"xsd:int\">{requestParams.contactId}</dig:anyType></dig:ArrayOfAnyType><dig:ArrayOfAnyType><dig:anyType xsi:type=\"xsd:string\">{[\"{\"]}pb:Project{[\"}\"]}</dig:anyType><dig:anyType xsi:type=\"xsd:int\">{requestParams.pacientId}</dig:anyType></dig:ArrayOfAnyType>')}},\r",
+                    "    create: {service: CestaDomu.controller.CreateObject, templates: {dataXml: new Ext.XTemplate('<dig:ArrayOfAnyType><dig:anyType xsi:type=\"xsd:string\">{[\"{\"]}pb:Company{[\"}\"]}</dig:anyType><dig:anyType xsi:type=\"xsd:int\">{requestParams.contactId}</dig:anyType></dig:ArrayOfAnyType><dig:ArrayOfAnyType><dig:anyType xsi:type=\"xsd:string\">{[\"{\"]}pb:Project{[\"}\"]}</dig:anyType><dig:anyType xsi:type=\"xsd:int\">{requestParams.pacientId}</dig:anyType></dig:ArrayOfAnyType><dig:ArrayOfAnyType><dig:anyType xsi:type=\"xsd:string\">{[\"{\"]}b:cdService{[\"}\"]}</dig:anyType><dig:anyType xsi:type=\"xsd:int\">{requestParams.reportId}</dig:anyType></dig:ArrayOfAnyType><dig:ArrayOfAnyType><dig:anyType xsi:type=\"xsd:string\">{[\"{\"]}pb:cdPROCourseCare{[\"}\"]}</dig:anyType><dig:anyType xsi:type=\"xsd:int\">{requestParams.careId}</dig:anyType></dig:ArrayOfAnyType>')}},\r",
                     "    mapping: {ID: 'CreateObjectResult'},\r",
                     "    mappingType: 'xml'\r",
                     "}"
@@ -108,12 +120,12 @@
                 "designer|createAlias": "intuo",
                 "extraParams": [
                     "{\r",
-                    "    className: 'cdPROCourseCare'\r",
+                    "    className: 'cdServiceDocumentation'\r",
                     "}"
                 ],
                 "url": "xxx"
             },
-            "designerId": "01b59c00-ac42-4c0c-92cc-36c2ece9b778",
+            "designerId": "5ded05a2-a695-4660-92a3-46860a20c8f9",
             "cn": [
                 {
                     "type": "Ext.data.reader.Xml",
@@ -124,11 +136,10 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|createAlias": "intuo",
-                        "idProperty": null,
                         "record": "CreateObjectResponse",
                         "rootProperty": "Body"
                     },
-                    "designerId": "5eb9846d-6d29-47a5-b0d2-de4e8050e22b"
+                    "designerId": "335e8006-555b-4fae-95ae-0b170811e7c6"
                 },
                 {
                     "type": "Ext.data.writer.Xml",
@@ -140,7 +151,7 @@
                     "userConfig": {
                         "designer|createAlias": "intuo"
                     },
-                    "designerId": "ceb68f17-5e68-49a0-87bd-4c9fe6a05d34"
+                    "designerId": "8630b5d4-992a-48f1-9471-b2c338788bee"
                 }
             ]
         }

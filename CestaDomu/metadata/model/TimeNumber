@@ -1,0 +1,96 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "TimeNumber"
+    },
+    "designerId": "19e97cd5-571d-444d-b9bd-aed6a9dedad1",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id",
+                "type": "auto"
+            },
+            "designerId": "11a03f05-c85b-4b1a-b0a5-89976fe014ab"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "value",
+                "type": "int"
+            },
+            "designerId": "6d98b885-6b9f-4ef3-bb18-90c99aae7884",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "return rec.get('id');"
+                        ]
+                    },
+                    "designerId": "4ab657d9-ebdf-4fb4-89f9-040bcfd9f605"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "label",
+                "type": "string"
+            },
+            "designerId": "eeb42615-0245-4983-9371-1d5fdcb08f6b",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "var value = rec.get('value');\r",
+                            "return (value < 10) ? (\"0\" + value) : value;"
+                        ]
+                    },
+                    "designerId": "78c0067d-6682-4b78-a0cf-f5f5f153671b"
+                }
+            ]
+        }
+    ]
+}

@@ -56,7 +56,7 @@ Ext.define('CestaDomu.view.ClientsView', {
             {
                 xtype: 'list',
                 height: '100%',
-                id: 'clientsList',
+                itemId: 'clientsList',
                 emptyText: 'Žádné výsledky',
                 itemTpl: [
                     '{Name}'

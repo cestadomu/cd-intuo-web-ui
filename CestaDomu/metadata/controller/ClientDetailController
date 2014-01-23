@@ -23,7 +23,7 @@
                 ],
                 "fn": "main",
                 "implHandler": [
-                    "CestaDomu.controller.Login.doLogged(this, function () {\r",
+                    "this.getApplication().fireEvent(\"loginRequested\", this, function () {\r",
                     "    var messageBox = Ext.Msg.show({\r",
                     "        title: \"Načítám data...\",\r",
                     "        buttons: []\r",
@@ -37,11 +37,12 @@
                     "    Pacient.load(pacientId, {\r",
                     "        scope: this,\r",
                     "        success: function(pacient) {\r",
+                    "            this.pacient = pacient;\r",
                     "            var nurseCareStore = this.getNurseCareList().getStore();\r",
                     "            nurseCareStore.filter('id', pacient.get('ID'));\r",
                     "            nurseCareStore.load(function(records, operation, success) {\r",
                     "                if (success && records[0]) {\r",
-                    "                    this.onListItemTap(null, null, null, records[0]);\r",
+                    "                    this.onCareListItemTap(null, null, null, records[0]);\r",
                     "                }\r",
                     "            }, this);\r",
                     "\r",
@@ -127,30 +128,12 @@
                     ");\r",
                     "\r",
                     "this.nurseCareTemplate = new Ext.XTemplate(\r",
-                    "    'Délka: {length} min.<br/>',\r",
-                    "    'Popis: {description}'\r",
+                    "    'Délka: {durationtime} min.<br/>',\r",
+                    "    'Popis: {Description}'\r",
                     ");"
                 ]
             },
             "designerId": "7231fc16-0c89-403f-a1c8-635659e958b2"
-        },
-        {
-            "type": "controlleraction",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|controlQuery": "clientDetailView button",
-                "designer|targetType": "Ext.Button",
-                "fn": "onShowNewItemMenu",
-                "implHandler": [
-                    ""
-                ],
-                "name": "tap"
-            },
-            "designerId": "c1d200b9-b37a-4565-98dc-d918475773c2"
         },
         {
             "type": "controllerref",
@@ -188,7 +171,7 @@
             "userConfig": {
                 "designer|controlQuery": "clientDetailView #clientInfoContainer list",
                 "designer|targetType": "Ext.dataview.List",
-                "fn": "onListItemTap",
+                "fn": "onCareListItemTap",
                 "implHandler": [
                     "this.getNurseCareInfo().setHtml(this.nurseCareTemplate.apply(record.getData()));"
                 ],
@@ -276,6 +259,42 @@
                 "selector": "clientDetailView #clientInfoContainer list"
             },
             "designerId": "5fff4a19-c8ee-4ca2-a29d-5c625294d1a5"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "clientDetailView #newRecord",
+                "designer|targetType": "Ext.Button",
+                "fn": "onNewRecord",
+                "implHandler": [
+                    "this.getApplication().fireEvent(\"newNurseCareRequested\", this.pacient.get('ID'));"
+                ],
+                "name": "tap"
+            },
+            "designerId": "aaf855c5-875b-4a1a-8cb4-77c35c13f6df"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "clientDetailView #back",
+                "designer|targetType": "Ext.Button",
+                "fn": "onBack",
+                "implHandler": [
+                    "this.getApplication().fireEvent(\"clientsView\");"
+                ],
+                "name": "tap"
+            },
+            "designerId": "76fd783e-288d-4d3c-a523-eb2a49ef23e5"
         }
     ]
 }

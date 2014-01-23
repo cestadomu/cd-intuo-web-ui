@@ -12,7 +12,8 @@
             "DefaultController",
             "ClientsController",
             "ClientDetailController",
-            "WorkReportsController"
+            "WorkReportsController",
+            "NewNurseCareController"
         ],
         "models": [
             "Contact",
@@ -22,7 +23,11 @@
             "TimeFund",
             "Pacient",
             "NurseCare",
-            "Drug"
+            "Drug",
+            "TimeNumber",
+            "Enumeration",
+            "RawWorkReport",
+            "RawDocReport"
         ],
         "name": "CestaDomu",
         "requires": [
@@ -37,7 +42,14 @@
             "Ext.carousel.Carousel",
             "Ext.Label",
             "Ext.field.Select",
-            "Ext.XTemplate"
+            "Ext.XTemplate",
+            "CestaDomu.controller.Login",
+            "CestaDomu.controller.GetViewX",
+            "CestaDomu.controller.GetObjectInfo",
+            "CestaDomu.controller.GetBindingViewX",
+            "CestaDomu.controller.GetEnumerationDataByReference",
+            "CestaDomu.controller.GetEnumerationActiveDataByReference",
+            "CestaDomu.controller.CreateObject"
         ],
         "stores": [
             "ContactsStore",
@@ -46,16 +58,21 @@
             "WorkReportsStore",
             "TimeFundStore",
             "NurseCareStore",
-            "DrugStore"
+            "DrugStore",
+            "Hours",
+            "Minutes",
+            "WayOfWorking",
+            "FormWork",
+            "ServiceType"
         ],
         "views": [
             "LoginView",
             "MainContainer",
             "ClientsView",
             "RoleSelectView",
-            "LoadingView",
             "ClientDetailView",
-            "WorkReportsView"
+            "WorkReportsView",
+            "NewNurseCareView"
         ]
     },
     "designerId": "application",

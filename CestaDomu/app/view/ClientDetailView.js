@@ -19,8 +19,8 @@ Ext.define('CestaDomu.view.ClientDetailView', {
 
     requires: [
         'Ext.Toolbar',
-        'Ext.SegmentedButton',
         'Ext.Button',
+        'Ext.SegmentedButton',
         'Ext.Label',
         'Ext.dataview.List',
         'Ext.XTemplate',
@@ -38,6 +38,12 @@ Ext.define('CestaDomu.view.ClientDetailView', {
                 docked: 'top',
                 height: 50,
                 items: [
+                    {
+                        xtype: 'button',
+                        itemId: 'back',
+                        ui: 'back',
+                        text: 'Klienti'
+                    },
                     {
                         xtype: 'segmentedbutton',
                         itemId: 'menu',
@@ -67,6 +73,7 @@ Ext.define('CestaDomu.view.ClientDetailView', {
                     {
                         xtype: 'button',
                         docked: 'right',
+                        itemId: 'newRecord',
                         width: 50,
                         text: '+'
                     }
@@ -80,20 +87,20 @@ Ext.define('CestaDomu.view.ClientDetailView', {
                 items: [
                     {
                         xtype: 'list',
-                        flex: 40,
-                        minWidth: 400,
+                        flex: 50,
                         itemTpl: [
-                            '{[Ext.Date.format(values.time, \'d. m. Y H:i\')]} {nurse}<br/>',
-                            '{aggreement}'
+                            '{[Ext.Date.format(values.start, \'d. m. Y H:i\')]} {nurse}<br/>',
+                            '{Name}'
                         ],
                         store: 'NurseCareStore'
                     },
                     {
                         xtype: 'container',
-                        flex: 60,
+                        flex: 50,
                         itemId: 'nurseCareInfo',
                         margin: 5,
-                        layout: 'vbox'
+                        layout: 'vbox',
+                        scrollable: 'vertical'
                     }
                 ]
             },

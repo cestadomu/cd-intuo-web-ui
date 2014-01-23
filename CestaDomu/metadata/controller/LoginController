@@ -26,13 +26,7 @@
             "userConfig": {
                 "fn": "main",
                 "implHandler": [
-                    "if (CestaDomu.controller.Login.isLoggedIn()) {\r",
-                    "    this.getApplication().fireEvent(\"loggedIn\");\r",
-                    "} else {\r",
-                    "    this.getMainContainer().setActiveItem(this.getLoginView());\r",
-                    "}\r",
-                    "\r",
-                    ""
+                    "this.getMainContainer().setActiveItem(this.getLoginView());"
                 ],
                 "url": "public/login"
             },
@@ -59,8 +53,14 @@
                     "    this.getLoginForm().getValues(),\r",
                     "    this,\r",
                     "    function(response){\r",
-                    "        this.getApplication().fireEvent(\"loggedIn\");\r",
                     "        messageBox.hide();\r",
+                    "        if (this.loginAction) {\r",
+                    "            var loginAction = this.loginAction;\r",
+                    "            this.loginAction = null;\r",
+                    "            Ext.callback(loginAction.loginSuccess, loginAction.loginCallbackScope);\r",
+                    "        } else {\r",
+                    "            this.getApplication().fireEvent(\"loggedIn\");\r",
+                    "        }\r",
                     "    },function(response) {\r",
                     "        Ext.Msg.alert(\"Přihlášení se nezdařilo\");\r",
                     "    });\r",
@@ -128,6 +128,37 @@
                 "xtype": "loginView"
             },
             "designerId": "3a80780f-1cb8-4813-bbd6-42b5d7855307"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "scope",
+                    "success"
+                ],
+                "fn": "onLoginRequested",
+                "implHandler": [
+                    "if (CestaDomu.controller.Login.isLoginActive()) {\r",
+                    "    Ext.callback(success, scope);\r",
+                    "} else if (CestaDomu.controller.Login.isLoggedIn()) {\r",
+                    "    CestaDomu.controller.Login.refreshLogin(scope, success);\r",
+                    "} else {\r",
+                    "    this.loginAction = {\r",
+                    "        loginCallbackScope: scope,\r",
+                    "        loginSuccess: success\r",
+                    "    };\r",
+                    "    this.getMainContainer().setActiveItem(this.getLoginView());\r",
+                    "}"
+                ],
+                "name": "loginRequested",
+                "scope": "this"
+            },
+            "designerId": "2df19076-7c7f-4cbf-8e87-01dc0b2462c8"
         }
     ]
 }

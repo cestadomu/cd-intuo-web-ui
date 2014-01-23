@@ -36,7 +36,8 @@ Ext.define('CestaDomu.controller.WorkReportsController', {
             mainContainer: 'mainContainer',
             reportList: 'workReportsView list',
             workReportsForm: 'workReportsView formpanel',
-            createWorkReportButton: 'workReportsView #createWorkReports'
+            createWorkReportButton: 'workReportsView #createWorkReports',
+            employee: 'workReportsView #employee'
         },
 
         control: {
@@ -115,23 +116,27 @@ Ext.define('CestaDomu.controller.WorkReportsController', {
     },
 
     main: function() {
-        CestaDomu.controller.Login.doLogged(this, function () {
-            this.getMainContainer().setActiveItem(this.getWorkReportsView());
-            var store = Ext.getStore('EmployeesStore');
+        this.getApplication().fireEvent("loginRequested", this, function () {
+            this.getWorkReportsView(); // inicializace pomocí autoload
+
+            var store = this.getEmployee().getStore();
 
             if (!store.isLoaded()) {
+                store.load();
                 Ext.Msg.show({
-                    title: "Načítání dat formuláře...",
+                    title: "Načítání dat...",
                     buttons: []
                 });
                 store.load(function(records, operation, success) {
                     if (success) {
+                        this.getMainContainer().setActiveItem(this.getWorkReportsView());
                         Ext.Msg.hide();
                     } else {
                         Ext.Msg.alert('Chyba', 'Nepodařilo se načíst data zaměstnanců.');
-                        this.getApplication().getHistory().back();
                     }
                 }, this);
+            } else {
+                this.getMainContainer().setActiveItem(this.getWorkReportsView());
             }
         });
     },

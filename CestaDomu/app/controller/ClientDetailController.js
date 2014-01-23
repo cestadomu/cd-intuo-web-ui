@@ -41,23 +41,22 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
         },
 
         control: {
-            "clientDetailView button": {
-                tap: 'onShowNewItemMenu'
-            },
             "clientDetailView #clientInfoContainer list": {
-                itemtap: 'onListItemTap'
+                itemtap: 'onCareListItemTap'
             },
             "clientDetailView #menu button": {
                 tap: 'onMenuButton'
+            },
+            "clientDetailView #newRecord": {
+                tap: 'onNewRecord'
+            },
+            "clientDetailView #back": {
+                tap: 'onBack'
             }
         }
     },
 
-    onShowNewItemMenu: function(button, e, eOpts) {
-
-    },
-
-    onListItemTap: function(dataview, index, target, record, e, eOpts) {
+    onCareListItemTap: function(dataview, index, target, record, e, eOpts) {
         this.getNurseCareInfo().setHtml(this.nurseCareTemplate.apply(record.getData()));
     },
 
@@ -76,8 +75,16 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
         }
     },
 
+    onNewRecord: function(button, e, eOpts) {
+        this.getApplication().fireEvent("newNurseCareRequested", this.pacient.get('ID'));
+    },
+
+    onBack: function(button, e, eOpts) {
+        this.getApplication().fireEvent("clientsView");
+    },
+
     main: function(pacientId) {
-        CestaDomu.controller.Login.doLogged(this, function () {
+        this.getApplication().fireEvent("loginRequested", this, function () {
             var messageBox = Ext.Msg.show({
                 title: "Načítám data...",
                 buttons: []
@@ -91,11 +98,12 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
             Pacient.load(pacientId, {
                 scope: this,
                 success: function(pacient) {
+                    this.pacient = pacient;
                     var nurseCareStore = this.getNurseCareList().getStore();
                     nurseCareStore.filter('id', pacient.get('ID'));
                     nurseCareStore.load(function(records, operation, success) {
                         if (success && records[0]) {
-                            this.onListItemTap(null, null, null, records[0]);
+                            this.onCareListItemTap(null, null, null, records[0]);
                         }
                     }, this);
 
@@ -125,8 +133,8 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
         );
 
         this.nurseCareTemplate = new Ext.XTemplate(
-            'Délka: {length} min.<br/>',
-            'Popis: {description}'
+            'Délka: {durationtime} min.<br/>',
+            'Popis: {Description}'
         );
     },
 

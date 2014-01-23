@@ -5,13 +5,16 @@ Ext.define('Lib.IntuoWriter', {
     writeRecords: function(request, data) {
         request.getHeaders()['Content-Type'] = 'text/xml; charset=UTF-8';
         var templateParams = {};
+
         templateParams.requestParams = request.getParams();
+
         templateParams.token = CestaDomu.controller.Login.getToken();
         templateParams.data = data;
         templateParams.filters = {};
         if (request.getOperation().getFilters()) {
             request.getOperation().getFilters().forEach(function (filter) {templateParams.filters[filter.getProperty()] = filter.getValue();});
         }
+
         var operationApi = this.getProxyApi()[request.getOperation().getAction()];
         if (operationApi.templates) {
             for (var template in operationApi.templates) {
@@ -20,8 +23,6 @@ Ext.define('Lib.IntuoWriter', {
         }
         request.setXmlData(operationApi.service.template.apply(templateParams));
         request.setParams({});
-        
-        CestaDomu.controller.Login.saveTokenTime(new Date().getTime());
         return request;
     },
     setProxyApi: function(value) {
@@ -29,5 +30,9 @@ Ext.define('Lib.IntuoWriter', {
     },
     getProxyApi: function() {
         return this.proxyApi;
+    },
+    writeDate: function(field, date) {
+    	return date;
     }
+
 });

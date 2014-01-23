@@ -6,14 +6,14 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "GetViewX",
+        "designer|userClassName": "GetEnumerationActiveDataByReference",
         "requires": [
-            "Ext.XTemplate",
-            "CestaDomu.controller.Intuo"
+            "CestaDomu.controller.Intuo",
+            "Ext.XTemplate"
         ],
         "singleton": true
     },
-    "designerId": "fef04321-f456-434e-b324-8d13ace4d23a",
+    "designerId": "471482d2-8e3c-4c87-8293-bea57ec22a21",
     "cn": [
         {
             "type": "basicfunction",
@@ -31,20 +31,16 @@
                     "    '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dig=\"http://digres.cz/\">',\r",
                     "        '<soapenv:Header/>',\r",
                     "        '<soapenv:Body>',\r",
-                    "            '<dig:GetViewX>',\r",
+                    "            '<dig:GetEnumerationActiveDataByReference>',\r",
                     "                '<dig:strAuthKey>{token}</dig:strAuthKey>',\r",
-                    "                '<dig:nViewID>{requestParams.viewId}</dig:nViewID>',\r",
-                    "                '<dig:strLanguage>CS</dig:strLanguage>',\r",
-                    "                '<tpl if=\"filters.xml\"><dig:strXMLDefinitionOfRestriction><![CDATA[{filters.xml}]]></dig:strXMLDefinitionOfRestriction>',\r",
-                    "                '<tpl elseif=\"filterXml\"><dig:strXMLDefinitionOfRestriction><![CDATA[{filterXml}]]></dig:strXMLDefinitionOfRestriction>',\r",
-                    "                '</tpl>',\r",
-                    "            '</dig:GetViewX>',\r",
+                    "                '<dig:strReference>{requestParams.enumReference}</dig:strReference>',\r",
+                    "            '</dig:GetEnumerationActiveDataByReference>',\r",
                     "        '</soapenv:Body>',\r",
                     "    '</soapenv:Envelope>'\r",
                     ");"
                 ]
             },
-            "designerId": "5e5393fd-e30b-4491-b83e-557c12a420ae"
+            "designerId": "7701f8e7-e660-4a1a-be73-0e2ad85ee3d3"
         }
     ]
 }
