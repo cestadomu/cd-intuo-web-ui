@@ -1,0 +1,119 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ConsultationCare",
+        "idProperty": "ID"
+    },
+    "designerId": "db64bca5-9280-4567-adaf-324c85447751",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "ID",
+                "type": "auto"
+            },
+            "designerId": "80e8195b-1056-4692-b437-4e115c18c484"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "typKonzultace",
+                "type": "string"
+            },
+            "designerId": "9e9778de-207f-481c-b3cb-4b2699de4ef7"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "startDate",
+                "type": "date"
+            },
+            "designerId": "aca9fd6a-7845-46e7-8b98-6188bdeb4099"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "durationtime",
+                "type": "int"
+            },
+            "designerId": "0d1f4732-b1dc-42d4-b962-29cfe7130b3b"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "zaverecnaDohoda",
+                "type": "string"
+            },
+            "designerId": "ea189f94-2ece-4522-9180-5be7240ed337"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "jakToVidim",
+                "type": "string"
+            },
+            "designerId": "5f56f104-abf5-4500-b940-fb2f5021dd98"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "Description",
+                "type": "string"
+            },
+            "designerId": "55bea61f-662d-4691-a1bb-a1195bedb7f8"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "consultant",
+                "type": "string"
+            },
+            "designerId": "e47beacd-c6c4-4f0b-b22b-772401ce569c"
+        }
+    ]
+}

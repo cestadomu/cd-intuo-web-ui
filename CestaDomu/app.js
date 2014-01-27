@@ -59,7 +59,9 @@ Ext.application({
         'TimeNumber',
         'Enumeration',
         'RawWorkReport',
-        'RawDocReport'
+        'RawDocReport',
+        'DoctorCare',
+        'ConsultationCare'
     ],
     stores: [
         'ContactsStore',
@@ -73,7 +75,9 @@ Ext.application({
         'Minutes',
         'WayOfWorking',
         'FormWork',
-        'ServiceType'
+        'ServiceType',
+        'DoctorCareStore',
+        'ConsultationCareStore'
     ],
     views: [
         'LoginView',

@@ -29,7 +29,7 @@
                     "        buttons: []\r",
                     "    });\r",
                     "\r",
-                    "    this.getMainContainer().setActiveItem(this.getClientDetailView());\r",
+                    "    this.getClientDetailView();// inicializace pomocí autocreate\r",
                     "    this.getMenu().setPressedButtons([0]);\r",
                     "\r",
                     "    var Pacient = Ext.ModelManager.getModel('CestaDomu.model.Pacient');\r",
@@ -38,11 +38,12 @@
                     "        scope: this,\r",
                     "        success: function(pacient) {\r",
                     "            this.pacient = pacient;\r",
+                    "            this.getClientDetailView().setActiveItem(0);\r",
                     "            var nurseCareStore = this.getNurseCareList().getStore();\r",
                     "            nurseCareStore.filter('id', pacient.get('ID'));\r",
                     "            nurseCareStore.load(function(records, operation, success) {\r",
                     "                if (success && records[0]) {\r",
-                    "                    this.onCareListItemTap(null, null, null, records[0]);\r",
+                    "                    this.getNurseCareList().select(records[0], false, false);\r",
                     "                }\r",
                     "            }, this);\r",
                     "\r",
@@ -50,7 +51,25 @@
                     "            drugStore.filter('id', pacient.get('ID'));\r",
                     "            drugStore.load();\r",
                     "\r",
+                    "\r",
+                    "            var doctorCareStore = this.getDoctorCareList().getStore();\r",
+                    "            doctorCareStore.filter('id', pacient.get('ID'));\r",
+                    "            doctorCareStore.load(function(records, operation, success) {\r",
+                    "                if (success && records[0]) {\r",
+                    "                    this.getDoctorCareList().select(records[0], false, false);\r",
+                    "                }\r",
+                    "            }, this);\r",
+                    "\r",
+                    "            var consultationCareStore = this.getConsultationCareList().getStore();\r",
+                    "            consultationCareStore.filter('id', pacient.get('ID'));\r",
+                    "            consultationCareStore.load(function(records, operation, success) {\r",
+                    "                if (success && records[0]) {\r",
+                    "                    this.getConsultationCareList().select(records[0], false, false);\r",
+                    "                }\r",
+                    "            }, this);\r",
+                    "\r",
                     "            this.getQuickInfo().setHtml(this.quickInfoTemplate.apply(pacient.getData()));\r",
+                    "            this.getMainContainer().setActiveItem(this.getClientDetailView());\r",
                     "            messageBox.hide();\r",
                     "        },\r",
                     "        failure: function () {\r",
@@ -130,6 +149,18 @@
                     "this.nurseCareTemplate = new Ext.XTemplate(\r",
                     "    'Délka: {durationtime} min.<br/>',\r",
                     "    'Popis: {Description}'\r",
+                    ");\r",
+                    "\r",
+                    "this.doctorCareTemplate = new Ext.XTemplate(\r",
+                    "    'Délka: {durationtime} min.<br/>',\r",
+                    "    'Číslo zprávy: {medicalReportNr}<br/>',\r",
+                    "    'Epikríza: {Epikriza}'\r",
+                    ");\r",
+                    "\r",
+                    "this.consultantCareTemplate = new Ext.XTemplate(\r",
+                    "    'Délka: {durationtime} min.<br/> ',\r",
+                    "    'Reflexe: {jakToVidim} <br/>',\r",
+                    "    'Popis: {Description}'\r",
                     ");"
                 ]
             },
@@ -175,9 +206,45 @@
                 "implHandler": [
                     "this.getNurseCareInfo().setHtml(this.nurseCareTemplate.apply(record.getData()));"
                 ],
-                "name": "itemtap"
+                "name": "select"
             },
             "designerId": "187d9324-b938-49ee-8fe1-8e2cd6abb04f"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "clientDetailView #doctorContainer list",
+                "designer|targetType": "Ext.dataview.List",
+                "fn": "onDoctorListItemTap",
+                "implHandler": [
+                    "this.getDoctorCareInfo().setHtml(this.doctorCareTemplate.apply(record.getData()));"
+                ],
+                "name": "select"
+            },
+            "designerId": "cf2b4667-8f21-49cd-86e1-6001d3281398"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "clientDetailView #consultationContainer list",
+                "designer|targetType": "Ext.dataview.List",
+                "fn": "onConsultantListItemTap",
+                "implHandler": [
+                    "this.getConsultationCareInfo().setHtml(this.consultantCareTemplate.apply(record.getData()));"
+                ],
+                "name": "select"
+            },
+            "designerId": "edb44f92-d020-453c-8d75-eb2189507329"
         },
         {
             "type": "controllerref",
@@ -227,6 +294,9 @@
                     "        break;\r",
                     "    case 'doctor':\r",
                     "        this.getClientDetailView().setActiveItem(2);\r",
+                    "        break;\r",
+                    "    case 'consultation':\r",
+                    "        this.getClientDetailView().setActiveItem(3);\r",
                     "        break;\r",
                     "}"
                 ],
@@ -295,6 +365,58 @@
                 "name": "tap"
             },
             "designerId": "76fd783e-288d-4d3c-a523-eb2a49ef23e5"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "doctorCareList",
+                "selector": "#doctorContainer list"
+            },
+            "designerId": "fb07c04b-7dcf-4fba-973c-c09369402c6f"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "consultationCareList",
+                "selector": "#consultationContainer list"
+            },
+            "designerId": "c952fec2-91d7-4a3e-b83a-e5d90119b4a6"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "doctorCareInfo",
+                "selector": "#doctorContainer #doctorCareInfo"
+            },
+            "designerId": "c065bfd1-b032-41af-9bb9-3946499b5ae7"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "consultationCareInfo",
+                "selector": "#consultationContainer #consultationCareInfo"
+            },
+            "designerId": "32cf7862-c5d8-4315-9070-a18418458789"
         }
     ]
 }

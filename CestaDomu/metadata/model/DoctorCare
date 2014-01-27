@@ -1,0 +1,105 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "DoctorCare"
+    },
+    "designerId": "e9034d56-847e-43ec-8bda-6b520ece01c4",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "ID",
+                "type": "auto"
+            },
+            "designerId": "7d31ae6e-8b36-4b8a-9fe6-09ae9b196e5d"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "medicalReportNr",
+                "type": "int"
+            },
+            "designerId": "08d87fe7-fbb1-4f7f-a8dc-2aaaca27d372"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "medicalReporttype",
+                "type": "string"
+            },
+            "designerId": "67eef865-b6ec-4fa8-8397-4dc46d90b3a8"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "startDate",
+                "type": "date"
+            },
+            "designerId": "643f3c29-c008-4878-b3f6-7e74ce23c67b"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "durationtime",
+                "type": "int"
+            },
+            "designerId": "826088c5-bf2f-41c1-9d21-3a04db063507"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "Epikriza",
+                "type": "string"
+            },
+            "designerId": "2d4c7cf1-77a7-4c36-b936-0dfde1d13592"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "doctor",
+                "type": "string"
+            },
+            "designerId": "588df729-cf47-47df-8ba1-d9b37b315642"
+        }
+    ]
+}

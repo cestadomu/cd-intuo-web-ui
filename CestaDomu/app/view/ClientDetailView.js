@@ -63,6 +63,11 @@ Ext.define('CestaDomu.view.ClientDetailView', {
                                 xtype: 'button',
                                 itemId: 'doctor',
                                 text: 'Lékařské'
+                            },
+                            {
+                                xtype: 'button',
+                                itemId: 'consultation',
+                                text: 'Konzultace'
                             }
                         ]
                     },
@@ -89,7 +94,7 @@ Ext.define('CestaDomu.view.ClientDetailView', {
                         xtype: 'list',
                         flex: 50,
                         itemTpl: [
-                            '{[Ext.Date.format(values.start, \'d. m. Y H:i\')]} {nurse}<br/>',
+                            '{[Ext.Date.format(values.startDate, \'d. m. Y H:i\')]} {nurse}<br/>',
                             '{Name}'
                         ],
                         store: 'NurseCareStore'
@@ -124,9 +129,49 @@ Ext.define('CestaDomu.view.ClientDetailView', {
             },
             {
                 xtype: 'container',
-                html: 'Lékařské zprávy',
                 itemId: 'doctorContainer',
-                margin: 5
+                layout: 'hbox',
+                items: [
+                    {
+                        xtype: 'list',
+                        flex: 50,
+                        itemTpl: [
+                            '{[Ext.Date.format(values.startDate, \'d. m. Y H:i\')]} {doctor}<br/>',
+                            '{medicalReporttype}'
+                        ],
+                        store: 'DoctorCareStore'
+                    },
+                    {
+                        xtype: 'container',
+                        flex: 50,
+                        itemId: 'doctorCareInfo',
+                        margin: 5,
+                        scrollable: 'vertical'
+                    }
+                ]
+            },
+            {
+                xtype: 'container',
+                itemId: 'consultationContainer',
+                layout: 'hbox',
+                items: [
+                    {
+                        xtype: 'list',
+                        flex: 50,
+                        itemTpl: [
+                            '{[Ext.Date.format(values.startDate, \'d. m. Y H:i\')]} {consultant}, {typKonzultace}<br/>',
+                            '{zaverecnaDohoda}'
+                        ],
+                        store: 'ConsultationCareStore'
+                    },
+                    {
+                        xtype: 'container',
+                        flex: 50,
+                        itemId: 'consultationCareInfo',
+                        margin: 5,
+                        scrollable: 'vertical'
+                    }
+                ]
             }
         ]
     }

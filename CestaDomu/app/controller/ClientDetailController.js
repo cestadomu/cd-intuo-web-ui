@@ -37,12 +37,22 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
             nurseCareInfo: 'clientDetailView #clientInfoContainer #nurseCareInfo',
             menu: 'clientDetailView #menu',
             drugList: 'clientDetailView #drugContainer list',
-            nurseCareList: 'clientDetailView #clientInfoContainer list'
+            nurseCareList: 'clientDetailView #clientInfoContainer list',
+            doctorCareList: '#doctorContainer list',
+            consultationCareList: '#consultationContainer list',
+            doctorCareInfo: '#doctorContainer #doctorCareInfo',
+            consultationCareInfo: '#consultationContainer #consultationCareInfo'
         },
 
         control: {
             "clientDetailView #clientInfoContainer list": {
-                itemtap: 'onCareListItemTap'
+                select: 'onCareListItemTap'
+            },
+            "clientDetailView #doctorContainer list": {
+                select: 'onDoctorListItemTap'
+            },
+            "clientDetailView #consultationContainer list": {
+                select: 'onConsultantListItemTap'
             },
             "clientDetailView #menu button": {
                 tap: 'onMenuButton'
@@ -56,8 +66,16 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
         }
     },
 
-    onCareListItemTap: function(dataview, index, target, record, e, eOpts) {
+    onCareListItemTap: function(dataview, record, eOpts) {
         this.getNurseCareInfo().setHtml(this.nurseCareTemplate.apply(record.getData()));
+    },
+
+    onDoctorListItemTap: function(dataview, record, eOpts) {
+        this.getDoctorCareInfo().setHtml(this.doctorCareTemplate.apply(record.getData()));
+    },
+
+    onConsultantListItemTap: function(dataview, record, eOpts) {
+        this.getConsultationCareInfo().setHtml(this.consultantCareTemplate.apply(record.getData()));
     },
 
     onMenuButton: function(button, e, eOpts) {
@@ -71,6 +89,9 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
                 break;
             case 'doctor':
                 this.getClientDetailView().setActiveItem(2);
+                break;
+            case 'consultation':
+                this.getClientDetailView().setActiveItem(3);
                 break;
         }
     },
@@ -90,7 +111,7 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
                 buttons: []
             });
 
-            this.getMainContainer().setActiveItem(this.getClientDetailView());
+            this.getClientDetailView();// inicializace pomocí autocreate
             this.getMenu().setPressedButtons([0]);
 
             var Pacient = Ext.ModelManager.getModel('CestaDomu.model.Pacient');
@@ -99,11 +120,12 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
                 scope: this,
                 success: function(pacient) {
                     this.pacient = pacient;
+                    this.getClientDetailView().setActiveItem(0);
                     var nurseCareStore = this.getNurseCareList().getStore();
                     nurseCareStore.filter('id', pacient.get('ID'));
                     nurseCareStore.load(function(records, operation, success) {
                         if (success && records[0]) {
-                            this.onCareListItemTap(null, null, null, records[0]);
+                            this.getNurseCareList().select(records[0], false, false);
                         }
                     }, this);
 
@@ -111,7 +133,25 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
                     drugStore.filter('id', pacient.get('ID'));
                     drugStore.load();
 
+
+                    var doctorCareStore = this.getDoctorCareList().getStore();
+                    doctorCareStore.filter('id', pacient.get('ID'));
+                    doctorCareStore.load(function(records, operation, success) {
+                        if (success && records[0]) {
+                            this.getDoctorCareList().select(records[0], false, false);
+                        }
+                    }, this);
+
+                    var consultationCareStore = this.getConsultationCareList().getStore();
+                    consultationCareStore.filter('id', pacient.get('ID'));
+                    consultationCareStore.load(function(records, operation, success) {
+                        if (success && records[0]) {
+                            this.getConsultationCareList().select(records[0], false, false);
+                        }
+                    }, this);
+
                     this.getQuickInfo().setHtml(this.quickInfoTemplate.apply(pacient.getData()));
+                    this.getMainContainer().setActiveItem(this.getClientDetailView());
                     messageBox.hide();
                 },
                 failure: function () {
@@ -134,6 +174,18 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
 
         this.nurseCareTemplate = new Ext.XTemplate(
             'Délka: {durationtime} min.<br/>',
+            'Popis: {Description}'
+        );
+
+        this.doctorCareTemplate = new Ext.XTemplate(
+            'Délka: {durationtime} min.<br/>',
+            'Číslo zprávy: {medicalReportNr}<br/>',
+            'Epikríza: {Epikriza}'
+        );
+
+        this.consultantCareTemplate = new Ext.XTemplate(
+            'Délka: {durationtime} min.<br/> ',
+            'Reflexe: {jakToVidim} <br/>',
             'Popis: {Description}'
         );
     },

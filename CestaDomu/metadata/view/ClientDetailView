@@ -133,6 +133,19 @@
                                     "type": "string"
                                 }
                             ]
+                        },
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "consultation",
+                                "text": "Konzultace"
+                            },
+                            "designerId": "45705e26-95a4-41b5-9407-c5794e8d76fb"
                         }
                     ]
                 },
@@ -215,7 +228,7 @@
                             "userConfig": {
                                 "designer|displayName": "itemTpl",
                                 "implHandler": [
-                                    "{[Ext.Date.format(values.start, 'd. m. Y H:i')]} {nurse}<br/>\r",
+                                    "{[Ext.Date.format(values.startDate, 'd. m. Y H:i')]} {nurse}<br/>\r",
                                     "{Name}"
                                 ]
                             },
@@ -305,11 +318,124 @@
             },
             "codeClass": null,
             "userConfig": {
-                "html": "Lékařské zprávy",
+                "html": null,
                 "itemId": "doctorContainer",
-                "margin": 5
+                "layout": "hbox",
+                "margin": null
             },
-            "designerId": "c1401bcb-2653-40d0-961f-08a3d4de72e0"
+            "designerId": "c1401bcb-2653-40d0-961f-08a3d4de72e0",
+            "cn": [
+                {
+                    "type": "Ext.dataview.List",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": null,
+                        "layout|flex": 50,
+                        "store": "DoctorCareStore"
+                    },
+                    "designerId": "0b7b6103-3371-4e4a-8606-41143f335885",
+                    "cn": [
+                        {
+                            "type": "Ext.XTemplate",
+                            "reference": {
+                                "name": "itemTpl",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "itemTpl",
+                                "implHandler": [
+                                    "{[Ext.Date.format(values.startDate, 'd. m. Y H:i')]} {doctor}<br/>\r",
+                                    "{medicalReporttype}"
+                                ]
+                            },
+                            "designerId": "4d2cbadc-4a78-4510-a7a9-9f3888e473bb"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "doctorCareInfo",
+                        "layout|flex": 50,
+                        "margin": 5,
+                        "scrollable": "vertical"
+                    },
+                    "designerId": "acfda3f2-668c-4aed-83c8-4b67c1ce69dd"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "html": null,
+                "itemId": "consultationContainer",
+                "layout": "hbox"
+            },
+            "designerId": "9f1111e7-fb8c-4be4-83f3-88b66bb344c2",
+            "cn": [
+                {
+                    "type": "Ext.dataview.List",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": null,
+                        "layout|flex": 50,
+                        "store": "ConsultationCareStore"
+                    },
+                    "designerId": "40c5f567-6c35-410f-afdb-28e0d589293d",
+                    "cn": [
+                        {
+                            "type": "Ext.XTemplate",
+                            "reference": {
+                                "name": "itemTpl",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "itemTpl",
+                                "implHandler": [
+                                    "{[Ext.Date.format(values.startDate, 'd. m. Y H:i')]} {consultant}, {typKonzultace}<br/>\r",
+                                    "{zaverecnaDohoda}"
+                                ]
+                            },
+                            "designerId": "a0d62a3a-e4c8-4a0a-94d9-3131635b22e9"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "consultationCareInfo",
+                        "layout|flex": 50,
+                        "margin": 5,
+                        "scrollable": "vertical"
+                    },
+                    "designerId": "857e6874-a99a-434d-b610-3912de420c1e"
+                }
+            ]
         }
     ]
 }

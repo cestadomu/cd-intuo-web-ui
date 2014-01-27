@@ -41,7 +41,7 @@ Ext.define('CestaDomu.store.NurseCareStore', {
                 mappingType: 'xml',
                 mapping: {
                     ID: 'c0',
-                    start: 'c1',
+                    startDate: 'c1',
                     nurse: 'c2',
                     Name: 'c3',
                     Description: 'c4',

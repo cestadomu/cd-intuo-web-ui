@@ -262,7 +262,7 @@
                     "    start.setMinutes(this.getMinute().getValue());\r",
                     "\r",
                     "    var care = Ext.create('CestaDomu.model.NurseCare', {\r",
-                    "        start: start,\r",
+                    "        startDate: start,\r",
                     "        Name: this.getAggreement().getValue(),\r",
                     "        Description: this.getDescription().getValue(),\r",
                     "        durationtime: this.getWorkDuration().getValue()\r",

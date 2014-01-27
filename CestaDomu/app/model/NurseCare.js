@@ -31,7 +31,7 @@ Ext.define('CestaDomu.model.NurseCare', {
                 type: 'auto'
             },
             {
-                name: 'start',
+                name: 'startDate',
                 type: 'date'
             },
             {

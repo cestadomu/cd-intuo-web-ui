@@ -32,7 +32,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "start",
+                "name": "startDate",
                 "type": "date"
             },
             "designerId": "cfebde8e-b4a3-40b3-b55c-0c523c4addf8"
