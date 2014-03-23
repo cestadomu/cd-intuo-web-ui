@@ -1,0 +1,18 @@
+{
+    "type": "Ext.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "saveUsernameHelp",
+        "designer|userClassName": "SaveUsernameHelp",
+        "hideOnMaskTap": true,
+        "html": "<div style=\"padding: 5px\">Pokud zaškrtnete tuto volbu, pak se vám po úspěšném přihlášení uloží na tomto zařízení použité přihlašovací jméno. Při příštím příchodu na přihlašovací formulář se pak toto jméno automaticky předvyplňuje.</div><div style=\"padding: 5px\">Pokud chcete zrušit předvyplňování přihlašovacího jména, jednoduše odškrtněte tuto volbu a přihlašovací jméno bude z tohoto zařízení okamžitě vymazáno.</div><div style=\"padding: 5px\">Pro zavření této nápovědy ťukněte kamkoliv mimo tento rámeček.</div>",
+        "itemId": "mypanel",
+        "margin": null,
+        "modal": true
+    },
+    "designerId": "890a2569-bb7e-4aa1-852d-c62b3d0c4b6c"
+}

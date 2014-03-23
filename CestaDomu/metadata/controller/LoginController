@@ -26,7 +26,14 @@
             "userConfig": {
                 "fn": "main",
                 "implHandler": [
-                    "this.getMainContainer().setActiveItem(this.getLoginView());"
+                    "this.getMainContainer().setActiveItem(this.getLoginView());\r",
+                    "\r",
+                    "if((typeof(Storage) !== \"undefined\")) {\r",
+                    "    if (localStorage.savedUsername) {\r",
+                    "        this.getSaveUsername().setChecked(true);\r",
+                    "        this.getUsername().setValue(localStorage.savedUsername);\r",
+                    "    }\r",
+                    "}"
                 ],
                 "url": "public/login"
             },
@@ -40,20 +47,25 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|controlQuery": "#loginButton",
+                "designer|controlQuery": "loginView #loginButton",
                 "designer|targetType": "Ext.Button",
-                "fn": "onButtonTap",
+                "fn": "onLogin",
                 "implHandler": [
                     "var messageBox = Ext.Msg.show({\r",
                     "    title: \"Probíhá ověřování...\",\r",
                     "    buttons: []\r",
                     "});\r",
                     "\r",
+                    "var values = this.getLoginForm().getValues();\r",
+                    "\r",
                     "CestaDomu.controller.Login.login(\r",
-                    "    this.getLoginForm().getValues(),\r",
+                    "    values,\r",
                     "    this,\r",
                     "    function(response){\r",
                     "        messageBox.hide();\r",
+                    "        if (this.getSaveUsername().isChecked() && (typeof(Storage) !== \"undefined\")) {\r",
+                    "            localStorage.savedUsername = values.username;\r",
+                    "        }\r",
                     "        if (this.loginAction) {\r",
                     "            var loginAction = this.loginAction;\r",
                     "            this.loginAction = null;\r",
@@ -159,6 +171,103 @@
                 "scope": "this"
             },
             "designerId": "2df19076-7c7f-4cbf-8e87-01dc0b2462c8"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "saveUsernameHelp",
+                "selector": "saveUsernameHelp",
+                "xtype": "saveUsernameHelp"
+            },
+            "designerId": "caa15148-e0d0-49e3-b81c-6a32ce275e22"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "loginView #saveUsernameHelpButton",
+                "designer|targetType": "Ext.Button",
+                "fn": "showHelp",
+                "implHandler": [
+                    "this.getSaveUsernameHelp().showBy(button);"
+                ],
+                "name": "tap"
+            },
+            "designerId": "41ca8dee-652d-4c92-8bc4-e3bb0cf0db8b"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "loginView #saveUsername",
+                "designer|targetType": "Ext.field.Checkbox",
+                "fn": "onSaveUsernameCheck",
+                "implHandler": [
+                    "//Ext.Msg.alert(\"ahoj\", \"ahoj\");"
+                ],
+                "name": "check"
+            },
+            "designerId": "a134d34d-74a8-443d-9237-74760003b516"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "loginView #saveUsername",
+                "designer|targetType": "Ext.field.Checkbox",
+                "fn": "onSaveUsernameUncheck",
+                "implHandler": [
+                    "if((typeof(Storage) !== \"undefined\")) {\r",
+                    "    localStorage.savedUsername = \"\";\r",
+                    "}"
+                ],
+                "name": "uncheck"
+            },
+            "designerId": "4bb98cfc-eace-49b8-8704-012a3e1d9906"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "username",
+                "selector": "loginView #username"
+            },
+            "designerId": "57f47d6e-4b90-4ae7-89d7-ad4bbebbb61e"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "saveUsername",
+                "selector": "loginView #saveUsername"
+            },
+            "designerId": "18484745-a360-4c5c-8559-748a461ee3ee"
         }
     ]
 }

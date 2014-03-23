@@ -54,7 +54,8 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": null,
-                        "label": "Přihlašovací jméno",
+                        "itemId": "username",
+                        "label": "Přihlašovací jméno:",
                         "margin": 10,
                         "minWidth": "",
                         "name": "username",
@@ -71,7 +72,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": null,
-                        "label": "Heslo",
+                        "label": "Heslo:",
                         "margin": 10,
                         "name": "password",
                         "width": "90%"
@@ -79,20 +80,86 @@
                     "designerId": "44cfd845-03a9-4e98-9be4-9cfdaa695e96"
                 },
                 {
-                    "type": "Ext.Button",
+                    "type": "Ext.Container",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|displayName": null,
-                        "id": "loginButton",
-                        "margin": 10,
-                        "maxWidth": 200,
-                        "text": "Přihlásit"
+                        "layout": "hbox",
+                        "margin": 5,
+                        "width": "90%"
                     },
-                    "designerId": "894fa451-6bfc-4161-88e9-ce25682b883e"
+                    "designerId": "25ea2e80-13b8-4d6f-9614-cc9530990b35",
+                    "cn": [
+                        {
+                            "type": "Ext.field.Checkbox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "saveUsername",
+                                "label": "Zapamatovat jméno?",
+                                "labelWidth": "70%",
+                                "width": 250
+                            },
+                            "designerId": "9bee9b4f-a42a-436d-9164-785ade27b8ce"
+                        },
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": null,
+                                "docked": "right",
+                                "id": null,
+                                "itemId": "loginButton",
+                                "margin": 10,
+                                "maxWidth": 200,
+                                "text": "Přihlásit",
+                                "width": null
+                            },
+                            "designerId": "894fa451-6bfc-4161-88e9-ce25682b883e"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout": "hbox",
+                        "width": "90%"
+                    },
+                    "designerId": "7251ea81-9ff5-4087-baad-be54a6d46685",
+                    "cn": [
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|uiInterfaceName": "plain",
+                                "id": null,
+                                "itemId": "saveUsernameHelpButton",
+                                "style": "color: blue; text-decoration: underline;",
+                                "text": "Jak funguje zapamatování jména?",
+                                "ui": "plain"
+                            },
+                            "designerId": "dc89c764-8406-488e-ad4f-e5ccd9f4a83b"
+                        }
+                    ]
                 }
             ]
         }

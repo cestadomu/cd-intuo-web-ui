@@ -86,7 +86,8 @@ Ext.application({
         'RoleSelectView',
         'ClientDetailView',
         'WorkReportsView',
-        'NewNurseCareView'
+        'NewNurseCareView',
+        'SaveUsernameHelp'
     ],
     controllers: [
         'LoginController',

@@ -36,7 +36,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "CestaDomu.controller.NewNurseCareController": [],
   "CestaDomu.controller.RoleSelectController": [],
   "CestaDomu.controller.WorkReportsController": [],
+  "CestaDomu.model.ConsultationCare": [],
   "CestaDomu.model.Contact": [],
+  "CestaDomu.model.DoctorCare": [],
   "CestaDomu.model.Drug": [],
   "CestaDomu.model.Employee": [],
   "CestaDomu.model.Enumeration": [],
@@ -49,7 +51,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "CestaDomu.model.TimeNumber": [],
   "CestaDomu.model.WorkReport": [],
   "CestaDomu.override.Component": [],
+  "CestaDomu.store.ConsultationCareStore": [],
   "CestaDomu.store.ContactsStore": [],
+  "CestaDomu.store.DoctorCareStore": [],
   "CestaDomu.store.DrugStore": [],
   "CestaDomu.store.EmployeesStore": [],
   "CestaDomu.store.FormWork": [],
@@ -68,6 +72,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "CestaDomu.view.MainContainer": [],
   "CestaDomu.view.NewNurseCareView": [],
   "CestaDomu.view.RoleSelectView": [],
+  "CestaDomu.view.SaveUsernameHelp": [],
   "CestaDomu.view.WorkReportsView": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
@@ -816,9 +821,11 @@ Ext.ClassManager.addNameAliasMappings({
   "CestaDomu.controller.NewNurseCareController": [],
   "CestaDomu.controller.RoleSelectController": [],
   "CestaDomu.controller.WorkReportsController": [],
+  "CestaDomu.model.ConsultationCare": [],
   "CestaDomu.model.Contact": [
     "model.contact"
   ],
+  "CestaDomu.model.DoctorCare": [],
   "CestaDomu.model.Drug": [],
   "CestaDomu.model.Employee": [],
   "CestaDomu.model.Enumeration": [],
@@ -831,7 +838,9 @@ Ext.ClassManager.addNameAliasMappings({
   "CestaDomu.model.TimeNumber": [],
   "CestaDomu.model.WorkReport": [],
   "CestaDomu.override.Component": [],
+  "CestaDomu.store.ConsultationCareStore": [],
   "CestaDomu.store.ContactsStore": [],
+  "CestaDomu.store.DoctorCareStore": [],
   "CestaDomu.store.DrugStore": [],
   "CestaDomu.store.EmployeesStore": [],
   "CestaDomu.store.FormWork": [],
@@ -863,6 +872,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "CestaDomu.view.RoleSelectView": [
     "widget.roleSelectView"
+  ],
+  "CestaDomu.view.SaveUsernameHelp": [
+    "widget.saveUsernameHelp"
   ],
   "CestaDomu.view.WorkReportsView": [
     "widget.workReportsView"

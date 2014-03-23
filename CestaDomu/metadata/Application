@@ -76,7 +76,8 @@
             "RoleSelectView",
             "ClientDetailView",
             "WorkReportsView",
-            "NewNurseCareView"
+            "NewNurseCareView",
+            "SaveUsernameHelp"
         ]
     },
     "designerId": "application",

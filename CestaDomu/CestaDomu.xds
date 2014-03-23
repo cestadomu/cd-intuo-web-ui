@@ -13,7 +13,7 @@
                 "height": 1024,
                 "width": 768
             },
-            "viewportOrientation": "landscape"
+            "viewportOrientation": "portrait"
         },
         "urlPrefix": "http://localhost:1841",
         "exportPath": "C:/Users/frezac/Documents/cesta/web-klient/prod-build",
@@ -42,7 +42,8 @@
             "cca33f23-f526-4568-9d08-51f97baf994e",
             "904356d9-e5e1-4ff8-97b3-c2ce9702d4d4",
             "51456d36-ba40-4cfe-a34a-e991c963b35f",
-            "e05de542-1b04-41fe-b72a-b8c4ce14791b"
+            "e05de542-1b04-41fe-b72a-b8c4ce14791b",
+            "890a2569-bb7e-4aa1-852d-c62b3d0c4b6c"
         ],
         "store": [
             "6270e90b-5658-4f97-bce8-5db328fdc069",
