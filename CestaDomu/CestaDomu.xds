@@ -29,8 +29,8 @@
             "display": "Build web app"
         }
     },
-    "xdsVersion": "3.0.2",
-    "xdsBuild": 1375,
+    "xdsVersion": "3.0.4",
+    "xdsBuild": 1386,
     "schemaVersion": 1,
     "upgradeVersion": 300000000004,
     "framework": "touch23",
