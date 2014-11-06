@@ -532,7 +532,7 @@ Ext.define('CestaDomu.controller.WorkReportsController', {
                     } else if (item.get('ServiceType') == 'Návštěva u lékaře') {
                         category = 'lekar';
                     } else if (item.get('ServiceType') == 'Neplacené volno') {
-                        category = 'lekar';
+                        category = 'neplacene';
                     } else if(item.get('wayOfWorking') == 'Pohotovost') {
                         category = 'pohotovost';
                     } else if (item.get('wayOfWorking') == 'Nepohotovost') {

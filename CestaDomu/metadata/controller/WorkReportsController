@@ -737,7 +737,7 @@
                     "            } else if (item.get('ServiceType') == 'Návštěva u lékaře') {\r",
                     "                category = 'lekar';\r",
                     "            } else if (item.get('ServiceType') == 'Neplacené volno') {\r",
-                    "                category = 'lekar';\r",
+                    "                category = 'neplacene';\r",
                     "            } else if(item.get('wayOfWorking') == 'Pohotovost') {\r",
                     "                category = 'pohotovost';\r",
                     "            } else if (item.get('wayOfWorking') == 'Nepohotovost') {\r",
