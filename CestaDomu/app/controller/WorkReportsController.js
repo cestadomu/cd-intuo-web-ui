@@ -521,11 +521,12 @@ Ext.define('CestaDomu.controller.WorkReportsController', {
         var store = Ext.getStore('WorkReportsStore');
         store.each(function (item, index, length) {
             var category;
+            var poradi;
+            var totalDuration;
             switch(item.get('TypeClass')) {
                 case 'Výkaz práce': //Výkaz práce 85953
-                case 'Výkaz práce na dokumentaci': //Výkaz práce na dokumentaci 85954
-                    var poradi = item.get('start').getDate();
-                    var totalDuration = item.get('durationtime') + item.get('transportDuration');
+                    poradi = item.get('start').getDate();
+                    totalDuration = item.get('durationtime') + item.get('transportDuration');
                     category = 'xxx';
                     if (item.get('ServiceType') == 'Z - Čekání na práci v pohotovosti') {
                         category = 'cekaniNaPraci';
@@ -537,8 +538,23 @@ Ext.define('CestaDomu.controller.WorkReportsController', {
                         category = 'pohotovost';
                     } else if (item.get('wayOfWorking') == 'Nepohotovost') {
                         category = 'nepohotovost';
-                    } else {
-                        category = 'xxx';
+                    }
+                    dny[poradi][category] += totalDuration;
+                    break;
+                case 'Výkaz práce na dokumentaci': //Výkaz práce na dokumentaci 85954
+                    poradi = item.get('start').getDate();
+                    totalDuration = item.get('durationtime') + item.get('transportDuration');
+                    category = 'xxx';
+                    if (item.get('ServiceType') == 'Z - Čekání na práci v pohotovosti') {
+                        category = 'cekaniNaPraci';
+                    } else if (item.get('ServiceType') == 'Návštěva u lékaře') {
+                        category = 'lekar';
+                    } else if (item.get('ServiceType') == 'Neplacené volno') {
+                        category = 'neplacene';
+                    } else if(item.get('documentationWayOfWorking') == 'Pohotovost') {
+                        category = 'pohotovost';
+                    } else if (item.get('documentationWayOfWorking') == 'Nepohotovost') {
+                        category = 'nepohotovost';
                     }
                     dny[poradi][category] += totalDuration;
                     break;

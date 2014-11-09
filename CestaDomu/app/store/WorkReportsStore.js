@@ -49,11 +49,12 @@ Ext.define('CestaDomu.store.WorkReportsStore', {
                     ServiceType: 'c7',
                     wayOfWorking: 'c8',
                     DaysOfHoliday: 'c9',
-                    TypeOfAbsence: 'c10'
+                    TypeOfAbsence: 'c10',
+                    documentationWayOfWorking: 'c11'
                 }
             },
             extraParams: {
-                viewId: 1691
+                viewId: 1691// Org. struktura->Zaměstnanci->Vazba Aktivity
             },
             url: 'xxx',
             reader: {

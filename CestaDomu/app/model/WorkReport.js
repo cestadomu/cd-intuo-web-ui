@@ -60,6 +60,10 @@ Ext.define('CestaDomu.model.WorkReport', {
                 type: 'string'
             },
             {
+                name: 'documentationWayOfWorking',
+                type: 'string'
+            },
+            {
                 name: 'DaysOfHoliday',
                 type: 'float'
             },
@@ -74,8 +78,12 @@ Ext.define('CestaDomu.model.WorkReport', {
                     try {
                         switch(rec.get('TypeClass')) {
                             case 'Výkaz práce':
-                            case 'Výkaz práce na dokumentaci':
                             label += ' (' + rec.get('ServiceType') + ', ' + rec.get('wayOfWorking') + '), ';
+                            label += ' ' + Ext.Date.format(rec.get('start'), 'd. m. Y') + ', ';
+                            label += rec.get('durationtime') + '/' + rec.get('transportDuration') + ' min';
+                            break;
+                            case 'Výkaz práce na dokumentaci':
+                            label += ' (' + rec.get('ServiceType') + ', ' + rec.get('documentationWayOfWorking') + '), ';
                             label += ' ' + Ext.Date.format(rec.get('start'), 'd. m. Y') + ', ';
                             label += rec.get('durationtime') + '/' + rec.get('transportDuration') + ' min';
                             break;

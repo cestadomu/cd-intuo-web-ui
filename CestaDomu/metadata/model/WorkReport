@@ -136,6 +136,19 @@
             },
             "codeClass": null,
             "userConfig": {
+                "name": "documentationWayOfWorking",
+                "type": "string"
+            },
+            "designerId": "c8476a44-f69b-44f5-8300-6d062fc54a8e"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "name": "DaysOfHoliday",
                 "type": "float"
             },
@@ -185,8 +198,12 @@
                             "try {\r",
                             "    switch(rec.get('TypeClass')) {\r",
                             "        case 'Výkaz práce':\r",
-                            "        case 'Výkaz práce na dokumentaci':\r",
                             "            label += ' (' + rec.get('ServiceType') + ', ' + rec.get('wayOfWorking') + '), ';\r",
+                            "            label += ' ' + Ext.Date.format(rec.get('start'), 'd. m. Y') + ', ';\r",
+                            "            label += rec.get('durationtime') + '/' + rec.get('transportDuration') + ' min';\r",
+                            "            break;\r",
+                            "        case 'Výkaz práce na dokumentaci':\r",
+                            "            label += ' (' + rec.get('ServiceType') + ', ' + rec.get('documentationWayOfWorking') + '), ';\r",
                             "            label += ' ' + Ext.Date.format(rec.get('start'), 'd. m. Y') + ', ';\r",
                             "            label += rec.get('durationtime') + '/' + rec.get('transportDuration') + ' min';\r",
                             "            break;\r",
