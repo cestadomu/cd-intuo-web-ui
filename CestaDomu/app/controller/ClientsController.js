@@ -66,7 +66,7 @@ Ext.define('CestaDomu.controller.ClientsController', {
     },
 
     onListItemTap: function(dataview, index, target, record, e, eOpts) {
-        this.getApplication().fireEvent("pacientSelected", record.get('pacientId'));
+        this.getApplication().fireEvent("pacientSelected", record.get('ID'), record.get('pacientId'), record.get('Name'));
 
     },
 

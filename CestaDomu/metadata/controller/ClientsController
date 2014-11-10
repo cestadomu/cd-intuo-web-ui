@@ -147,7 +147,7 @@
                 "designer|targetType": "Ext.dataview.List",
                 "fn": "onListItemTap",
                 "implHandler": [
-                    "this.getApplication().fireEvent(\"pacientSelected\", record.get('pacientId'));\r",
+                    "this.getApplication().fireEvent(\"pacientSelected\", record.get('ID'), record.get('pacientId'), record.get('Name'));\r",
                     ""
                 ],
                 "name": "itemtap"
