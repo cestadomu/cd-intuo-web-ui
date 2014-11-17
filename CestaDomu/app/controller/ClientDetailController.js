@@ -121,7 +121,8 @@ Ext.define('CestaDomu.controller.ClientDetailController', {
                 success: function(pacient) {
                     if (pacient === null) {
                         pacient = new Pacient();
-                        pacient.set("ID", contactId);
+                        pacient.set("ID", pacientId);
+                        pacient.set("contactId", contactId);
                         pacient.set("Name", decodeURIComponent(name));
                     }
                     this.pacient = pacient;

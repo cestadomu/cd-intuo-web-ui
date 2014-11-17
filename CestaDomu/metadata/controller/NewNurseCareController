@@ -324,7 +324,7 @@
                     "                        success: function(docReportRecord, operation) {\r",
                     "                            Ext.Msg.alert('Uloženo', 'Průběh péče (ID:'+careRecord.get('ID')+'), výkaz práce (ID:'+workReportRecord.get('ID')+'), výkaz práce na dokumentaci (ID:'+docReportRecord.get('ID')+').',\r",
                     "                                          function () {\r",
-                    "                                              this.getApplication().fireEvent(\"pacientSelected\", this.pacient.get('ID'));\r",
+                    "                                              this.getApplication().fireEvent(\"pacientSelected\", this.pacient.get('contactId'), this.pacient.get('ID'), this.pacient.get('Name'));\r",
                     "                                          }, this);\r",
                     "                        }\r",
                     "                    }, this);\r",
