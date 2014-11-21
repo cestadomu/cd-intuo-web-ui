@@ -27,10 +27,11 @@
         "lastBuildSelection": {
             "value": "webBuild",
             "display": "Build web app"
-        }
+        },
+        "displayfield-ExtBox1-1337-inputEl": "Not Installed"
     },
-    "xdsVersion": "3.0.2",
-    "xdsBuild": 1375,
+    "xdsVersion": "3.0.4",
+    "xdsBuild": 1386,
     "schemaVersion": 1,
     "upgradeVersion": 300000000004,
     "framework": "touch23",

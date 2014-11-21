@@ -19,7 +19,9 @@
             "codeClass": null,
             "userConfig": {
                 "designer|params": [
-                    "pacientId"
+                    "contactId",
+                    "pacientId",
+                    "name"
                 ],
                 "fn": "main",
                 "implHandler": [
@@ -37,6 +39,12 @@
                     "    Pacient.load(pacientId, {\r",
                     "        scope: this,\r",
                     "        success: function(pacient) {\r",
+                    "            if (pacient === null) {\r",
+                    "                pacient = new Pacient();\r",
+                    "                pacient.set(\"ID\", pacientId);\r",
+                    "                pacient.set(\"contactId\", contactId);\r",
+                    "                pacient.set(\"Name\", decodeURIComponent(name));\r",
+                    "            }\r",
                     "            this.pacient = pacient;\r",
                     "            this.getClientDetailView().setActiveItem(0);\r",
                     "            var nurseCareStore = this.getNurseCareList().getStore();\r",
@@ -78,7 +86,7 @@
                     "    });\r",
                     "});"
                 ],
-                "url": "private/pacients/:pacientId"
+                "url": "private/pacients/:contactId/:pacientId/:name"
             },
             "designerId": "d633283c-b2a0-400e-aaec-ec999497153a"
         },
@@ -91,11 +99,13 @@
             "codeClass": null,
             "userConfig": {
                 "designer|params": [
-                    "pacientId"
+                    "contactId",
+                    "pacientId",
+                    "name"
                 ],
                 "fn": "onPacientSelected",
                 "implHandler": [
-                    "this.getApplication().redirectTo(\"private/pacients/\"+pacientId);"
+                    "this.getApplication().redirectTo(\"private/pacients/\"+contactId+\"/\"+pacientId+\"/\"+encodeURIComponent(name));"
                 ],
                 "name": "pacientSelected",
                 "scope": "this"
@@ -142,8 +152,8 @@
                 "implHandler": [
                     "this.callParent(arguments);\r",
                     "this.quickInfoTemplate = new Ext.XTemplate(\r",
-                    "    '{Name}, <a href=\"http://mapy.cz/?q={street}, {city}\" style=\"color: #99CCFF; text-decoration: none;\" target=\"_blank\">{street}, {city}</a><br/>',\r",
-                    "    'Pečující: {contactPerson}<tpl if=\"mobileNumber\">, {mobilePrefix} {mobileNumber}</tpl><tpl if=\"phoneNumber\">, {phonePrefix} {phoneNumber}</tpl>'\r",
+                    "    '{Name} <tpl if=\"contactPerson\">, <a href=\"http://mapy.cz/?q={street}, {city}\" style=\"color: #99CCFF; text-decoration: none;\" target=\"_blank\">{street}, {city}</a></tpl><br/>',\r",
+                    "    '<tpl if=\"contactPerson\">Pečující: {contactPerson}<tpl if=\"mobileNumber\">, {mobilePrefix} {mobileNumber}</tpl><tpl if=\"phoneNumber\">, {phonePrefix} {phoneNumber}</tpl></tpl><tpl if=\"!contactPerson\">Pečující osoba není zadána</tpl>'\r",
                     ");\r",
                     "\r",
                     "this.nurseCareTemplate = new Ext.XTemplate(\r",

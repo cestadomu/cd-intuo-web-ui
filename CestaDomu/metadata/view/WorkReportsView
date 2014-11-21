@@ -156,7 +156,15 @@
                     "userConfig": {
                         "designer|displayName": "itemTpl",
                         "implHandler": [
-                            "{label}"
+                            "<tpl if=\"label\">\r",
+                            "{label}\r",
+                            "</tpl>\r",
+                            "<tpl if=\"!label\">\r",
+                            "    <div style=\"background: red;\">\r",
+                            "        Chybný záznam\r",
+                            "    </div>\r",
+                            "</tpl>\r",
+                            ""
                         ]
                     },
                     "designerId": "d0fffe91-0917-4b3a-b3d2-7e8db5efa694"
